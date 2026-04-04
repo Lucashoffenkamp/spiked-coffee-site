@@ -6,8 +6,8 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
-const LIFESTYLE_MORNING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/lifestyle_morning_cde0ba61.png";
-const MOCKUP_CUPS = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/mockup_cups_c8bc09bb.png";
+const LIFESTYLE_MORNING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/lifestyle_morning_v2-ALiGG6DxzyeYpc6hvXv4A4.webp";
+const MOCKUP_CUPS = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/mockup_cups_v2-539R8ew2fbVvZEYvpifzLm.webp";
 
 function FadeInSection({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef(null);

@@ -8,8 +8,8 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Sun, Moon, Coffee, Wine } from "lucide-react";
 
-const INTERIOR_DAY = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/interior_mockup_day_665164dd.png";
-const INTERIOR_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/interior_mockup_evening_b1141a09.png";
+const INTERIOR_DAY = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/interior_day_v2-CaJjhxHj7Extup3Wvvm3xV.webp";
+const INTERIOR_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/interior_evening_v2-gkEfLdpWRvchgDTR8QQq9e.webp";
 
 function FadeIn({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef(null);
@@ -160,7 +160,7 @@ export default function ConceptSection() {
             <div className="lg:col-span-7">
               <FadeIn delay={0.2}>
                 <img
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/mockup_coffee_bag_f9438da1.png"
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/coffee_bag_v2-jjbFxkXQWDkAbynFEWpceR.webp"
                   alt="Spiked Coffee featured roaster bag"
                   className="w-full h-[400px] lg:h-[500px] object-cover"
                 />
