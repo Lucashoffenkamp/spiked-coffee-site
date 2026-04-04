@@ -50,9 +50,9 @@ export default function HeroSection() {
           <img
             src={DALMATIAN_ICON}
             alt=""
-            className="h-20 w-20 sm:h-28 sm:w-28 lg:h-36 lg:w-36 object-contain"
+            className="h-28 w-28 sm:h-36 sm:w-36 lg:h-44 lg:w-44 object-contain"
           />
-          <div className="w-px h-16 sm:h-24 lg:h-28 bg-espresso/20" />
+          <div className="w-px h-20 sm:h-28 lg:h-36 bg-espresso/20" />
           <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-light tracking-[0.15em] text-espresso leading-none">
             SPIKED<br />COFFEE
           </h1>
