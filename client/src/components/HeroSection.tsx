@@ -22,14 +22,7 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Decorative thin vertical lines */}
-      <motion.div
-        className="absolute top-1/4 left-8 lg:left-20 w-px h-32 bg-espresso/8"
-        initial={{ scaleY: 0 }}
-        animate={{ scaleY: 1 }}
-        transition={{ duration: 1.4, delay: 0.8, ease }}
-        style={{ transformOrigin: "top" }}
-      />
+      {/* Decorative thin vertical line — right side only */}
       <motion.div
         className="absolute bottom-1/4 right-8 lg:right-20 w-px h-32 bg-espresso/8"
         initial={{ scaleY: 0 }}
