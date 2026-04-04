@@ -6,15 +6,48 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "wouter";
 
 const LOGO_ICON = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/dalmatian_fix_5_23e75f68.png";
 
 const navLinks = [
-  { label: "Our Story", href: "#story" },
-  { label: "The Concept", href: "#concept" },
-  { label: "The Vision", href: "#vision" },
-  { label: "Join Us", href: "#signup" },
+  { label: "Our Story", href: "/#story", isRoute: false },
+  { label: "The Concept", href: "/#concept", isRoute: false },
+  { label: "Our Roasters", href: "/roasters", isRoute: true },
+  { label: "The Vision", href: "/#vision", isRoute: false },
+  { label: "Join Us", href: "/#signup", isRoute: false },
 ];
+
+function NavLink({ link, className, onClick }: { link: typeof navLinks[0]; className: string; onClick?: () => void }) {
+  const [location] = useLocation();
+
+  if (link.isRoute) {
+    return (
+      <Link href={link.href} className={className} onClick={onClick}>
+        {link.label}
+        <span className="absolute -bottom-1 left-0 w-0 h-px bg-terracotta/60 transition-all duration-300 group-hover:w-full" />
+      </Link>
+    );
+  }
+
+  // For hash links: if we're on the home page, just use the hash; otherwise navigate to /#section
+  const handleClick = (e: React.MouseEvent) => {
+    if (location === "/") {
+      e.preventDefault();
+      const hash = link.href.replace("/", "");
+      const el = document.querySelector(hash);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
+    onClick?.();
+  };
+
+  return (
+    <a href={link.href} className={className} onClick={handleClick}>
+      {link.label}
+      <span className="absolute -bottom-1 left-0 w-0 h-px bg-terracotta/60 transition-all duration-300 group-hover:w-full" />
+    </a>
+  );
+}
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
@@ -41,7 +74,7 @@ export default function Navigation() {
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo Mark */}
-            <a href="#" className="flex items-center gap-3 group">
+            <Link href="/" className="flex items-center gap-3 group">
               <img
                 src={LOGO_ICON}
                 alt="Spiked Coffee"
@@ -53,19 +86,16 @@ export default function Navigation() {
                   SPIKED COFFEE
                 </span>
               </div>
-            </a>
+            </Link>
 
             {/* Desktop Nav */}
             <div className="hidden lg:flex items-center gap-10">
               {navLinks.map((link) => (
-                <a
+                <NavLink
                   key={link.href}
-                  href={link.href}
+                  link={link}
                   className="font-body text-xs tracking-[0.15em] uppercase text-espresso-light/70 hover:text-espresso transition-colors duration-300 font-light relative group"
-                >
-                  {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-terracotta/60 transition-all duration-300 group-hover:w-full" />
-                </a>
+                />
               ))}
             </div>
 
@@ -92,17 +122,18 @@ export default function Navigation() {
             transition={{ duration: 0.3 }}
           >
             {navLinks.map((link, i) => (
-              <motion.a
+              <motion.div
                 key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="font-display text-3xl font-light tracking-[0.1em] text-espresso hover:text-terracotta transition-colors"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 + 0.1 }}
               >
-                {link.label}
-              </motion.a>
+                <NavLink
+                  link={link}
+                  className="font-display text-3xl font-light tracking-[0.1em] text-espresso hover:text-terracotta transition-colors relative group"
+                  onClick={() => setMobileOpen(false)}
+                />
+              </motion.div>
             ))}
           </motion.div>
         )}
