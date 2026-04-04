@@ -37,7 +37,7 @@ export default function GallerySection() {
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <FadeIn>
             <div className="text-center mb-16">
-              <h2 className="font-display text-3xl lg:text-4xl font-bold text-espresso mb-4">
+              <h2 className="font-display text-3xl lg:text-4xl font-light text-espresso mb-4 tracking-wide">
                 A glimpse of what's coming.
               </h2>
               <div className="w-12 h-px bg-terracotta mx-auto" />

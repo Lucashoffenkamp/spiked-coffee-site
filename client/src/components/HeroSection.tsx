@@ -1,17 +1,20 @@
 /*
  * HeroSection — Spiked Coffee
- * Design: Full-viewport editorial hero with the horizontal logo centered,
- * subtle parallax, and a scroll indicator. Cream background with earthy tones.
+ * Design: Pure typographic hero inspired by Spike & Co. editorial direction.
+ * Cormorant Garamond display, Jost Light body, thin rules, Dalmatian icon mark.
+ * No boxed logo image — everything is live typography.
  */
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
-const HERO_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/final_logo_bb84aaaa.png";
+const DALMATIAN_ICON = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/dalmatian_fix_5_23e75f68.png";
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center bg-cream overflow-hidden">
-      {/* Subtle texture overlay */}
+      {/* Subtle paper texture */}
       <div
         className="absolute inset-0 opacity-[0.03]"
         style={{
@@ -19,78 +22,103 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Decorative thin lines */}
+      {/* Decorative thin vertical lines */}
       <motion.div
-        className="absolute top-1/4 left-8 lg:left-16 w-px h-32 bg-espresso/10"
+        className="absolute top-1/4 left-8 lg:left-20 w-px h-32 bg-espresso/8"
         initial={{ scaleY: 0 }}
         animate={{ scaleY: 1 }}
-        transition={{ duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 1.4, delay: 0.8, ease }}
         style={{ transformOrigin: "top" }}
       />
       <motion.div
-        className="absolute bottom-1/4 right-8 lg:right-16 w-px h-32 bg-espresso/10"
+        className="absolute bottom-1/4 right-8 lg:right-20 w-px h-32 bg-espresso/8"
         initial={{ scaleY: 0 }}
         animate={{ scaleY: 1 }}
-        transition={{ duration: 1.2, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 1.4, delay: 1.0, ease }}
         style={{ transformOrigin: "bottom" }}
       />
 
-      {/* Main Logo */}
-      <motion.div
-        className="relative z-10 px-8 max-w-4xl w-full"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <img
-          src={HERO_LOGO}
-          alt="Spiked Coffee — Craft Coffee & Fine Beverages"
-          className="w-full max-w-3xl mx-auto"
+      {/* Main content block */}
+      <div className="relative z-10 flex flex-col items-center px-6">
+        {/* Dalmatian icon mark */}
+        <motion.img
+          src={DALMATIAN_ICON}
+          alt=""
+          className="w-16 h-16 lg:w-20 lg:h-20 object-contain mb-8 opacity-80"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 0.8, scale: 1 }}
+          transition={{ duration: 1, delay: 0.2, ease }}
         />
-      </motion.div>
 
-      {/* Tagline */}
-      <motion.p
-        className="relative z-10 mt-10 font-body text-base lg:text-lg text-espresso-light tracking-wide text-center max-w-lg px-6 italic"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.6 }}
-      >
-        Life is short. The coffee is good. The company is better.
-      </motion.p>
+        {/* Brand name — pure typography */}
+        <motion.div
+          className="text-center"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.3, ease }}
+        >
+          <h1 className="font-display text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-light tracking-[0.15em] text-espresso leading-none">
+            SPIKED
+          </h1>
+          <h1 className="font-display text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-light tracking-[0.15em] text-espresso leading-none mt-1">
+            COFFEE
+          </h1>
+        </motion.div>
 
-      {/* Thin horizontal rule */}
-      <motion.div
-        className="relative z-10 mt-8 w-16 h-px bg-terracotta"
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 0.8, delay: 0.9 }}
-      />
+        {/* Thin horizontal rule with descriptor */}
+        <motion.div
+          className="flex items-center gap-6 mt-8 lg:mt-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.7, ease }}
+        >
+          <div className="w-12 lg:w-20 h-px bg-espresso/20" />
+          <p className="font-body text-xs lg:text-sm tracking-[0.3em] uppercase text-espresso-light font-light">
+            Craft Coffee & Fine Beverages
+          </p>
+          <div className="w-12 lg:w-20 h-px bg-espresso/20" />
+        </motion.div>
 
-      {/* Location hint */}
-      <motion.p
-        className="relative z-10 mt-6 font-ui text-xs tracking-[0.3em] uppercase text-espresso-light/60"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.1 }}
-      >
-        Libertyville &middot; Kenosha &middot; Denver
-      </motion.p>
+        {/* Tagline — clean, no italic */}
+        <motion.p
+          className="mt-10 lg:mt-12 font-body text-sm lg:text-base text-espresso-light/70 tracking-wide text-center max-w-md font-light leading-relaxed"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.9, ease }}
+        >
+          Started on the side. Built to last.<br />
+          Every cup sourced with intention. Every pour chosen with care.
+        </motion.p>
+
+        {/* Location markers */}
+        <motion.div
+          className="mt-8 flex items-center gap-3 text-espresso-light/40"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.1, ease }}
+        >
+          <span className="font-body text-[11px] tracking-[0.25em] uppercase font-light">Libertyville</span>
+          <span className="text-[8px]">&middot;</span>
+          <span className="font-body text-[11px] tracking-[0.25em] uppercase font-light">Kenosha</span>
+          <span className="text-[8px]">&middot;</span>
+          <span className="font-body text-[11px] tracking-[0.25em] uppercase font-light">Denver</span>
+        </motion.div>
+      </div>
 
       {/* Scroll indicator */}
       <motion.a
         href="#story"
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-espresso-light/40 hover:text-espresso-light/70 transition-colors"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-espresso-light/30 hover:text-espresso-light/60 transition-colors duration-500"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.5 }}
       >
-        <span className="font-ui text-[10px] tracking-[0.3em] uppercase">Scroll</span>
+        <span className="font-body text-[10px] tracking-[0.3em] uppercase font-light">Scroll</span>
         <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          animate={{ y: [0, 5, 0] }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
         >
-          <ChevronDown size={16} />
+          <ChevronDown size={14} strokeWidth={1} />
         </motion.div>
       </motion.a>
     </section>

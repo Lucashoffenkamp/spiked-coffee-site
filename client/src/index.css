@@ -52,9 +52,10 @@
   --color-kraft: oklch(0.78 0.06 75);
 
   /* Typography */
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-body: 'Libre Baskerville', Georgia, serif;
-  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Jost', system-ui, sans-serif;
+  --font-sans: 'Jost', system-ui, sans-serif;
+  --font-accent: 'Cormorant', Georgia, serif;
 }
 
 :root {
@@ -165,5 +166,9 @@
   }
   .font-ui {
     font-family: var(--font-sans);
+  }
+  .font-accent {
+    font-family: var(--font-accent);
+    font-style: italic;
   }
 }

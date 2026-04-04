@@ -1,9 +1,9 @@
 /*
  * Footer — Spiked Coffee
- * Design: Dark charcoal footer with the logo, minimal links, and brand sign-off.
+ * Design: Dark charcoal footer. Pure typographic logo, Jost Light body, Cormorant accent.
  */
 
-const LOGO_DARK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/final_logo_dark_2c08d184.png";
+const DALMATIAN_ICON = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/dalmatian_fix_5_23e75f68.png";
 
 export default function Footer() {
   return (
@@ -12,12 +12,18 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Logo & Tagline */}
           <div className="lg:col-span-5">
-            <img
-              src={LOGO_DARK}
-              alt="Spiked Coffee"
-              className="h-14 lg:h-16 object-contain object-left mb-6"
-            />
-            <p className="font-body text-sm text-warm-white/40 leading-relaxed max-w-sm">
+            <div className="flex items-center gap-3 mb-6">
+              <img
+                src={DALMATIAN_ICON}
+                alt=""
+                className="h-10 w-10 object-contain opacity-60"
+              />
+              <div className="w-px h-6 bg-warm-white/10" />
+              <span className="font-display text-base font-light tracking-[0.12em] text-warm-white/70">
+                SPIKED COFFEE
+              </span>
+            </div>
+            <p className="font-body text-sm text-warm-white/40 leading-relaxed max-w-sm font-light">
               Craft coffee by day. Fine beverages by evening. A legacy built on
               connection, community, and the belief that life is good.
             </p>
@@ -25,7 +31,7 @@ export default function Footer() {
 
           {/* Links */}
           <div className="lg:col-span-3 lg:col-start-7">
-            <h4 className="font-ui text-xs tracking-[0.25em] uppercase text-warm-white/30 mb-5">
+            <h4 className="font-body text-xs tracking-[0.25em] uppercase text-warm-white/30 mb-5 font-light">
               Navigate
             </h4>
             <div className="flex flex-col gap-3">
@@ -38,7 +44,7 @@ export default function Footer() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="font-ui text-sm text-warm-white/50 hover:text-warm-white transition-colors duration-300"
+                  className="font-body text-sm text-warm-white/50 hover:text-warm-white transition-colors duration-300 font-light"
                 >
                   {link.label}
                 </a>
@@ -48,23 +54,23 @@ export default function Footer() {
 
           {/* Contact */}
           <div className="lg:col-span-3">
-            <h4 className="font-ui text-xs tracking-[0.25em] uppercase text-warm-white/30 mb-5">
+            <h4 className="font-body text-xs tracking-[0.25em] uppercase text-warm-white/30 mb-5 font-light">
               Locations
             </h4>
             <div className="flex flex-col gap-2">
-              <p className="font-ui text-sm text-warm-white/50">Libertyville, IL</p>
-              <p className="font-ui text-sm text-warm-white/50">Kenosha, WI</p>
-              <p className="font-ui text-sm text-warm-white/50">Denver, CO</p>
+              <p className="font-body text-sm text-warm-white/50 font-light">Libertyville, IL</p>
+              <p className="font-body text-sm text-warm-white/50 font-light">Kenosha, WI</p>
+              <p className="font-body text-sm text-warm-white/50 font-light">Denver, CO</p>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-warm-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="font-ui text-xs text-warm-white/20 tracking-wide">
+          <p className="font-body text-xs text-warm-white/20 tracking-wide font-light">
             &copy; {new Date().getFullYear()} Spiked Coffee. All rights reserved.
           </p>
-          <p className="font-body text-xs text-warm-white/20 italic">
+          <p className="font-accent text-sm text-warm-white/20">
             Life is short. The coffee is good.
           </p>
         </div>

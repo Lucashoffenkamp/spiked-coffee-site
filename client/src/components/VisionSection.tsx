@@ -58,22 +58,22 @@ export default function VisionSection() {
         <FadeIn>
           <div className="flex items-center gap-4 mb-16">
             <div className="w-12 h-px bg-terracotta" />
-            <span className="font-ui text-xs tracking-[0.3em] uppercase text-terracotta">
+            <span className="font-body text-xs tracking-[0.3em] uppercase text-terracotta font-light">
               The Vision
             </span>
           </div>
         </FadeIn>
 
         <FadeIn>
-          <h2 className="font-display text-4xl lg:text-5xl xl:text-6xl font-bold text-warm-white leading-[1.1] mb-6 max-w-3xl">
+          <h2 className="font-display text-4xl lg:text-5xl xl:text-6xl font-light text-warm-white leading-[1.1] mb-6 max-w-3xl tracking-wide">
             Built to
             <br />
-            <span className="italic font-normal text-terracotta">grow.</span>
+            <span className="font-accent text-terracotta">grow.</span>
           </h2>
         </FadeIn>
 
         <FadeIn delay={0.15}>
-          <p className="font-body text-base lg:text-lg text-warm-white/60 leading-relaxed max-w-2xl mb-20">
+          <p className="font-body text-base lg:text-lg text-warm-white/60 leading-relaxed max-w-2xl mb-20 font-light">
             Spiked Coffee isn't just a café — it's a movement. We're building this
             in phases, each one bringing us closer to the flagship experience.
           </p>
@@ -86,17 +86,17 @@ export default function VisionSection() {
               <div className="border border-warm-white/10 p-8 lg:p-10 h-full group hover:border-terracotta/30 transition-colors duration-500">
                 <div className="flex items-center justify-between mb-6">
                   <phase.icon size={24} className="text-terracotta" />
-                  <span className="font-ui text-[10px] tracking-[0.3em] uppercase text-terracotta/70 border border-terracotta/30 px-3 py-1">
+                  <span className="font-body text-[10px] tracking-[0.3em] uppercase text-terracotta/70 border border-terracotta/30 px-3 py-1 font-light">
                     {phase.status}
                   </span>
                 </div>
-                <p className="font-ui text-xs tracking-[0.2em] uppercase text-warm-white/40 mb-2">
+                <p className="font-body text-xs tracking-[0.2em] uppercase text-warm-white/40 mb-2 font-light">
                   {phase.phase}
                 </p>
-                <h3 className="font-display text-2xl lg:text-3xl font-bold text-warm-white mb-4">
+                <h3 className="font-display text-2xl lg:text-3xl font-light text-warm-white mb-4 tracking-wide">
                   {phase.title}
                 </h3>
-                <p className="font-body text-sm text-warm-white/50 leading-relaxed">
+                <p className="font-body text-sm text-warm-white/50 leading-relaxed font-light">
                   {phase.description}
                 </p>
               </div>
@@ -114,7 +114,7 @@ export default function VisionSection() {
                 className="w-full h-[350px] lg:h-[450px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/70 to-transparent p-6">
-                <p className="font-ui text-xs tracking-[0.2em] uppercase text-warm-white/70">
+                <p className="font-body text-xs tracking-[0.2em] uppercase text-warm-white/70 font-light">
                   The Mobile Experience
                 </p>
               </div>
@@ -129,7 +129,7 @@ export default function VisionSection() {
                 className="w-full h-[350px] lg:h-[450px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/70 to-transparent p-6">
-                <p className="font-ui text-xs tracking-[0.2em] uppercase text-warm-white/70">
+                <p className="font-body text-xs tracking-[0.2em] uppercase text-warm-white/70 font-light">
                   The Flagship
                 </p>
               </div>

@@ -49,15 +49,15 @@ export default function SignupSection() {
         </FadeIn>
 
         <FadeIn delay={0.1}>
-          <h2 className="font-display text-4xl lg:text-5xl xl:text-6xl font-bold text-espresso leading-[1.1] mb-6">
+          <h2 className="font-display text-4xl lg:text-5xl xl:text-6xl font-light text-espresso leading-[1.1] mb-6 tracking-wide">
             Be part of
             <br />
-            <span className="italic font-normal text-terracotta">the beginning.</span>
+            <span className="font-accent text-terracotta">the beginning.</span>
           </h2>
         </FadeIn>
 
         <FadeIn delay={0.2}>
-          <p className="font-body text-base lg:text-lg text-espresso-light leading-relaxed mb-12 max-w-lg mx-auto">
+          <p className="font-body text-base lg:text-lg text-espresso-light leading-relaxed mb-12 max-w-lg mx-auto font-light">
             We're building something special. Sign up to follow the journey — from
             our first pop-up to the day we open the doors.
           </p>
@@ -73,17 +73,17 @@ export default function SignupSection() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="your@email.com"
                   required
-                  className="flex-1 px-5 py-3.5 bg-warm-white border border-espresso/15 font-ui text-sm text-espresso placeholder:text-espresso/30 focus:outline-none focus:border-terracotta transition-colors"
+                  className="flex-1 px-5 py-3.5 bg-warm-white border border-espresso/15 font-body text-sm font-light text-espresso placeholder:text-espresso/30 focus:outline-none focus:border-terracotta transition-colors"
                 />
                 <button
                   type="submit"
-                  className="px-6 py-3.5 bg-espresso text-cream font-ui text-sm tracking-wide hover:bg-espresso-light transition-colors duration-300 flex items-center justify-center gap-2 group"
+                  className="px-6 py-3.5 bg-espresso text-cream font-body text-sm tracking-[0.15em] uppercase font-light hover:bg-espresso-light transition-colors duration-300 flex items-center justify-center gap-2 group"
                 >
                   <span>Join</span>
                   <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
                 </button>
               </div>
-              <p className="font-ui text-[11px] text-espresso/30 mt-4 tracking-wide">
+              <p className="font-body text-[11px] text-espresso/30 mt-4 tracking-wide font-light">
                 No spam. Just updates on pop-ups, openings, and featured roasters.
               </p>
             </form>
@@ -97,10 +97,10 @@ export default function SignupSection() {
               <div className="w-12 h-12 rounded-full bg-forest/10 flex items-center justify-center">
                 <Check size={20} className="text-forest" />
               </div>
-              <p className="font-display text-xl text-espresso">
+              <p className="font-accent text-2xl text-espresso">
                 Welcome to the pack.
               </p>
-              <p className="font-body text-sm text-espresso-light">
+              <p className="font-body text-sm text-espresso-light font-light">
                 We'll keep you posted on everything Spiked.
               </p>
             </motion.div>

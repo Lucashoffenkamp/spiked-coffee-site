@@ -36,22 +36,22 @@ export default function ConceptSection() {
           <FadeIn>
             <div className="flex items-center gap-4 mb-16">
               <div className="w-12 h-px bg-terracotta" />
-              <span className="font-ui text-xs tracking-[0.3em] uppercase text-terracotta">
+              <span className="font-body text-xs tracking-[0.3em] uppercase text-terracotta font-light">
                 The Concept
               </span>
             </div>
           </FadeIn>
 
           <FadeIn>
-            <h2 className="font-display text-4xl lg:text-5xl xl:text-6xl font-bold text-espresso leading-[1.1] mb-6 max-w-3xl">
+            <h2 className="font-display text-4xl lg:text-5xl xl:text-6xl font-light text-espresso leading-[1.1] mb-6 max-w-3xl tracking-wide">
               One space.
               <br />
-              <span className="italic font-normal">Two worlds.</span>
+              <span className="font-accent">Two worlds.</span>
             </h2>
           </FadeIn>
 
           <FadeIn delay={0.15}>
-            <p className="font-body text-base lg:text-lg text-espresso-light leading-relaxed max-w-2xl mb-20">
+            <p className="font-body text-base lg:text-lg text-espresso-light leading-relaxed max-w-2xl mb-20 font-light">
               Spiked Coffee is a dual-concept experience. By morning, we're your
               neighborhood craft coffee bar — featuring rotating micro-roasters from
               around the world. By evening, the lights dim, the candles come out, and
@@ -73,14 +73,14 @@ export default function ConceptSection() {
                 <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-10">
                   <div className="flex items-center gap-3 mb-3">
                     <Sun size={18} className="text-warm-white/80" />
-                    <span className="font-ui text-xs tracking-[0.25em] uppercase text-warm-white/70">
+                    <span className="font-body text-xs tracking-[0.25em] uppercase text-warm-white/70 font-light">
                       Morning — Afternoon
                     </span>
                   </div>
-                  <h3 className="font-display text-2xl lg:text-3xl font-bold text-warm-white mb-2">
+                  <h3 className="font-display text-2xl lg:text-3xl font-light text-warm-white mb-2 tracking-wide">
                     Craft Coffee
                   </h3>
-                  <p className="font-body text-sm text-warm-white/80 max-w-sm leading-relaxed">
+                  <p className="font-body text-sm text-warm-white/80 max-w-sm leading-relaxed font-light">
                     Rotating single-origin beans from the world's finest micro-roasters.
                     Pour-overs, espresso, cold brew — every cup sourced with intention.
                   </p>
@@ -100,14 +100,14 @@ export default function ConceptSection() {
                 <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-10">
                   <div className="flex items-center gap-3 mb-3">
                     <Moon size={18} className="text-warm-white/80" />
-                    <span className="font-ui text-xs tracking-[0.25em] uppercase text-warm-white/70">
+                    <span className="font-body text-xs tracking-[0.25em] uppercase text-warm-white/70 font-light">
                       Evening
                     </span>
                   </div>
-                  <h3 className="font-display text-2xl lg:text-3xl font-bold text-warm-white mb-2">
+                  <h3 className="font-display text-2xl lg:text-3xl font-light text-warm-white mb-2 tracking-wide">
                     Fine Beverages
                   </h3>
-                  <p className="font-body text-sm text-warm-white/80 max-w-sm leading-relaxed">
+                  <p className="font-body text-sm text-warm-white/80 max-w-sm leading-relaxed font-light">
                     Local craft beers on tap and curated wines by the glass. Small-batch,
                     independent producers only. The same philosophy, after dark.
                   </p>
@@ -127,14 +127,14 @@ export default function ConceptSection() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
             <div className="lg:col-span-5">
               <FadeIn>
-                <h3 className="font-display text-3xl lg:text-4xl xl:text-5xl font-bold text-warm-white leading-[1.15] mb-6">
+                <h3 className="font-display text-3xl lg:text-4xl xl:text-5xl font-light text-warm-white leading-[1.15] mb-6 tracking-wide">
                   All craft.
                   <br />
-                  <span className="italic font-normal text-terracotta">All local.</span>
+                  <span className="font-accent text-terracotta">All local.</span>
                 </h3>
               </FadeIn>
               <FadeIn delay={0.15}>
-                <p className="font-body text-base text-warm-white/70 leading-relaxed mb-8">
+                <p className="font-body text-base text-warm-white/70 leading-relaxed mb-8 font-light">
                   We don't roast our own beans — we champion the people who do. Every
                   featured roaster is a small, independent operation we've discovered
                   and believe in. Same goes for the beer and wine. If it's on our menu,
@@ -145,13 +145,13 @@ export default function ConceptSection() {
                 <div className="grid grid-cols-2 gap-6">
                   <div className="border border-warm-white/10 p-5">
                     <Coffee size={20} className="text-terracotta mb-3" />
-                    <p className="font-ui text-xs tracking-[0.15em] uppercase text-warm-white/50 mb-1">Coffee</p>
-                    <p className="font-display text-lg text-warm-white">Micro-Roasters</p>
+                    <p className="font-body text-xs tracking-[0.15em] uppercase text-warm-white/50 mb-1 font-light">Coffee</p>
+                    <p className="font-display text-lg text-warm-white font-light tracking-wide">Micro-Roasters</p>
                   </div>
                   <div className="border border-warm-white/10 p-5">
                     <Wine size={20} className="text-terracotta mb-3" />
-                    <p className="font-ui text-xs tracking-[0.15em] uppercase text-warm-white/50 mb-1">Evening</p>
-                    <p className="font-display text-lg text-warm-white">Craft Beer & Wine</p>
+                    <p className="font-body text-xs tracking-[0.15em] uppercase text-warm-white/50 mb-1 font-light">Evening</p>
+                    <p className="font-display text-lg text-warm-white font-light tracking-wide">Craft Beer & Wine</p>
                   </div>
                 </div>
               </FadeIn>

@@ -1,7 +1,7 @@
 /*
  * Navigation — Spiked Coffee
- * Design: Lodge Editorial — minimal top bar, Dalmatian icon, DM Sans for UI
- * Transitions from transparent to cream on scroll
+ * Design: Cormorant Garamond + Jost. Dalmatian icon mark.
+ * Transparent → cream on scroll. Thin, editorial feel.
  */
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -39,20 +39,18 @@ export default function Navigation() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="flex items-center justify-between h-18 lg:h-20">
+          <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo Mark */}
             <a href="#" className="flex items-center gap-3 group">
               <img
                 src={LOGO_ICON}
                 alt="Spiked Coffee"
-                className="h-10 w-10 lg:h-12 lg:w-12 object-contain transition-transform duration-300 group-hover:scale-105"
+                className="h-9 w-9 lg:h-11 lg:w-11 object-contain transition-transform duration-300 group-hover:scale-105"
               />
+              <div className="w-px h-6 bg-espresso/15 hidden sm:block" />
               <div className="hidden sm:block">
-                <span className="font-display text-lg lg:text-xl font-bold tracking-wide text-espresso">
-                  SPIKED
-                </span>
-                <span className="block font-ui text-[10px] tracking-[0.25em] text-espresso-light uppercase -mt-1">
-                  Coffee
+                <span className="font-display text-base lg:text-lg font-light tracking-[0.12em] text-espresso">
+                  SPIKED COFFEE
                 </span>
               </div>
             </a>
@@ -63,10 +61,10 @@ export default function Navigation() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="font-ui text-sm tracking-wide text-espresso-light hover:text-espresso transition-colors duration-300 relative group"
+                  className="font-body text-xs tracking-[0.15em] uppercase text-espresso-light/70 hover:text-espresso transition-colors duration-300 font-light relative group"
                 >
                   {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-terracotta transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-terracotta/60 transition-all duration-300 group-hover:w-full" />
                 </a>
               ))}
             </div>
@@ -77,7 +75,7 @@ export default function Navigation() {
               className="lg:hidden p-2 text-espresso"
               aria-label="Toggle menu"
             >
-              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+              {mobileOpen ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}
             </button>
           </div>
         </div>
@@ -98,7 +96,7 @@ export default function Navigation() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="font-display text-3xl text-espresso hover:text-terracotta transition-colors"
+                className="font-display text-3xl font-light tracking-[0.1em] text-espresso hover:text-terracotta transition-colors"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 + 0.1 }}

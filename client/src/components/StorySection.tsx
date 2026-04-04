@@ -33,7 +33,7 @@ export default function StorySection() {
         <FadeInSection>
           <div className="flex items-center gap-4 mb-16">
             <div className="w-12 h-px bg-terracotta" />
-            <span className="font-ui text-xs tracking-[0.3em] uppercase text-terracotta">
+            <span className="font-body text-xs tracking-[0.3em] uppercase text-terracotta font-light">
               Our Story
             </span>
           </div>
@@ -44,15 +44,15 @@ export default function StorySection() {
           {/* Text Column */}
           <div className="lg:col-span-5 lg:pt-8">
             <FadeInSection>
-              <h2 className="font-display text-4xl lg:text-5xl xl:text-6xl font-bold text-espresso leading-[1.1] mb-8">
+              <h2 className="font-display text-4xl lg:text-5xl xl:text-6xl font-light text-espresso leading-[1.1] mb-8 tracking-wide">
                 Rooted in
                 <br />
-                <span className="italic font-normal text-terracotta">connection.</span>
+                <span className="font-accent text-terracotta">connection.</span>
               </h2>
             </FadeInSection>
 
             <FadeInSection delay={0.15}>
-              <p className="font-body text-base lg:text-lg text-espresso-light leading-relaxed mb-6">
+              <p className="font-body text-base lg:text-lg text-espresso-light leading-relaxed mb-6 font-light">
                 It started with Folgers. Our dad's breakfast blend, brewed every morning
                 in a kitchen that smelled like possibility. We'd prepare the pots before
                 school — two brothers learning, without knowing it, that coffee was never
@@ -61,7 +61,7 @@ export default function StorySection() {
             </FadeInSection>
 
             <FadeInSection delay={0.25}>
-              <p className="font-body text-base lg:text-lg text-espresso-light leading-relaxed mb-6">
+              <p className="font-body text-base lg:text-lg text-espresso-light leading-relaxed mb-6 font-light">
                 After he passed, we carried that ritual forward. From local shops to
                 farmers markets, from micro-roasters in Portland to tiny cafés in
                 Lisbon — we chased the cup that brought people together. Coffee became
@@ -70,7 +70,7 @@ export default function StorySection() {
             </FadeInSection>
 
             <FadeInSection delay={0.35}>
-              <p className="font-body text-base lg:text-lg text-espresso-light leading-relaxed mb-8">
+              <p className="font-body text-base lg:text-lg text-espresso-light leading-relaxed mb-8 font-light">
                 "Spike" was our dad's best friend — a Dalmatian who was family before
                 we were born. Now Dylan's Dalmatian carries the name and the legacy.
                 It felt right that our dream would too.
@@ -80,7 +80,7 @@ export default function StorySection() {
             <FadeInSection delay={0.45}>
               <div className="flex items-center gap-4">
                 <div className="w-8 h-px bg-espresso/20" />
-                <p className="font-ui text-sm tracking-wide text-espresso/50 italic">
+                <p className="font-accent text-lg text-espresso/50">
                   Lucas & Dylan
                 </p>
               </div>
@@ -98,7 +98,7 @@ export default function StorySection() {
                 />
                 {/* Overlay caption */}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/60 to-transparent p-8">
-                  <p className="font-ui text-xs tracking-[0.2em] uppercase text-warm-white/80">
+                  <p className="font-body text-xs tracking-[0.2em] uppercase text-warm-white/80 font-light">
                     Every cup tells a story
                   </p>
                 </div>
