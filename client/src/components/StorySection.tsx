@@ -62,18 +62,19 @@ export default function StorySection() {
 
             <FadeInSection delay={0.25}>
               <p className="font-body text-base lg:text-lg text-espresso-light leading-relaxed mb-6 font-light">
-                After he passed, we carried that ritual forward. From local shops to
-                farmers markets, from micro-roasters in Portland to tiny cafés in
-                Lisbon — we chased the cup that brought people together. Coffee became
-                our constant. Our oil for this short, beautiful life.
+                That ritual stuck with us. From local shops to farmers markets,
+                from micro-roasters in Portland to tiny cafés in Lisbon — we chased
+                the cup that brought people together. Coffee became our constant.
+                Our oil for this short, beautiful life.
               </p>
             </FadeInSection>
 
             <FadeInSection delay={0.35}>
               <p className="font-body text-base lg:text-lg text-espresso-light leading-relaxed mb-8 font-light">
                 "Spike" was our dad's best friend — a Dalmatian who was family before
-                we were born. Now Dylan's Dalmatian carries the name and the legacy.
-                It felt right that our dream would too.
+                we were born. That legacy carries on through Dylan's Dalmatian, who
+                bears the same name and the same spirit. It felt right that our dream
+                would too.
               </p>
             </FadeInSection>
 
