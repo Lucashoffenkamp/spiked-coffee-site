@@ -65,7 +65,7 @@ export default function StorySection() {
                 That ritual stuck with us. From local shops to farmers markets,
                 from micro-roasters in Portland to tiny cafés in Lisbon — we chased
                 the cup that brought people together. Coffee became our constant.
-                Our oil for this short, beautiful life.
+                Our fuel for every good thing ahead.
               </p>
             </FadeInSection>
 
