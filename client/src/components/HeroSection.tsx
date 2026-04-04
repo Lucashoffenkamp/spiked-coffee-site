@@ -40,28 +40,21 @@ export default function HeroSection() {
 
       {/* Main content block */}
       <div className="relative z-10 flex flex-col items-center px-6">
-        {/* Dalmatian icon mark */}
-        <motion.img
-          src={DALMATIAN_ICON}
-          alt=""
-          className="w-16 h-16 lg:w-20 lg:h-20 object-contain mb-8 opacity-80"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 0.8, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2, ease }}
-        />
-
-        {/* Brand name — pure typography */}
+        {/* Logo lockup: Dalmatian | vertical line | SPIKED COFFEE */}
         <motion.div
-          className="text-center"
+          className="flex items-center gap-5 lg:gap-7"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.3, ease }}
         >
-          <h1 className="font-display text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-light tracking-[0.15em] text-espresso leading-none">
-            SPIKED
-          </h1>
-          <h1 className="font-display text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-light tracking-[0.15em] text-espresso leading-none mt-1">
-            COFFEE
+          <img
+            src={DALMATIAN_ICON}
+            alt=""
+            className="h-20 w-20 sm:h-28 sm:w-28 lg:h-36 lg:w-36 object-contain"
+          />
+          <div className="w-px h-16 sm:h-24 lg:h-28 bg-espresso/20" />
+          <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-light tracking-[0.15em] text-espresso leading-none">
+            SPIKED<br />COFFEE
           </h1>
         </motion.div>
 
