@@ -9,7 +9,7 @@ import { ArrowLeft, MapPin, ExternalLink } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
-const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/roaster_station_wide-3DPhjKAxhMCotwaxHL6Y5Y.webp";
+const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/all_roasters_station-R5yH5RqxGRscA8pLkBmfSJ.webp";
 
 const roasters = [
   {
@@ -19,7 +19,7 @@ const roasters = [
     founded: "2017",
     philosophy: "Sweet, beautiful coffee made accessible to all. What started at a summer farmers market in Northern Illinois has grown into a beloved small-batch roastery with cafés across the North Shore. Tala sources with care and roasts with precision — every bag is an invitation to slow down.",
     signature: "Known for approachable, clean-tasting single origins and seasonal blends that highlight sweetness and balance.",
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/roaster_tala-m4aqy6UgvkoCWDHEhCVstL.webp",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/tala_station-SeEpqmuTDy5zieuhsxceXW.webp",
     website: "https://talacoffeeroasters.com",
     accent: "bg-[#C4A882]",
   },
@@ -30,7 +30,7 @@ const roasters = [
     founded: "2012",
     philosophy: "Micro-lots, novel cultivars, and producer-direct trade from emerging and traditional origins. Founded by Hiver van Geenhoven, Chromatic has spent over a decade sourcing some of the rarest and most exciting coffees on the planet — from a café that feels more like an art gallery than a coffee shop.",
     signature: "Specialized in rare micro-lots, experimental processing methods, and direct relationships with producers worldwide. Winner of Metro's 'Best Coffee Roaster' in Silicon Valley.",
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/roaster_chromatic-haiXNmt9fDDAkRU2DVpCHx.webp",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/chromatic_station-XBQx3AjeA9n83PuXFjyVfd.webp",
     website: "https://www.chromaticcoffee.com",
     accent: "bg-[#8B4513]",
   },
@@ -41,7 +41,7 @@ const roasters = [
     founded: "2013",
     philosophy: "Colorful coffees roasted in rural Wisconsin. Jared and Deanna Linzmeier started Ruby in a garage in Portage County — population 154. What began as a passion project has become one of the Midwest's most respected specialty roasters, proving that world-class coffee can come from the most unexpected places.",
     signature: "Award-winning seasonal offerings, organic sourcing from caring producers, and their beloved Creamery Blend. Their café in Stevens Point is a destination.",
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/roaster_ruby-UM5eRZMAhaXvPag9hR3jCd.webp",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/ruby_station-DxjfjX9yCWJhcGHDPigNBA.webp",
     website: "https://rubycoffeeroasters.com",
     accent: "bg-[#9B2335]",
   },
