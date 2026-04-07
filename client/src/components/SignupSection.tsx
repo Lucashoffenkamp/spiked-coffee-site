@@ -57,10 +57,18 @@ export default function SignupSection() {
         </FadeIn>
 
         <FadeIn delay={0.2}>
-          <p className="font-body text-base lg:text-lg text-espresso-light leading-relaxed mb-12 max-w-lg mx-auto font-light">
+          <p className="font-body text-base lg:text-lg text-espresso-light leading-relaxed mb-6 max-w-lg mx-auto font-light">
             We're building something special. Sign up to follow the journey — from
             our first pop-up to the day we open the doors.
           </p>
+        </FadeIn>
+
+        <FadeIn delay={0.25}>
+          <div className="inline-flex items-center gap-3 bg-terracotta/8 border border-terracotta/15 px-5 py-2.5 mb-12">
+            <span className="font-body text-xs tracking-[0.1em] uppercase text-terracotta font-light">
+              First 100 signups get a free Spiked Coffee sticker pack
+            </span>
+          </div>
         </FadeIn>
 
         <FadeIn delay={0.3}>
@@ -85,6 +93,7 @@ export default function SignupSection() {
               </div>
               <p className="font-body text-[11px] text-espresso/30 mt-4 tracking-wide font-light">
                 No spam. Just updates on pop-ups, openings, and featured roasters.
+                Sticker packs ship free to the first 100.
               </p>
             </form>
           ) : (

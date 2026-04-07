@@ -1,39 +1,55 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Switch, useLocation } from "wouter";
+import { AnimatePresence } from "framer-motion";
+import { useState, useCallback } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import LoadingScreen from "./components/LoadingScreen";
+import PageTransition from "./components/PageTransition";
 import Home from "./pages/Home";
 import Roasters from "./pages/Roasters";
-
+import Menu from "./pages/Menu";
+import FindUs from "./pages/FindUs";
+import About from "./pages/About";
+import NominateRoaster from "./pages/NominateRoaster";
 
 function Router() {
+  const [location] = useLocation();
+
   return (
-    <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/roasters"} component={Roasters} />
-      <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
-      <Route component={NotFound} />
-    </Switch>
+    <AnimatePresence mode="wait">
+      <PageTransition key={location}>
+        <Switch>
+          <Route path={"/"} component={Home} />
+          <Route path={"/roasters"} component={Roasters} />
+          <Route path={"/menu"} component={Menu} />
+          <Route path={"/find-us"} component={FindUs} />
+          <Route path={"/about"} component={About} />
+          <Route path={"/nominate"} component={NominateRoaster} />
+          <Route path={"/404"} component={NotFound} />
+          {/* Final fallback route */}
+          <Route component={NotFound} />
+        </Switch>
+      </PageTransition>
+    </AnimatePresence>
   );
 }
 
-// NOTE: About Theme
-// - First choose a default theme according to your design style (dark or light bg), than change color palette in index.css
-//   to keep consistent foreground/background color across components
-// - If you want to make theme switchable, pass `switchable` ThemeProvider and use `useTheme` hook
-
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  const handleLoadingComplete = useCallback(() => {
+    setLoading(false);
+  }, []);
+
   return (
     <ErrorBoundary>
-      <ThemeProvider
-        defaultTheme="light"
-        // switchable
-      >
+      <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
+          {loading && <LoadingScreen onComplete={handleLoadingComplete} />}
           <Router />
         </TooltipProvider>
       </ThemeProvider>

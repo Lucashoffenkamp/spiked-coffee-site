@@ -11,10 +11,10 @@ import { Link, useLocation } from "wouter";
 const LOGO_ICON = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/dalmatian_fix_5_23e75f68.png";
 
 const navLinks = [
-  { label: "Our Story", href: "/#story", isRoute: false },
-  { label: "The Concept", href: "/#concept", isRoute: false },
+  { label: "Menu", href: "/menu", isRoute: true },
   { label: "Our Roasters", href: "/roasters", isRoute: true },
-  { label: "The Vision", href: "/#vision", isRoute: false },
+  { label: "Find Us", href: "/find-us", isRoute: true },
+  { label: "About", href: "/about", isRoute: true },
   { label: "Join Us", href: "/#signup", isRoute: false },
 ];
 
@@ -22,10 +22,11 @@ function NavLink({ link, className, onClick }: { link: typeof navLinks[0]; class
   const [location] = useLocation();
 
   if (link.isRoute) {
+    const isActive = location === link.href;
     return (
-      <Link href={link.href} className={className} onClick={onClick}>
+      <Link href={link.href} className={`${className} ${isActive ? "!text-espresso" : ""}`} onClick={onClick}>
         {link.label}
-        <span className="absolute -bottom-1 left-0 w-0 h-px bg-terracotta/60 transition-all duration-300 group-hover:w-full" />
+        <span className={`absolute -bottom-1 left-0 h-px bg-terracotta/60 transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"}`} />
       </Link>
     );
   }
@@ -52,12 +53,23 @@ function NavLink({ link, className, onClick }: { link: typeof navLinks[0]; class
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [location] = useLocation();
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   return (
     <>
