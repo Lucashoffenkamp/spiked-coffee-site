@@ -4,6 +4,7 @@ import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import StorySection from "@/components/StorySection";
 import ConceptSection from "@/components/ConceptSection";
+import RoasterTeaser from "@/components/RoasterTeaser";
 import VisionSection from "@/components/VisionSection";
 import GallerySection from "@/components/GallerySection";
 import SignupSection from "@/components/SignupSection";
@@ -16,6 +17,7 @@ export default function Home() {
       <HeroSection />
       <StorySection />
       <ConceptSection />
+      <RoasterTeaser />
       <VisionSection />
       <GallerySection />
       <SignupSection />
