@@ -43,46 +43,46 @@ const coffeeMenu: { category: string; items: MenuItem[] }[] = [
   {
     category: "Espresso",
     items: [
-      { name: "Espresso", description: "Double shot, rotating single origin", price: "4" },
-      { name: "Cortado", description: "Equal parts espresso and steamed milk", price: "5" },
-      { name: "Flat White", description: "Velvety microfoam, double ristretto", price: "5.50" },
-      { name: "Latte", description: "Espresso with steamed milk, light foam", price: "5.50", tag: "Popular" },
-      { name: "Cappuccino", description: "Traditional thirds — espresso, milk, foam", price: "5.50" },
-      { name: "Americano", description: "Espresso lengthened with hot water", price: "4.50" },
+      { name: "Espresso", description: "Double shot, rotating single-origin. This week: Tala's Amoret — Guatemala, dark chocolate & fig", price: "4" },
+      { name: "Cortado", description: "Equal parts espresso and Kilgus Farmstead whole milk from Fairbury, IL. Balanced, honest, no hiding", price: "5" },
+      { name: "Flat White", description: "Double ristretto, velvety Kilgus microfoam. The way they drink it in Melbourne — strong, smooth, no fuss", price: "5.50" },
+      { name: "Latte", description: "Silky Kilgus Farmstead milk steamed over a double shot. Simple done right. Oat, almond, or coconut available", price: "5.50", tag: "Popular" },
+      { name: "Cappuccino", description: "Traditional thirds — espresso, steamed Kilgus milk, dense microfoam. Dusted with Saigon cinnamon", price: "5.50" },
+      { name: "Americano", description: "Espresso lengthened with filtered water. Clean, bright, lets the roaster's work speak", price: "4.50" },
     ],
   },
   {
     category: "Brewed",
     items: [
-      { name: "Pour Over", description: "Single cup, featured roaster of the week", price: "5.50", tag: "Signature" },
-      { name: "Batch Brew", description: "House blend, always fresh", price: "3.50" },
-      { name: "Cold Brew", description: "24-hour steeped, smooth and bold", price: "5" },
-      { name: "Nitro Cold Brew", description: "Cascading, creamy, on tap", price: "6" },
+      { name: "Pour Over", description: "Single cup Chemex, featured roaster of the week. Hand-poured, timed bloom, no shortcuts", price: "5.50", tag: "Signature" },
+      { name: "Batch Brew", description: "House blend by Chromatic Coffee, brewed fresh every 45 minutes. Never sitting, never stale", price: "3.50" },
+      { name: "Cold Brew", description: "Coarse-ground Ruby beans steeped 24 hours in cold filtered water. Smooth, chocolatey, zero bitterness", price: "5" },
+      { name: "Nitro Cold Brew", description: "Our cold brew infused with nitrogen on tap. Cascading, creamy, no dairy needed", price: "6" },
     ],
   },
   {
     category: "Specialty",
     items: [
-      { name: "Lavender Honey Latte", description: "Local honey, dried lavender, oat milk", price: "6.50" },
-      { name: "Brown Sugar Shaken Espresso", description: "Double shot, brown sugar, oat milk", price: "6" },
-      { name: "Matcha Latte", description: "Ceremonial grade, steamed milk", price: "6" },
-      { name: "Chai Latte", description: "House-spiced concentrate, steamed milk", price: "5.50" },
+      { name: "Lavender Honey Latte", description: "Lake County wildflower honey, house-dried culinary lavender, Kilgus milk or Oatly oat", price: "6.50" },
+      { name: "Brown Sugar Shaken Espresso", description: "Double shot shaken with Demerara brown sugar and vanilla bean, poured over Oatly oat milk", price: "6" },
+      { name: "Matcha Latte", description: "Ceremonial-grade Ippodo matcha from Kyoto, whisked to order with your choice of milk", price: "6" },
+      { name: "Chai Latte", description: "House-spiced concentrate — cardamom, clove, black pepper, Ceylon cinnamon — simmered with local honey", price: "5.50" },
     ],
   },
   {
     category: "Spiked Signatures",
     items: [
-      { name: "The Spot", description: "Cookies & cream latte — espresso, cream, crushed cookies, chocolate drizzle", price: "7", tag: "Signature" },
-      { name: "Lavender Honey", description: "House-made lavender syrup, local honey, oat milk, espresso", price: "6.50", tag: "Seasonal" },
+      { name: "The Spot", description: "Cookies & cream latte — espresso, Kilgus cream, crushed Oreos, Kakao Chocolate Works dark drizzle. Named after the dog", price: "7", tag: "Signature" },
+      { name: "Lavender Honey", description: "House-made lavender syrup, Lake County wildflower honey, Oatly oat milk, double espresso", price: "6.50", tag: "Seasonal" },
     ],
   },
   {
     category: "Pastries & Bites",
     items: [
-      { name: "Local Craft Donut", description: "Rotating selection, sourced daily", price: "4", tag: "Local" },
-      { name: "Almond Croissant", description: "Butter croissant, almond frangipane", price: "4.50" },
-      { name: "Banana Bread", description: "House recipe, toasted with butter", price: "3.50" },
-      { name: "Granola Bowl", description: "House granola, yogurt, seasonal fruit", price: "7" },
+      { name: "Local Craft Donut", description: "Rotating selection from D&D Donuts, Libertyville. Delivered fresh each morning before sunrise", price: "4", tag: "Local" },
+      { name: "Almond Croissant", description: "European-style butter croissant with house almond frangipane, toasted almonds, powdered sugar", price: "4.50" },
+      { name: "Banana Bread", description: "House recipe with brown butter, Saigon cinnamon, and walnuts. Toasted with Kilgus butter", price: "3.50" },
+      { name: "Granola Bowl", description: "House-made granola with local honey, Kilgus yogurt, and seasonal fruit from Prairie Crossing Farm", price: "7" },
     ],
   },
 ];
@@ -91,36 +91,36 @@ const eveningMenu: { category: string; items: MenuItem[] }[] = [
   {
     category: "Draft Beer",
     items: [
-      { name: "Rotating IPA", description: "Local craft, changes weekly", price: "8", tag: "Rotating" },
-      { name: "Session Lager", description: "Clean, crisp, easy drinking", price: "7" },
-      { name: "Hazy Pale Ale", description: "Juicy, tropical, low bitterness", price: "8" },
-      { name: "Stout", description: "Chocolate, coffee notes — ask your barista", price: "8" },
+      { name: "Rotating IPA", description: "This week: Half Acre Daisy Cutter — Chicago-brewed, piney, citrus-forward. Changes weekly", price: "8", tag: "Rotating" },
+      { name: "Session Lager", description: "Metropolitan Krankshaft Kölsch from Rockford, IL. Clean, crisp, dangerously easy drinking", price: "7" },
+      { name: "Hazy Pale Ale", description: "Mikerphone Smells Like a Safety Meeting — juicy, tropical, pillowy soft. Elk Grove Village, IL", price: "8" },
+      { name: "Stout", description: "Revolution Brewing Eugene Porter — chocolate, toffee, coffee undertones. Ask your barista for the current rotation", price: "8" },
     ],
   },
   {
     category: "Wine",
     items: [
-      { name: "House Red", description: "Rotating natural wine selection", price: "10" },
-      { name: "House White", description: "Rotating natural wine selection", price: "10" },
-      { name: "Ros\u00e9", description: "Dry, crisp, seasonal pick", price: "11" },
-      { name: "Orange Wine", description: "Skin-contact, funky and complex", price: "13", tag: "Adventurous" },
+      { name: "House Red", description: "Rotating natural selection. This week: Les Lunes Carignan — biodynamic, Mendocino County, dark fruit & earth", price: "10" },
+      { name: "House White", description: "Rotating natural selection. This week: Broc Cellars Love White — Mendocino blend, citrus & stone fruit, unfiltered", price: "10" },
+      { name: "Rosé", description: "Scribe Winery, Sonoma — dry, mineral-driven, Provençal style. Served slightly chilled", price: "11" },
+      { name: "Orange Wine", description: "Pheasant's Tears Rkatsiteli — Georgian skin-contact, amber, honeyed, wildly complex", price: "13", tag: "Adventurous" },
     ],
   },
   {
     category: "Non-Alcoholic",
     items: [
-      { name: "NA Craft Beer", description: "Athletic Brewing or similar", price: "6" },
-      { name: "Sparkling Water", description: "Topo Chico or local equivalent", price: "3" },
-      { name: "Kombucha", description: "Local craft, rotating flavors", price: "6" },
+      { name: "NA Craft Beer", description: "Athletic Brewing Run Wild IPA — brewed in CT, full-flavored, zero compromise. 70 calories", price: "6" },
+      { name: "Sparkling Water", description: "Topo Chico mineral water from Monterrey, Mexico. The only sparkling water that matters", price: "3" },
+      { name: "Kombucha", description: "NessAlla Kombucha from Madison, WI — small-batch, rotating seasonal flavors, naturally effervescent", price: "6" },
     ],
   },
   {
     category: "Evening Bites",
     items: [
-      { name: "Cheese Board", description: "Local cheeses, crackers, honey, fruit", price: "14", tag: "Shareable" },
-      { name: "Charcuterie", description: "Cured meats, pickles, mustard, bread", price: "16" },
-      { name: "Mixed Olives", description: "Marinated, warm, herbs", price: "6" },
-      { name: "Hummus & Flatbread", description: "House-made, olive oil, za'atar", price: "8" },
+      { name: "Cheese Board", description: "Prairie Fruits Farm chèvre, Marieke Gouda, Lake County honeycomb, marcona almonds, seasonal fruit", price: "14", tag: "Shareable" },
+      { name: "Charcuterie", description: "Smoking Goose sopressata & coppa from Indianapolis, house pickles, whole grain mustard, grilled bread", price: "16" },
+      { name: "Mixed Olives", description: "Castelvetrano & Kalamata, warmed with rosemary, chili flake, and cold-pressed olive oil", price: "6" },
+      { name: "Hummus & Flatbread", description: "House-made with tahini from Soom Foods, Urfa biber, za'atar, extra virgin olive oil, warm flatbread", price: "8" },
     ],
   },
 ];
@@ -293,8 +293,8 @@ export default function Menu() {
                 activeTab === "evening" ? "text-warm-white/30" : "text-espresso-light/40"
               }`}>
                 {activeTab === "day"
-                  ? "Prices are approximate. Featured roasters and seasonal specials rotate regularly. Oat, almond, and coconut milk available (+$0.75)."
-                  : "Prices are approximate. Draft selections rotate weekly. All beer and wine sourced from independent craft producers. Must be 21+ for alcohol service after 5pm."
+                  ? "All milk from Kilgus Farmstead, Fairbury IL. Oat (Oatly), almond, and coconut milk available (+$0.75). Honey sourced from Lake County apiaries. Roasters and seasonal specials rotate — ask your barista what's new."
+                  : "Draft selections rotate weekly — all from independent Midwest breweries. Wine sourced from natural, biodynamic, and small-production winemakers. Cheeses and charcuterie from regional farms and artisan producers. Must be 21+ for alcohol service after 5 PM."
                 }
               </p>
             </div>

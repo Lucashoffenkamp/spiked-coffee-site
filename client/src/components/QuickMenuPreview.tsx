@@ -15,7 +15,7 @@ const drinks = [
   {
     name: "The Spot",
     subtitle: "Cookies & Cream Latte",
-    description: "Our signature. Espresso, cream, crushed cookies, and a chocolate drizzle. Named after the dog.",
+    description: "Our signature. Espresso, Kilgus cream, crushed Oreos, and a Kakao Chocolate Works dark drizzle. Named after the dog.",
     image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/drink_the_spot_hero-7Q6t2HPSXHUoHPCFkUZne8.webp",
     tag: "SIGNATURE",
     slug: "the-spot",
@@ -23,7 +23,7 @@ const drinks = [
   {
     name: "Latte",
     subtitle: null,
-    description: "Silky steamed milk over a double shot. Classic, comforting, always right.",
+    description: "Kilgus Farmstead milk steamed over a double shot. Simple done right. Fairbury, IL in every sip.",
     image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/drink_latte-UFNRAJ9MbJ452dXQtnN7tz.webp",
     tag: null,
     slug: "latte",
@@ -31,7 +31,7 @@ const drinks = [
   {
     name: "Cappuccino",
     subtitle: null,
-    description: "Equal parts espresso, steamed milk, and velvety microfoam. A morning ritual.",
+    description: "Espresso, steamed Kilgus milk, dense microfoam. Dusted with Saigon cinnamon. A morning ritual.",
     image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/drink_cappuccino-H3zhusfs67NMF5DvLuo5tB.webp",
     tag: null,
     slug: "cappuccino",
@@ -39,7 +39,7 @@ const drinks = [
   {
     name: "Flat White",
     subtitle: null,
-    description: "Bold espresso with a thin layer of microfoam. Strong, smooth, no fuss.",
+    description: "Double ristretto, velvety Kilgus microfoam. The way they drink it in Melbourne — no fuss.",
     image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/drink_flat_white-Uez4yPBMo5tEWALSX7PkU5.webp",
     tag: null,
     slug: "flat-white",
@@ -47,7 +47,7 @@ const drinks = [
   {
     name: "Miel",
     subtitle: null,
-    description: "Espresso sweetened with honey and steamed milk. Warm, golden, a little different.",
+    description: "Espresso sweetened with Lake County wildflower honey and steamed Kilgus milk. Warm, golden, local.",
     image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/drink_miel-PCQeqoqhDzKqgweku4twDf.webp",
     tag: null,
     slug: "miel",
@@ -55,7 +55,7 @@ const drinks = [
   {
     name: "Mocha",
     subtitle: null,
-    description: "Rich chocolate meets espresso and steamed milk. Indulgent but never too sweet.",
+    description: "Kakao Chocolate Works dark cocoa meets espresso and Kilgus milk. Indulgent, never too sweet.",
     image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/drink_mocha-Lwt2YfZE3kNvPYyN3JNhXp.webp",
     tag: null,
     slug: "mocha",
@@ -63,7 +63,7 @@ const drinks = [
   {
     name: "Lavender Honey",
     subtitle: "Spring Seasonal",
-    description: "Espresso with house-made lavender syrup, local honey, and steamed oat milk. Floral, sweet, fleeting.",
+    description: "House-dried culinary lavender, Lake County wildflower honey, Oatly oat milk. Floral, sweet, fleeting.",
     image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/drink_seasonal_lavender-8tseL9msh5bbrLA7LWCU72.webp",
     tag: "LIMITED TIME",
     slug: "lavender-honey",
