@@ -1,39 +1,73 @@
 /*
  * HeroSection — Spiked Coffee
- * Design: Pure typographic hero inspired by Spike & Co. editorial direction.
- * Cormorant Garamond display, Jost Light body, thin rules, Dalmatian icon mark.
- * No boxed logo image — everything is live typography.
+ * Design: Cinematic Chemex pour-over video background with parallax depth.
+ * Typographic overlay with Dalmatian icon, film grain texture.
+ * Cormorant Garamond display, Jost Light body.
  */
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { ChevronDown } from "lucide-react";
 
 const DALMATIAN_ICON = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/dalmatian_fix_5_23e75f68.png";
+const CHEMEX_VIDEO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/chemex_hero_video_05fb0d7a.mp4";
+const CHEMEX_POSTER = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/chemex_hero_frame-ZbjjNXQKSxZewDGqe9kEWS.webp";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Parallax: video moves slower, text moves faster
+  const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.8], [0.35, 0.7]);
+
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center bg-cream overflow-hidden">
-      {/* Subtle paper texture */}
+    <section
+      ref={sectionRef}
+      className="relative h-screen overflow-hidden"
+    >
+      {/* Video Background with parallax */}
+      <motion.div
+        className="absolute inset-0 w-full h-[130%] -top-[15%]"
+        style={{ y: videoY }}
+      >
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster={CHEMEX_POSTER}
+          className="w-full h-full object-cover"
+        >
+          <source src={CHEMEX_VIDEO} type="video/mp4" />
+        </video>
+      </motion.div>
+
+      {/* Dark overlay for text readability */}
+      <motion.div
+        className="absolute inset-0 bg-espresso"
+        style={{ opacity: overlayOpacity }}
+      />
+
+      {/* Film grain texture overlay */}
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.06] pointer-events-none mix-blend-overlay"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
         }}
       />
 
-      {/* Decorative thin vertical line — right side only */}
+      {/* Main content with parallax */}
       <motion.div
-        className="absolute bottom-1/4 right-8 lg:right-20 w-px h-32 bg-espresso/8"
-        initial={{ scaleY: 0 }}
-        animate={{ scaleY: 1 }}
-        transition={{ duration: 1.4, delay: 1.0, ease }}
-        style={{ transformOrigin: "bottom" }}
-      />
-
-      {/* Main content block */}
-      <div className="relative z-10 flex flex-col items-center px-6">
-        {/* Logo lockup: Dalmatian | vertical line | SPIKED COFFEE */}
+        className="relative z-10 h-full flex flex-col items-center justify-center px-6"
+        style={{ y: textY }}
+      >
+        {/* Logo lockup */}
         <motion.div
           className="flex items-center gap-5 lg:gap-7"
           initial={{ opacity: 0, y: 24 }}
@@ -43,58 +77,58 @@ export default function HeroSection() {
           <img
             src={DALMATIAN_ICON}
             alt=""
-            className="h-28 w-28 sm:h-36 sm:w-36 lg:h-44 lg:w-44 object-contain"
+            className="h-24 w-24 sm:h-32 sm:w-32 lg:h-40 lg:w-40 object-contain brightness-0 invert opacity-90"
           />
-          <div className="w-px h-20 sm:h-28 lg:h-36 bg-espresso/20" />
-          <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-light tracking-[0.15em] text-espresso leading-none">
+          <div className="w-px h-16 sm:h-24 lg:h-32 bg-warm-white/20" />
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light tracking-[0.15em] text-warm-white leading-none">
             SPIKED<br />COFFEE
           </h1>
         </motion.div>
 
-        {/* Thin horizontal rule with descriptor */}
+        {/* Descriptor line */}
         <motion.div
-          className="flex items-center gap-6 mt-8 lg:mt-10"
+          className="flex items-center gap-6 mt-7 lg:mt-9"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.7, ease }}
         >
-          <div className="w-12 lg:w-20 h-px bg-espresso/20" />
-          <p className="font-body text-xs lg:text-sm tracking-[0.3em] uppercase text-espresso-light font-light">
+          <div className="w-10 lg:w-16 h-px bg-warm-white/20" />
+          <p className="font-body text-[10px] lg:text-xs tracking-[0.3em] uppercase text-warm-white/60 font-light">
             Craft Coffee & Fine Beverages
           </p>
-          <div className="w-12 lg:w-20 h-px bg-espresso/20" />
+          <div className="w-10 lg:w-16 h-px bg-warm-white/20" />
         </motion.div>
 
-        {/* Tagline — clean, no italic */}
+        {/* Tagline */}
         <motion.p
-          className="mt-10 lg:mt-12 font-body text-sm lg:text-base text-espresso-light/70 tracking-wide text-center max-w-md font-light leading-relaxed"
+          className="mt-8 lg:mt-10 font-accent text-base sm:text-lg lg:text-xl text-warm-white/80 tracking-wide text-center max-w-lg leading-relaxed"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.9, ease }}
         >
-          Started on the side. Built to last.<br />
-          Every cup sourced with intention. Every pour chosen with care.
+          Life is short. The coffee is good.<br />
+          The company is better.
         </motion.p>
 
         {/* Location markers */}
         <motion.div
-          className="mt-8 flex items-center gap-3 text-espresso-light/40"
+          className="mt-6 flex items-center gap-3 text-warm-white/35"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.1, ease }}
         >
-          <span className="font-body text-[11px] tracking-[0.25em] uppercase font-light">Libertyville</span>
+          <span className="font-body text-[10px] tracking-[0.25em] uppercase font-light">Libertyville</span>
           <span className="text-[8px]">&middot;</span>
-          <span className="font-body text-[11px] tracking-[0.25em] uppercase font-light">Kenosha</span>
+          <span className="font-body text-[10px] tracking-[0.25em] uppercase font-light">Kenosha</span>
           <span className="text-[8px]">&middot;</span>
-          <span className="font-body text-[11px] tracking-[0.25em] uppercase font-light">Denver</span>
+          <span className="font-body text-[10px] tracking-[0.25em] uppercase font-light">Denver</span>
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* Scroll indicator */}
       <motion.a
         href="#story"
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-espresso-light/30 hover:text-espresso-light/60 transition-colors duration-500"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-warm-white/30 hover:text-warm-white/60 transition-colors duration-500"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.5 }}
