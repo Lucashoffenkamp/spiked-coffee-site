@@ -4,8 +4,9 @@
  * Cormorant Garamond display, Jost Light body. Thin rules as dividers.
  */
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Coffee, Wine, Sun, Moon } from "lucide-react";
+import { useLocation } from "wouter";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
@@ -69,6 +70,13 @@ const coffeeMenu: { category: string; items: MenuItem[] }[] = [
     ],
   },
   {
+    category: "Spiked Signatures",
+    items: [
+      { name: "The Spot", description: "Cookies & cream latte — espresso, cream, crushed cookies, chocolate drizzle", price: "7", tag: "Signature" },
+      { name: "Lavender Honey", description: "House-made lavender syrup, local honey, oat milk, espresso", price: "6.50", tag: "Seasonal" },
+    ],
+  },
+  {
     category: "Pastries & Bites",
     items: [
       { name: "Local Craft Donut", description: "Rotating selection, sourced daily", price: "4", tag: "Local" },
@@ -126,7 +134,7 @@ function MenuSection({ category, items, isDark = false, delay = 0 }: { category:
         </h3>
         <div className="space-y-5">
           {items.map((item) => (
-            <div key={item.name} className="group">
+            <div key={item.name} id={slugify(item.name)} className="group transition-all duration-500 rounded-sm px-2 -mx-2 py-1 -my-1">
               <div className="flex items-baseline justify-between gap-4">
                 <div className="flex items-center gap-3">
                   <h4 className={`font-display text-lg lg:text-xl font-light ${isDark ? "text-warm-white" : "text-espresso"}`}>
@@ -157,8 +165,29 @@ function MenuSection({ category, items, isDark = false, delay = 0 }: { category:
   );
 }
 
+function slugify(name: string) {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
 export default function Menu() {
   const [activeTab, setActiveTab] = useState<"day" | "evening">("day");
+
+  // Scroll to anchor on mount (from homepage drink cards)
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+    // Small delay to let the page render
+    const timer = setTimeout(() => {
+      const el = document.getElementById(hash);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        // Briefly highlight the item
+        el.classList.add("ring-2", "ring-terracotta/30", "bg-terracotta/5");
+        setTimeout(() => el.classList.remove("ring-2", "ring-terracotta/30", "bg-terracotta/5"), 2000);
+      }
+    }, 600);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="min-h-screen overflow-x-hidden">
