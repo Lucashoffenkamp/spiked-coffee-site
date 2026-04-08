@@ -14,6 +14,8 @@ import Menu from "./pages/Menu";
 import FindUs from "./pages/FindUs";
 import About from "./pages/About";
 import NominateRoaster from "./pages/NominateRoaster";
+import Merch from "./pages/Merch";
+import Journal from "./pages/Journal";
 
 function Router() {
   const [location] = useLocation();
@@ -28,6 +30,8 @@ function Router() {
           <Route path={"/find-us"} component={FindUs} />
           <Route path={"/about"} component={About} />
           <Route path={"/nominate"} component={NominateRoaster} />
+          <Route path={"/merch"} component={Merch} />
+          <Route path={"/journal"} component={Journal} />
           <Route path={"/404"} component={NotFound} />
           {/* Final fallback route */}
           <Route component={NotFound} />

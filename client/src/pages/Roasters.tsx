@@ -11,6 +11,7 @@ import { useRef } from "react";
 import { ArrowLeft, MapPin, ExternalLink, Coffee, Leaf, Award, Heart, ShoppingBag } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import ScrollProgress from "@/components/ScrollProgress";
 
 /* ── CDN Assets ── */
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/all_roasters_station-R5yH5RqxGRscA8pLkBmfSJ.webp";
@@ -276,6 +277,7 @@ function RoasterSpread({ roaster, index }: { roaster: typeof roasters[0]; index:
 export default function Roasters() {
   return (
     <div className="min-h-screen bg-cream">
+      <ScrollProgress />
       <Navigation />
 
       {/* ── Hero Section ── */}

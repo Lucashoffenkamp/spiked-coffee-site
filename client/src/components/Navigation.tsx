@@ -22,9 +22,10 @@ const LOGO_ICON = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8q
 const navLinks = [
   { label: "Menu", href: "/menu", isRoute: true },
   { label: "Our Roasters", href: "/roasters", isRoute: true },
+  { label: "Merch", href: "/merch", isRoute: true },
+  { label: "Journal", href: "/journal", isRoute: true },
   { label: "Find Us", href: "/find-us", isRoute: true },
   { label: "About", href: "/about", isRoute: true },
-  { label: "Join Us", href: "/#signup", isRoute: false },
 ];
 
 function NavLink({ link, className, onClick }: { link: typeof navLinks[0]; className: string; onClick?: () => void }) {

@@ -39,6 +39,8 @@ export default function Footer() {
               {[
                 { label: "The Menu", href: "/menu" },
                 { label: "Our Roasters", href: "/roasters" },
+                { label: "Merch", href: "/merch" },
+                { label: "Journal", href: "/journal" },
                 { label: "Find Us", href: "/find-us" },
                 { label: "About", href: "/about" },
               ].map((link) => (
