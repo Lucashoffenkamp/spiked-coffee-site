@@ -13,6 +13,13 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 const drinks = [
   {
+    name: "The Spot",
+    subtitle: "Cookies & Cream Latte",
+    description: "Our signature. Espresso, cream, crushed cookies, and a chocolate drizzle. Named after the dog.",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/drink_the_spot-3X2UntcDJdi22U8p8ByH3E.webp",
+    tag: "SIGNATURE",
+  },
+  {
     name: "Latte",
     description: "Silky steamed milk over a double shot. Classic, comforting, always right.",
     image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/drink_latte-UFNRAJ9MbJ452dXQtnN7tz.webp",
@@ -41,13 +48,6 @@ const drinks = [
     description: "Rich chocolate meets espresso and steamed milk. Indulgent but never too sweet.",
     image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/drink_mocha-Lwt2YfZE3kNvPYyN3JNhXp.webp",
     tag: null,
-  },
-  {
-    name: "The Spot",
-    subtitle: "Cookies & Cream Latte",
-    description: "Our signature. Espresso, cream, crushed cookies, and a chocolate drizzle. Named after the dog.",
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/drink_the_spot-3X2UntcDJdi22U8p8ByH3E.webp",
-    tag: "SIGNATURE",
   },
 ];
 
