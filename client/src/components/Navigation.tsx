@@ -2,11 +2,20 @@
  * Navigation — Spiked Coffee
  * Design: Cormorant Garamond + Jost. Dalmatian icon mark.
  * Transparent → cream on scroll. Thin, editorial feel.
+ * Mobile: Slide-out drawer from the right using Sheet primitive.
  */
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
+import { Menu } from "lucide-react";
 import { Link, useLocation } from "wouter";
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetClose,
+} from "@/components/ui/sheet";
 
 const LOGO_ICON = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/dalmatian_fix_5_23e75f68.png";
 
@@ -31,7 +40,6 @@ function NavLink({ link, className, onClick }: { link: typeof navLinks[0]; class
     );
   }
 
-  // For hash links: if we're on the home page, just use the hash; otherwise navigate to /#section
   const handleClick = (e: React.MouseEvent) => {
     if (location === "/") {
       e.preventDefault();
@@ -72,84 +80,161 @@ export default function Navigation() {
   }, [location]);
 
   return (
-    <>
-      <motion.nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "bg-cream/95 backdrop-blur-md shadow-sm"
-            : "bg-transparent"
-        }`}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="flex items-center justify-between h-16 lg:h-20">
-            {/* Logo Mark */}
-            <Link href="/" className="flex items-center gap-3 group">
-              <img
-                src={LOGO_ICON}
-                alt="Spiked Coffee"
-                className="h-9 w-9 lg:h-11 lg:w-11 object-contain transition-transform duration-300 group-hover:scale-105"
-              />
-              <div className="w-px h-6 bg-espresso/15 hidden sm:block" />
-              <div className="hidden sm:block">
-                <span className="font-display text-base lg:text-lg font-light tracking-[0.12em] text-espresso">
-                  SPIKED COFFEE
-                </span>
-              </div>
-            </Link>
-
-            {/* Desktop Nav */}
-            <div className="hidden lg:flex items-center gap-10">
-              {navLinks.map((link) => (
-                <NavLink
-                  key={link.href}
-                  link={link}
-                  className="font-body text-xs tracking-[0.15em] uppercase text-espresso-light/70 hover:text-espresso transition-colors duration-300 font-light relative group"
-                />
-              ))}
+    <motion.nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-cream/95 backdrop-blur-md shadow-sm"
+          : "bg-transparent"
+      }`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="flex items-center justify-between h-16 lg:h-20">
+          {/* Logo Mark */}
+          <Link href="/" className="flex items-center gap-3 group">
+            <img
+              src={LOGO_ICON}
+              alt="Spiked Coffee"
+              className="h-9 w-9 lg:h-11 lg:w-11 object-contain transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="w-px h-6 bg-espresso/15 hidden sm:block" />
+            <div className="hidden sm:block">
+              <span className="font-display text-base lg:text-lg font-light tracking-[0.12em] text-espresso">
+                SPIKED COFFEE
+              </span>
             </div>
+          </Link>
 
-            {/* Mobile Menu Toggle */}
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2 text-espresso"
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}
-            </button>
+          {/* Desktop Nav */}
+          <div className="hidden lg:flex items-center gap-10">
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.href}
+                link={link}
+                className="font-body text-xs tracking-[0.15em] uppercase text-espresso-light/70 hover:text-espresso transition-colors duration-300 font-light relative group"
+              />
+            ))}
+          </div>
+
+          {/* Mobile Menu — Sheet Drawer */}
+          <div className="lg:hidden">
+            <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+              <SheetTrigger asChild>
+                <button
+                  className="p-2 text-espresso hover:text-terracotta transition-colors duration-300"
+                  aria-label="Open menu"
+                >
+                  <Menu size={22} strokeWidth={1.5} />
+                </button>
+              </SheetTrigger>
+              <SheetContent
+                side="right"
+                className="bg-cream border-l border-espresso/10 w-[85%] sm:max-w-sm p-0 [&>button]:hidden"
+              >
+                {/* Drawer Header */}
+                <SheetHeader className="px-8 pt-8 pb-4 border-b border-espresso/5">
+                  <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={LOGO_ICON}
+                      alt="Spiked Coffee"
+                      className="h-10 w-10 object-contain"
+                    />
+                    <div className="w-px h-6 bg-espresso/15" />
+                    <span className="font-display text-base font-light tracking-[0.12em] text-espresso">
+                      SPIKED COFFEE
+                    </span>
+                  </div>
+                </SheetHeader>
+
+                {/* Nav Links */}
+                <nav className="flex flex-col px-8 pt-8 gap-1">
+                  {navLinks.map((link, i) => {
+                    const isActive = link.isRoute && location === link.href;
+                    return (
+                      <SheetClose key={link.href} asChild>
+                        <div
+                          className="overflow-hidden"
+                          style={{ animationDelay: `${i * 60}ms` }}
+                        >
+                          {link.isRoute ? (
+                            <Link
+                              href={link.href}
+                              className={`flex items-center gap-4 py-4 border-b border-espresso/5 group transition-colors duration-300 ${
+                                isActive ? "text-espresso" : "text-espresso-light/60 hover:text-espresso"
+                              }`}
+                            >
+                              <span className="font-body text-[10px] tracking-widest text-espresso-light/30 font-light w-6">
+                                0{i + 1}
+                              </span>
+                              <span className="font-display text-2xl font-light tracking-[0.05em]">
+                                {link.label}
+                              </span>
+                              {isActive && (
+                                <span className="ml-auto w-1.5 h-1.5 rounded-full bg-terracotta" />
+                              )}
+                            </Link>
+                          ) : (
+                            <a
+                              href={link.href}
+                              className="flex items-center gap-4 py-4 border-b border-espresso/5 group text-espresso-light/60 hover:text-espresso transition-colors duration-300"
+                              onClick={(e) => {
+                                if (location === "/") {
+                                  e.preventDefault();
+                                  const hash = link.href.replace("/", "");
+                                  const el = document.querySelector(hash);
+                                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                                }
+                                setMobileOpen(false);
+                              }}
+                            >
+                              <span className="font-body text-[10px] tracking-widest text-espresso-light/30 font-light w-6">
+                                0{i + 1}
+                              </span>
+                              <span className="font-display text-2xl font-light tracking-[0.05em]">
+                                {link.label}
+                              </span>
+                            </a>
+                          )}
+                        </div>
+                      </SheetClose>
+                    );
+                  })}
+                </nav>
+
+                {/* Drawer Footer */}
+                <div className="mt-auto px-8 pb-8 pt-6">
+                  <div className="w-12 h-px bg-espresso/10 mb-6" />
+                  <p className="font-body text-xs text-espresso-light/40 font-light tracking-wide leading-relaxed">
+                    Craft coffee &amp; fine beverages.
+                    <br />
+                    Libertyville &middot; Kenosha &middot; Denver
+                  </p>
+                  <div className="flex items-center gap-4 mt-4">
+                    <a
+                      href="https://instagram.com/spikedcoffee"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-body text-[10px] tracking-[0.2em] uppercase text-espresso-light/40 hover:text-terracotta transition-colors font-light"
+                    >
+                      Instagram
+                    </a>
+                    <span className="text-espresso-light/15">|</span>
+                    <a
+                      href="mailto:hello@spikedcoffee.com"
+                      className="font-body text-[10px] tracking-[0.2em] uppercase text-espresso-light/40 hover:text-terracotta transition-colors font-light"
+                    >
+                      Contact
+                    </a>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
-      </motion.nav>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            className="fixed inset-0 z-40 bg-cream/98 backdrop-blur-lg flex flex-col items-center justify-center gap-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            {navLinks.map((link, i) => (
-              <motion.div
-                key={link.href}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 + 0.1 }}
-              >
-                <NavLink
-                  link={link}
-                  className="font-display text-3xl font-light tracking-[0.1em] text-espresso hover:text-terracotta transition-colors relative group"
-                  onClick={() => setMobileOpen(false)}
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+      </div>
+    </motion.nav>
   );
 }

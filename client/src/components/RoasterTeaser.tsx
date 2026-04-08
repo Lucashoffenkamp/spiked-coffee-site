@@ -3,12 +3,13 @@
  * Design: Editorial product showcase row with transparent cutout bags
  * on a clean cream background. Each bag floats with a subtle shadow,
  * roaster name below in tracked uppercase. Links to /roasters page.
+ * Shop CTA links to each roaster's online store.
  * Typography: Cormorant Garamond display + Jost body
  */
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "wouter";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ShoppingBag } from "lucide-react";
 
 const TALA_BAG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/tala_nobg_35789949.png";
 const CHROMATIC_BAG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/chromatic_nobg_13e96922.png";
@@ -20,18 +21,21 @@ const roasters = [
     location: "Libertyville, IL",
     blend: "Amoret Espresso",
     image: TALA_BAG,
+    shopUrl: "https://talacoffeeroasters.com",
   },
   {
     name: "Chromatic",
     location: "San Jose, CA",
     blend: "Gamut Blend",
     image: CHROMATIC_BAG,
+    shopUrl: "https://www.chromaticcoffee.com",
   },
   {
     name: "Ruby",
     location: "Nelsonville, WI",
     blend: "Creamery Seasonal",
     image: RUBY_BAG,
+    shopUrl: "https://rubycoffeeroasters.com",
   },
 ];
 
@@ -84,30 +88,45 @@ export default function RoasterTeaser() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-16">
           {roasters.map((roaster, i) => (
             <FadeIn key={roaster.name} delay={0.1 + i * 0.12}>
-              <Link href="/roasters" className="group block text-center">
-                {/* Bag image */}
-                <div className="relative mb-8 flex items-center justify-center h-[320px] lg:h-[380px]">
-                  <img
-                    src={roaster.image}
-                    alt={`${roaster.name} — ${roaster.blend}`}
-                    className="h-full w-auto max-w-full object-contain drop-shadow-lg transition-transform duration-700 ease-out group-hover:-translate-y-3 group-hover:drop-shadow-xl"
-                  />
-                </div>
+              <div className="group block text-center">
+                {/* Bag image — links to roasters page */}
+                <Link href="/roasters" className="block">
+                  <div className="relative mb-8 flex items-center justify-center h-[320px] lg:h-[380px]">
+                    <img
+                      src={roaster.image}
+                      alt={`${roaster.name} — ${roaster.blend}`}
+                      className="h-full w-auto max-w-full object-contain drop-shadow-lg transition-transform duration-700 ease-out group-hover:-translate-y-3 group-hover:drop-shadow-xl"
+                    />
+                  </div>
+                </Link>
 
                 {/* Thin rule */}
                 <div className="w-10 h-px bg-espresso/15 mx-auto mb-5" />
 
                 {/* Roaster info */}
-                <h3 className="font-display text-2xl lg:text-3xl font-light text-espresso tracking-wide mb-2">
-                  {roaster.name}
-                </h3>
-                <p className="font-body text-xs tracking-[0.2em] uppercase text-espresso/40 mb-1.5 font-light">
-                  {roaster.location}
-                </p>
-                <p className="font-accent text-sm text-espresso/50 italic">
-                  {roaster.blend}
-                </p>
-              </Link>
+                <Link href="/roasters" className="block">
+                  <h3 className="font-display text-2xl lg:text-3xl font-light text-espresso tracking-wide mb-2">
+                    {roaster.name}
+                  </h3>
+                  <p className="font-body text-xs tracking-[0.2em] uppercase text-espresso/40 mb-1.5 font-light">
+                    {roaster.location}
+                  </p>
+                  <p className="font-accent text-sm text-espresso/50 italic">
+                    {roaster.blend}
+                  </p>
+                </Link>
+
+                {/* Shop CTA */}
+                <a
+                  href={roaster.shopUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 mt-5 px-5 py-2.5 border border-espresso/15 hover:border-espresso/40 hover:bg-espresso/[0.03] font-body text-[10px] tracking-[0.2em] uppercase text-espresso-light/60 hover:text-espresso transition-all duration-300 font-light group/shop"
+                >
+                  <ShoppingBag size={12} strokeWidth={1.5} className="transition-transform duration-300 group-hover/shop:scale-110" />
+                  Shop {roaster.name}
+                </a>
+              </div>
             </FadeIn>
           ))}
         </div>

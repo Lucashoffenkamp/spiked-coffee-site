@@ -8,7 +8,7 @@
  */
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ArrowLeft, MapPin, ExternalLink, Coffee, Leaf, Award, Heart } from "lucide-react";
+import { ArrowLeft, MapPin, ExternalLink, Coffee, Leaf, Award, Heart, ShoppingBag } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
@@ -239,9 +239,18 @@ function RoasterSpread({ roaster, index }: { roaster: typeof roasters[0]; index:
                 href={roaster.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 font-body text-xs tracking-[0.15em] uppercase text-espresso-light/60 hover:text-terracotta transition-colors duration-300 font-light group"
+                className="inline-flex items-center gap-2.5 px-6 py-3 border border-espresso/20 hover:border-espresso/50 hover:bg-espresso/[0.04] font-body text-xs tracking-[0.15em] uppercase text-espresso-light/70 hover:text-espresso transition-all duration-300 font-light group"
               >
-                Visit {roaster.name}
+                <ShoppingBag size={14} strokeWidth={1.5} className="transition-transform duration-300 group-hover:scale-110" />
+                Shop {roaster.name}
+              </a>
+              <a
+                href={roaster.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 font-body text-xs tracking-[0.15em] uppercase text-espresso-light/50 hover:text-terracotta transition-colors duration-300 font-light group"
+              >
+                Visit Website
                 <ExternalLink size={12} strokeWidth={1.5} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
               <span className="text-espresso-light/15">|</span>
