@@ -12,7 +12,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 const DALMATIAN_ICON = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/dalmatian_fix_5_23e75f68.png";
 const MORNING_RITUAL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/about_morning_ritual-9C6iDbb8kCcJ9vk3crD9GW.webp";
 const EVENING_GATHERING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/about_evening_gathering-bTSzAskH4RcEdKjazJJ9yJ.webp";
-const BROTHERS = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/about_brothers_lifestyle-RRxGhnARNQYxDwdUSZc3ES.webp";
+const BROTHERS = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/brothers_real_93cd2b18.jpeg";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -46,7 +46,7 @@ export default function About() {
               <img
                 src={BROTHERS}
                 alt="Lucas and Dylan — founders of Spiked Coffee"
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-cream via-cream/20 to-transparent" />
             </div>
