@@ -64,64 +64,75 @@ export default function HeroSection() {
 
       {/* Main content with parallax */}
       <motion.div
-        className="relative z-10 h-full flex flex-col items-center justify-center px-6"
+        className="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-6"
         style={{ y: textY }}
       >
-        {/* Logo lockup */}
+        {/* Frosted glass card */}
         <motion.div
-          className="flex items-center gap-5 lg:gap-7"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.3, ease }}
+          className="relative bg-espresso/[0.12] backdrop-blur-[6px] border border-warm-white/[0.08] rounded-2xl px-8 sm:px-12 lg:px-16 py-12 sm:py-14 lg:py-16 flex flex-col items-center shadow-[0_8px_60px_rgba(0,0,0,0.15)]"
+          initial={{ opacity: 0, scale: 0.97 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.4, delay: 0.15, ease }}
         >
-          <img
-            src={DALMATIAN_ICON}
-            alt=""
-            className="h-24 w-24 sm:h-32 sm:w-32 lg:h-40 lg:w-40 object-contain brightness-0 invert opacity-90"
-          />
-          <div className="w-px h-16 sm:h-24 lg:h-32 bg-warm-white/20" />
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light tracking-[0.15em] text-warm-white leading-none">
-            SPIKED<br />COFFEE
-          </h1>
-        </motion.div>
+          {/* Subtle inner glow on the border */}
+          <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-warm-white/[0.05] pointer-events-none" />
 
-        {/* Descriptor line */}
-        <motion.div
-          className="flex items-center gap-6 mt-7 lg:mt-9"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.7, ease }}
-        >
-          <div className="w-10 lg:w-16 h-px bg-warm-white/20" />
-          <p className="font-body text-[10px] lg:text-xs tracking-[0.3em] uppercase text-warm-white/60 font-light">
-            Craft Coffee & Fine Beverages
-          </p>
-          <div className="w-10 lg:w-16 h-px bg-warm-white/20" />
-        </motion.div>
+          {/* Logo lockup */}
+          <motion.div
+            className="flex items-center gap-5 lg:gap-7"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.3, ease }}
+          >
+            <img
+              src={DALMATIAN_ICON}
+              alt=""
+              className="h-24 w-24 sm:h-32 sm:w-32 lg:h-40 lg:w-40 object-contain brightness-0 invert opacity-90"
+            />
+            <div className="w-px h-16 sm:h-24 lg:h-32 bg-warm-white/20" />
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light tracking-[0.15em] text-warm-white leading-none">
+              SPIKED<br />COFFEE
+            </h1>
+          </motion.div>
 
-        {/* Tagline */}
-        <motion.p
-          className="mt-8 lg:mt-10 font-accent text-base sm:text-lg lg:text-xl text-warm-white/80 tracking-wide text-center max-w-lg leading-relaxed"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.9, ease }}
-        >
-          Life is short. The coffee is good.<br />
-          The company is better.
-        </motion.p>
+          {/* Descriptor line */}
+          <motion.div
+            className="flex items-center gap-6 mt-7 lg:mt-9"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.7, ease }}
+          >
+            <div className="w-10 lg:w-16 h-px bg-warm-white/20" />
+            <p className="font-body text-[10px] lg:text-xs tracking-[0.3em] uppercase text-warm-white/60 font-light">
+              Craft Coffee & Fine Beverages
+            </p>
+            <div className="w-10 lg:w-16 h-px bg-warm-white/20" />
+          </motion.div>
 
-        {/* Location markers */}
-        <motion.div
-          className="mt-6 flex items-center gap-3 text-warm-white/35"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.1, ease }}
-        >
-          <span className="font-body text-[10px] tracking-[0.25em] uppercase font-light">Libertyville</span>
-          <span className="text-[8px]">&middot;</span>
-          <span className="font-body text-[10px] tracking-[0.25em] uppercase font-light">Kenosha</span>
-          <span className="text-[8px]">&middot;</span>
-          <span className="font-body text-[10px] tracking-[0.25em] uppercase font-light">Denver</span>
+          {/* Tagline */}
+          <motion.p
+            className="mt-8 lg:mt-10 font-accent text-base sm:text-lg lg:text-xl text-warm-white/80 tracking-wide text-center max-w-lg leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.9, ease }}
+          >
+            Life is short. The coffee is good.<br />
+            The company is better.
+          </motion.p>
+
+          {/* Location markers */}
+          <motion.div
+            className="mt-6 flex items-center gap-3 text-warm-white/35"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.1, ease }}
+          >
+            <span className="font-body text-[10px] tracking-[0.25em] uppercase font-light">Libertyville</span>
+            <span className="text-[8px]">&middot;</span>
+            <span className="font-body text-[10px] tracking-[0.25em] uppercase font-light">Kenosha</span>
+            <span className="text-[8px]">&middot;</span>
+            <span className="font-body text-[10px] tracking-[0.25em] uppercase font-light">Denver</span>
+          </motion.div>
         </motion.div>
       </motion.div>
 
