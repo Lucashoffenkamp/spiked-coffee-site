@@ -44,7 +44,7 @@ const roasters = [
     blend: "Creamery Seasonal",
     image: RUBY_BAG,
     logo: RUBY_LOGO,
-    logoBg: "bg-[#f5f0ed]",
+    logoBg: "bg-[#7a1f2e]",
     shopUrl: "https://rubycoffeeroasters.com",
   },
 ];

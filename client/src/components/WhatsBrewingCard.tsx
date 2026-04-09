@@ -72,14 +72,14 @@ const roasterFeatures: RoasterFeature[] = [
     origin: "Peru, Colombia",
     process: "Washed",
     roast: "Medium",
-    panelBg: "bg-[#f5f0ed]",
-    panelTextLight: false,
+    panelBg: "bg-[#7a1f2e]",
+    panelTextLight: true,
   },
 ];
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const ROTATION_INTERVAL = 8000; // 8 seconds per roaster
+const ROTATION_INTERVAL = 14000; // 14 seconds per roaster
 
 export default function WhatsBrewingCard() {
   const ref = useRef(null);

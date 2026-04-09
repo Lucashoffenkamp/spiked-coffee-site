@@ -77,7 +77,7 @@ const roasters = [
     founded: "2013",
     bagImage: RUBY_BAG,
     logo: RUBY_LOGO,
-    logoBg: "bg-[#f5f0ed]",
+    logoBg: "bg-[#7a1f2e]",
     stationImage: RUBY_STATION,
     website: "https://rubycoffeeroasters.com",
     instagram: "@rubyroasters",
