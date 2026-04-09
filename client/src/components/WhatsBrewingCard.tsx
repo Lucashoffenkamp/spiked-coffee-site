@@ -1,15 +1,15 @@
 /*
  * WhatsBrewingCard — Spiked Coffee
  * "What's Brewing" — featured roaster/blend of the month.
- * Engaging card with rotating seasonal content.
+ * Now featuring the actual Tala Coffee Roasters logo.
  * Lodge editorial aesthetic.
  */
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Coffee, ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "wouter";
 
-const TALA_BAG = "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80";
+const TALA_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/tala_logo_7f6c1f39.png";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -45,30 +45,61 @@ export default function WhatsBrewingCard() {
           transition={{ duration: 0.9, delay: 0.15, ease }}
           className="relative"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 bg-warm-white border border-espresso/[0.06] overflow-hidden">
-            {/* Left — Image & Badge */}
-            <div className="lg:col-span-5 relative bg-gradient-to-br from-cream to-warm-white p-8 lg:p-12 flex items-center justify-center">
-              {/* "Now Pouring" badge */}
-              <div className="absolute top-6 left-6 flex items-center gap-2 bg-terracotta/10 px-3 py-1.5 rounded-full">
-                <div className="w-1.5 h-1.5 rounded-full bg-terracotta animate-pulse" />
-                <span className="font-body text-[10px] tracking-[0.2em] uppercase text-terracotta font-medium">
-                  Now Pouring
-                </span>
-              </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 overflow-hidden">
+            {/* Left — Tala Logo Feature Panel */}
+            <div className="lg:col-span-5 relative overflow-hidden">
+              {/* Dark slate background matching the Tala brand color */}
+              <div className="bg-[#2d4a5a] h-full min-h-[320px] lg:min-h-[400px] relative flex flex-col items-center justify-center p-8 lg:p-12">
+                {/* Subtle texture overlay */}
+                <div className="absolute inset-0 opacity-[0.04]" style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                }} />
 
-              <div className="text-center">
-                <Coffee size={48} strokeWidth={0.8} className="mx-auto text-espresso/20 mb-4" />
-                <h3 className="font-display text-3xl lg:text-4xl font-light text-espresso tracking-wide mb-2">
-                  Tala
-                </h3>
-                <p className="font-body text-xs tracking-[0.2em] uppercase text-espresso-light/60 font-light">
-                  Amoret Blend
-                </p>
+                {/* "Now Pouring" badge — top left */}
+                <div className="absolute top-5 left-5 flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10">
+                  <div className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                  <span className="font-body text-[10px] tracking-[0.2em] uppercase text-white/90 font-medium">
+                    Now Pouring
+                  </span>
+                </div>
+
+                {/* Tala Logo — centered and prominent */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 1, delay: 0.3, ease }}
+                  className="relative z-10"
+                >
+                  <img
+                    src={TALA_LOGO}
+                    alt="Tala Coffee Roasters"
+                    className="w-56 lg:w-64 h-auto object-contain"
+                  />
+                </motion.div>
+
+                {/* Blend name below logo */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.5, ease }}
+                  className="mt-6 text-center relative z-10"
+                >
+                  <div className="w-10 h-px bg-white/20 mx-auto mb-3" />
+                  <p className="font-body text-[11px] tracking-[0.25em] uppercase text-white/50 font-light">
+                    Featuring
+                  </p>
+                  <p className="font-display text-lg text-white/90 tracking-wide mt-1 font-light">
+                    Amoret Blend
+                  </p>
+                  <p className="font-body text-[10px] tracking-[0.2em] uppercase text-white/40 font-light mt-1">
+                    Libertyville, IL
+                  </p>
+                </motion.div>
               </div>
             </div>
 
             {/* Right — Details */}
-            <div className="lg:col-span-7 p-8 lg:p-12 flex flex-col justify-center">
+            <div className="lg:col-span-7 bg-warm-white border border-espresso/[0.06] border-l-0 p-8 lg:p-12 flex flex-col justify-center">
               <h2 className="font-display text-2xl lg:text-3xl font-light text-espresso tracking-wide mb-4 leading-snug">
                 What's Brewing
               </h2>
@@ -90,6 +121,22 @@ export default function WhatsBrewingCard() {
                     {note}
                   </span>
                 ))}
+              </div>
+
+              {/* Origin & Roast Info */}
+              <div className="grid grid-cols-3 gap-4 mb-8 py-4 border-t border-b border-espresso/[0.06]">
+                <div>
+                  <p className="font-body text-[9px] tracking-[0.2em] uppercase text-espresso-light/40 font-light mb-1">Origin</p>
+                  <p className="font-body text-xs text-espresso font-light">Guatemala</p>
+                </div>
+                <div>
+                  <p className="font-body text-[9px] tracking-[0.2em] uppercase text-espresso-light/40 font-light mb-1">Process</p>
+                  <p className="font-body text-xs text-espresso font-light">Washed</p>
+                </div>
+                <div>
+                  <p className="font-body text-[9px] tracking-[0.2em] uppercase text-espresso-light/40 font-light mb-1">Roast</p>
+                  <p className="font-body text-xs text-espresso font-light">Medium</p>
+                </div>
               </div>
 
               {/* CTA */}
