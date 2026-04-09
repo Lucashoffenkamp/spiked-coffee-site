@@ -55,7 +55,7 @@ export default function EventBanner() {
               </div>
               <button
                 onClick={dismiss}
-                className="absolute right-4 top-1/2 -translate-y-1/2 p-1 text-warm-white/40 hover:text-warm-white transition-colors duration-300"
+                className="absolute left-4 top-1/2 -translate-y-1/2 p-1 text-warm-white/40 hover:text-warm-white transition-colors duration-300 z-50"
                 aria-label="Dismiss banner"
               >
                 <X size={14} strokeWidth={1.5} />
