@@ -15,7 +15,8 @@ import ScrollProgress from "@/components/ScrollProgress";
 const STICKER_PACK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/merch_sticker_v2-9qPJ9ELuQTNtuGA8vmMMMj.webp";
 const DAD_HAT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/merch_hat_v2-Huc5AWGkotKe6BmVtea9Zq.webp";
 const KINTO_TUMBLER = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/merch_tumbler_v2-BDyDWryf92d44wWnJMhhJZ.webp";
-const TOTE_BAG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/merch_tote_v2-mC5bMyWTuyPQY3XQRCogkC.webp";
+const TOTE_BAG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/merch_tote_v2-BDyDWryf92d44wWnJMhhJZ.webp";
+const KINTO_MUG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/kinto_mug_branded-AEoFyB8Qe4r3ZS9mbCC3nh.webp";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -47,6 +48,13 @@ const products = [
     price: "$28",
     image: TOTE_BAG,
     badge: null,
+  },
+  {
+    name: "Kinto Ceramic Mug",
+    description: "300ml Kinto CLK-151 stoneware mug with speckled beige glaze and raw clay base. Embossed Dalmatian logo in terracotta. Microwave and dishwasher safe.",
+    price: "$30",
+    image: KINTO_MUG,
+    badge: "New",
   },
 ];
 

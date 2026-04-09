@@ -8,7 +8,7 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { MapPin, Truck, Building2 } from "lucide-react";
 
-const POPUP_MARKET = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/vision_popup_market-2VcW5KtNUB3NiiWfnPryVf.webp";
+const POPUP_MARKET = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/popup_experience_branded-Tcxdhn3tcvnD9AhLCpE5AL.webp";
 const TRUCK_MOCKUP = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/truck_mockup_v2-3WsvisTyfm49Fov5WKUt8Z.webp";
 const STOREFRONT_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/storefront_evening_v2-VATNhtDuFtd3uQhnwcSVMT.webp";
 
