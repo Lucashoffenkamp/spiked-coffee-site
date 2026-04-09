@@ -145,7 +145,7 @@ function RoasterSpread({ roaster, index }: { roaster: typeof roasters[0]; index:
           <FadeIn delay={0.1} className="w-full lg:w-5/12">
             <div className="bg-warm-white rounded-sm p-8 lg:p-12 shadow-sm">
               {/* Roaster Logo */}
-              <div className={`flex justify-center items-center py-6 mb-6 rounded-sm ${roaster.logoBg}`}>
+              <div className={`flex justify-center items-center py-6 px-8 mb-6 rounded-lg border-2 border-espresso/20 shadow-sm ${roaster.logoBg}`}>
                 <img
                   src={roaster.logo}
                   alt={`${roaster.fullName} logo`}

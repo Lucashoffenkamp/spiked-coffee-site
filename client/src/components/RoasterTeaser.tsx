@@ -100,7 +100,7 @@ export default function RoasterTeaser() {
             <FadeIn key={roaster.name} delay={0.1 + i * 0.12}>
               <div className="group block text-center">
                 {/* Roaster Logo */}
-                <div className={`flex justify-center items-center py-4 mb-6 rounded-sm ${roaster.logoBg}`}>
+                <div className={`flex justify-center items-center py-5 px-6 mb-6 rounded-lg border-2 border-espresso/20 shadow-sm ${roaster.logoBg}`}>
                   <img
                     src={roaster.logo}
                     alt={`${roaster.name} logo`}

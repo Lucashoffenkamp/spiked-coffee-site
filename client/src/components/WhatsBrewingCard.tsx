@@ -27,6 +27,7 @@ interface RoasterFeature {
   roast: string;
   panelBg: string;
   panelTextLight: boolean; // true = white text on dark bg, false = dark text on light bg
+  logoSize: string; // Tailwind width classes for the logo
 }
 
 const roasterFeatures: RoasterFeature[] = [
@@ -44,6 +45,7 @@ const roasterFeatures: RoasterFeature[] = [
     roast: "Medium",
     panelBg: "bg-[#2d4a5a]",
     panelTextLight: true,
+    logoSize: "w-56 lg:w-64",
   },
   {
     name: "Chromatic",
@@ -59,6 +61,7 @@ const roasterFeatures: RoasterFeature[] = [
     roast: "Medium-Light",
     panelBg: "bg-[#f0ebe4]",
     panelTextLight: false,
+    logoSize: "w-56 lg:w-64",
   },
   {
     name: "Ruby",
@@ -74,6 +77,7 @@ const roasterFeatures: RoasterFeature[] = [
     roast: "Medium",
     panelBg: "bg-[#7a1f2e]",
     panelTextLight: true,
+    logoSize: "w-40 lg:w-48",
   },
 ];
 
@@ -178,7 +182,7 @@ export default function WhatsBrewingCard() {
                   animate="center"
                   exit="exit"
                   transition={{ duration: 0.5, ease }}
-                  className={`${current.panelBg} h-full min-h-[320px] lg:min-h-[400px] relative flex flex-col items-center justify-center p-8 lg:p-12`}
+                  className={`${current.panelBg} h-full min-h-[320px] lg:min-h-[400px] relative flex flex-col items-center justify-center p-8 lg:p-12 rounded-l-lg`}
                 >
                   {/* Subtle texture overlay */}
                   <div
@@ -207,11 +211,11 @@ export default function WhatsBrewingCard() {
                   </div>
 
                   {/* Logo — centered and prominent */}
-                  <div className="relative z-10">
+                  <div className="relative z-10 rounded-lg border-2 border-white/20 shadow-md bg-white/5 p-4 lg:p-5">
                     <img
                       src={current.logo}
                       alt={current.fullName}
-                      className="w-56 lg:w-64 h-auto object-contain"
+                      className={`${current.logoSize} h-auto object-contain`}
                     />
                   </div>
 
