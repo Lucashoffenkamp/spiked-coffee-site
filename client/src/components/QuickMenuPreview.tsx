@@ -1,7 +1,7 @@
 /*
  * QuickMenuPreview — Spiked Coffee
  * Horizontal scrolling drink preview with linked cards.
- * The Spot leads, followed by classics, then a seasonal limited-time drink.
+ * The Spike leads, followed by classics, then a seasonal limited-time drink.
  * Lodge editorial aesthetic with scroll-triggered entrance.
  */
 import { motion, useInView } from "framer-motion";
@@ -13,12 +13,12 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 const drinks = [
   {
-    name: "The Spot",
+    name: "The Spike",
     subtitle: "Cookies & Cream Latte",
-    description: "Our signature. Espresso, Kilgus cream, crushed Oreos, and a Kakao Chocolate Works dark drizzle. Named after the dog.",
+    description: "Our signature. Espresso, Kilgus cream, crushed Oreos, and a Kakao Chocolate Works dark drizzle. Named after the very good boy.",
     image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/drink_the_spot_hero-7Q6t2HPSXHUoHPCFkUZne8.webp",
     tag: "SIGNATURE",
-    slug: "the-spot",
+    slug: "the-spike",
   },
   {
     name: "Latte",
@@ -86,10 +86,23 @@ function DrinkCard({ drink, index }: { drink: typeof drinks[0]; index: number })
         {/* Image */}
         <div className="relative overflow-hidden mb-4 bg-cream aspect-[3/4]">
           {drink.tag && (
-            <div className={`absolute top-3 left-3 z-10 px-2.5 py-1 ${drink.tag === "LIMITED TIME" ? "bg-espresso" : "bg-terracotta"}`}>
+            <div className={`absolute top-3 left-3 z-10 px-2.5 py-1 flex items-center gap-1.5 ${drink.tag === "LIMITED TIME" ? "bg-espresso" : "bg-terracotta"}`}>
+              {drink.tag === "SIGNATURE" && (
+                <span className="text-[10px]">🐾</span>
+              )}
               <span className="font-body text-[9px] tracking-[0.2em] uppercase text-warm-white font-medium">
                 {drink.tag}
               </span>
+            </div>
+          )}
+          {/* Spike portrait on signature drink */}
+          {drink.tag === "SIGNATURE" && (
+            <div className="absolute bottom-3 right-3 z-10 w-10 h-10 rounded-full overflow-hidden border-2 border-warm-white/80 shadow-md">
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/spike_real_bbac0cff.jpg"
+                alt="Spike"
+                className="w-full h-full object-cover object-top"
+              />
             </div>
           )}
           <img
@@ -106,8 +119,9 @@ function DrinkCard({ drink, index }: { drink: typeof drinks[0]; index: number })
         </div>
 
         {/* Info */}
-        <h3 className="font-display text-xl font-light text-espresso tracking-wide mb-1 group-hover:text-terracotta transition-colors duration-300">
+        <h3 className="font-display text-xl font-light text-espresso tracking-wide mb-1 group-hover:text-terracotta transition-colors duration-300 flex items-center gap-2">
           {drink.name}
+          {drink.tag === "SIGNATURE" && <span className="text-sm">🐾</span>}
         </h3>
         {drink.subtitle && (
           <p className="font-accent text-xs text-terracotta mb-1.5">

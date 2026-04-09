@@ -72,7 +72,7 @@ const coffeeMenu: { category: string; items: MenuItem[] }[] = [
   {
     category: "Spiked Signatures",
     items: [
-      { name: "The Spot", description: "Cookies & cream latte — espresso, Kilgus cream, crushed Oreos, Kakao Chocolate Works dark drizzle. Named after the dog", price: "7", tag: "Signature" },
+      { name: "The Spike", description: "Cookies & cream latte — espresso, Kilgus cream, crushed Oreos, Kakao Chocolate Works dark drizzle. Named after the very good boy 🐾", price: "7", tag: "Signature" },
       { name: "Lavender Honey", description: "House-made lavender syrup, Lake County wildflower honey, Oatly oat milk, double espresso", price: "6.50", tag: "Seasonal" },
     ],
   },

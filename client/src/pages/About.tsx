@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 
 const DALMATIAN_ICON = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/dalmatian_fix_5_23e75f68.png";
+const SPIKE_REAL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/spike_real_bbac0cff.jpg";
 const MORNING_RITUAL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/about_morning_ritual-9C6iDbb8kCcJ9vk3crD9GW.webp";
 const EVENING_GATHERING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/about_evening_gathering-bTSzAskH4RcEdKjazJJ9yJ.webp";
 const BROTHERS = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/brothers_real_93cd2b18.jpeg";
@@ -148,44 +149,58 @@ export default function About() {
         </div>
       </section>
 
-      {/* Spike */}
+      {/* Meet Spike */}
       <section className="bg-warm-white py-16 lg:py-24">
         <div className="max-w-5xl mx-auto px-6 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="order-2 lg:order-1">
               <FadeIn delay={0.1}>
                 <p className="font-body text-[11px] tracking-[0.3em] uppercase text-espresso-light/50 mb-6 font-light">
-                  The Name
+                  The Namesake
                 </p>
               </FadeIn>
               <FadeIn delay={0.2}>
                 <h2 className="font-display text-3xl lg:text-4xl font-light text-espresso tracking-wide leading-[1.2] mb-6">
-                  Why "Spiked."
+                  Meet Spike.
                 </h2>
               </FadeIn>
               <FadeIn delay={0.3}>
                 <div className="space-y-5 font-body text-sm lg:text-base text-espresso-light/70 font-light leading-relaxed">
                   <p>
-                    "Spike" was our dad's best companion for many years — a Dalmatian who was
-                    part of the family long before we came along. That legacy carried forward.
-                    Today, Dylan's Dalmatian carries the same name and the same spirit.
+                    This is Spike — Dylan and Anna's Dalmatian, and the very good boy behind
+                    the name. He's the heart of the brand, the unofficial greeter at every
+                    pop-up, and the reason our logo has spots.
+                  </p>
+                  <p>
+                    The original Spike was our dad's best companion — a Dalmatian who was
+                    part of the family long before we came along. That legacy lives on.
+                    Today's Spike carries the same name, the same spirit, and the same
+                    ability to make everyone around him smile.
                   </p>
                   <p>
                     The name "Spiked Coffee" is a nod to all of it — the family history, the
-                    Dalmatian lineage, and the dual nature of what we're building: craft coffee
-                    by day, fine beer and wine by evening. One name, multiple meanings, all of
-                    them intentional.
+                    Dalmatian lineage, and the dual nature of what we're building. One name,
+                    multiple meanings, all of them intentional.
                   </p>
+                </div>
+              </FadeIn>
+              <FadeIn delay={0.4}>
+                <div className="mt-8 inline-flex items-center gap-3 bg-cream/80 px-5 py-3 border border-espresso/5">
+                  <img src={DALMATIAN_ICON} alt="" className="w-6 h-6 object-contain" />
+                  <span className="font-body text-xs tracking-[0.2em] uppercase text-espresso-light/50 font-light">
+                    Chief Tasting Officer
+                  </span>
                 </div>
               </FadeIn>
             </div>
             <FadeIn className="order-1 lg:order-2">
-              <div className="relative bg-cream p-12 lg:p-16 flex items-center justify-center">
+              <div className="relative overflow-hidden">
                 <img
-                  src={DALMATIAN_ICON}
-                  alt="Spike — the Dalmatian"
-                  className="w-48 lg:w-64 object-contain"
+                  src={SPIKE_REAL}
+                  alt="Spike — Dylan and Anna's Dalmatian, the namesake of Spiked Coffee"
+                  className="w-full aspect-[3/4] object-cover object-top"
                 />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-warm-white/60 to-transparent h-24" />
               </div>
             </FadeIn>
           </div>
