@@ -64,12 +64,12 @@ export default function HeroSection() {
 
       {/* Main content with parallax */}
       <motion.div
-        className="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-6"
+        className="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-6 -mt-12 sm:-mt-10"
         style={{ y: textY }}
       >
         {/* Frosted glass card */}
         <motion.div
-          className="relative bg-espresso/[0.12] backdrop-blur-[6px] border border-warm-white/[0.08] rounded-2xl px-8 sm:px-12 lg:px-16 py-12 sm:py-14 lg:py-16 flex flex-col items-center shadow-[0_8px_60px_rgba(0,0,0,0.15)]"
+          className="relative bg-espresso/[0.12] backdrop-blur-[6px] border border-warm-white/[0.08] rounded-2xl px-8 sm:px-12 lg:px-16 py-16 sm:py-18 lg:py-20 flex flex-col items-center shadow-[0_8px_60px_rgba(0,0,0,0.15)]"
           initial={{ opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.4, delay: 0.15, ease }}
