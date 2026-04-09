@@ -1,15 +1,16 @@
 /*
  * VisionSection — Spiked Coffee
  * Design: Dark background continuing from concept section. Shows the phased
- * roadmap: pop-up → mobile truck → brick & mortar. Uses the truck and storefront mockups.
+ * roadmap: pop-up → mobile truck → brick & mortar. Each phase card has its
+ * corresponding image directly below it so the story flows naturally.
  */
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { MapPin, Truck, Building2 } from "lucide-react";
 
+const POPUP_MARKET = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/vision_popup_market-2VcW5KtNUB3NiiWfnPryVf.webp";
 const TRUCK_MOCKUP = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/truck_mockup_v2-3WsvisTyfm49Fov5WKUt8Z.webp";
 const STOREFRONT_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/storefront_evening_v2-VATNhtDuFtd3uQhnwcSVMT.webp";
-const CORNER_STORE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/corner_store_v2-HE5DMx9biAnQBGWXZyfBxR.webp";
 
 function FadeIn({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef(null);
@@ -34,6 +35,9 @@ const phases = [
     title: "Pop-Up",
     description: "Farmers markets, local events, and community gatherings. Testing the concept, building the following, perfecting the craft.",
     status: "Now",
+    image: POPUP_MARKET,
+    imageAlt: "Spiked Coffee pop-up at a farmers market",
+    imageCaption: "The Pop-Up Experience",
   },
   {
     icon: Truck,
@@ -41,6 +45,9 @@ const phases = [
     title: "Mobile",
     description: "A custom Airstream or truck build. Taking Spiked Coffee on the road — festivals, neighborhoods, mountain towns.",
     status: "Next",
+    image: TRUCK_MOCKUP,
+    imageAlt: "Spiked Coffee Airstream mobile truck",
+    imageCaption: "The Mobile Experience",
   },
   {
     icon: Building2,
@@ -48,6 +55,9 @@ const phases = [
     title: "Brick & Mortar",
     description: "The flagship. A permanent home where the full day-to-night experience comes alive. Reclaimed wood, Edison bulbs, the works.",
     status: "The Dream",
+    image: STOREFRONT_EVENING,
+    imageAlt: "Spiked Coffee flagship storefront at evening",
+    imageCaption: "The Flagship",
   },
 ];
 
@@ -79,62 +89,62 @@ export default function VisionSection() {
           </p>
         </FadeIn>
 
-        {/* Phase Timeline */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6 mb-24">
+        {/* Phases — each card paired with its image */}
+        <div className="space-y-20 lg:space-y-28">
           {phases.map((phase, i) => (
-            <FadeIn key={phase.phase} delay={i * 0.15}>
-              <div className="border border-warm-white/10 p-8 lg:p-10 h-full group hover:border-terracotta/30 transition-colors duration-500">
-                <div className="flex items-center justify-between mb-6">
-                  <phase.icon size={24} className="text-terracotta" />
-                  <span className="font-body text-[10px] tracking-[0.3em] uppercase text-terracotta/70 border border-terracotta/30 px-3 py-1 font-light">
-                    {phase.status}
-                  </span>
-                </div>
-                <p className="font-body text-xs tracking-[0.2em] uppercase text-warm-white/40 mb-2 font-light">
-                  {phase.phase}
-                </p>
-                <h3 className="font-display text-2xl lg:text-3xl font-light text-warm-white mb-4 tracking-wide">
-                  {phase.title}
-                </h3>
-                <p className="font-body text-sm text-warm-white/50 leading-relaxed font-light">
-                  {phase.description}
-                </p>
+            <div key={phase.phase} className="space-y-8">
+              {/* Phase Card + Image side by side on desktop, stacked on mobile */}
+              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center ${i % 2 === 1 ? "lg:direction-rtl" : ""}`}>
+                {/* Text Card — alternates left/right on desktop */}
+                <FadeIn className={i % 2 === 1 ? "lg:order-2" : "lg:order-1"}>
+                  <div className="border border-warm-white/10 p-8 lg:p-10 group hover:border-terracotta/30 transition-colors duration-500">
+                    <div className="flex items-center justify-between mb-6">
+                      <phase.icon size={24} className="text-terracotta" />
+                      <span className="font-body text-[10px] tracking-[0.3em] uppercase text-terracotta/70 border border-terracotta/30 px-3 py-1 font-light">
+                        {phase.status}
+                      </span>
+                    </div>
+                    <p className="font-body text-xs tracking-[0.2em] uppercase text-warm-white/40 mb-2 font-light">
+                      {phase.phase}
+                    </p>
+                    <h3 className="font-display text-2xl lg:text-3xl font-light text-warm-white mb-4 tracking-wide">
+                      {phase.title}
+                    </h3>
+                    <p className="font-body text-sm text-warm-white/50 leading-relaxed font-light">
+                      {phase.description}
+                    </p>
+                  </div>
+                </FadeIn>
+
+                {/* Image */}
+                <FadeIn className={i % 2 === 1 ? "lg:order-1" : "lg:order-2"} delay={0.15}>
+                  <div className="relative group overflow-hidden">
+                    <img
+                      src={phase.image}
+                      alt={phase.imageAlt}
+                      className="w-full h-[280px] lg:h-[380px] object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/70 to-transparent p-6">
+                      <p className="font-body text-xs tracking-[0.2em] uppercase text-warm-white/70 font-light">
+                        {phase.imageCaption}
+                      </p>
+                    </div>
+                  </div>
+                </FadeIn>
               </div>
-            </FadeIn>
+
+              {/* Divider between phases (except after last) */}
+              {i < phases.length - 1 && (
+                <FadeIn delay={0.2}>
+                  <div className="flex items-center justify-center gap-3 pt-4">
+                    <div className="w-16 h-px bg-warm-white/10" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-terracotta/40" />
+                    <div className="w-16 h-px bg-warm-white/10" />
+                  </div>
+                </FadeIn>
+              )}
+            </div>
           ))}
-        </div>
-
-        {/* Vision Images */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          <FadeIn className="lg:col-span-7">
-            <div className="relative group overflow-hidden">
-              <img
-                src={TRUCK_MOCKUP}
-                alt="Spiked Coffee Airstream"
-                className="w-full h-[350px] lg:h-[450px] object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/70 to-transparent p-6">
-                <p className="font-body text-xs tracking-[0.2em] uppercase text-warm-white/70 font-light">
-                  The Mobile Experience
-                </p>
-              </div>
-            </div>
-          </FadeIn>
-
-          <FadeIn className="lg:col-span-5" delay={0.15}>
-            <div className="relative group overflow-hidden h-full">
-              <img
-                src={STOREFRONT_EVENING}
-                alt="Spiked Coffee Storefront"
-                className="w-full h-[350px] lg:h-[450px] object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/70 to-transparent p-6">
-                <p className="font-body text-xs tracking-[0.2em] uppercase text-warm-white/70 font-light">
-                  The Flagship
-                </p>
-              </div>
-            </div>
-          </FadeIn>
         </div>
       </div>
     </section>
