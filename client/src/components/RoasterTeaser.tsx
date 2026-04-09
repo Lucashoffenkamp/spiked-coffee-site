@@ -2,7 +2,7 @@
  * RoasterTeaser — Spiked Coffee
  * Design: Editorial product showcase row with transparent cutout bags
  * on a clean cream background. Each bag floats with a subtle shadow,
- * roaster name below in tracked uppercase. Links to /roasters page.
+ * roaster logo + name below in tracked uppercase. Links to /roasters page.
  * Shop CTA links to each roaster's online store.
  * Typography: Cormorant Garamond display + Jost body
  */
@@ -15,12 +15,18 @@ const TALA_BAG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qa
 const CHROMATIC_BAG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/chromatic_nobg_13e96922.png";
 const RUBY_BAG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/ruby_creamery_clean_9b02d404.png";
 
+const TALA_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/tala_logo_7f6c1f39.png";
+const CHROMATIC_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/chromatic_logo_7679ace5.png";
+const RUBY_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/ruby_logo_4d0b335f.png";
+
 const roasters = [
   {
     name: "Tala",
     location: "Libertyville, IL",
     blend: "Amoret Espresso",
     image: TALA_BAG,
+    logo: TALA_LOGO,
+    logoBg: "bg-[#2d4a5a]",
     shopUrl: "https://talacoffeeroasters.com",
   },
   {
@@ -28,6 +34,8 @@ const roasters = [
     location: "San Jose, CA",
     blend: "Gamut Blend",
     image: CHROMATIC_BAG,
+    logo: CHROMATIC_LOGO,
+    logoBg: "bg-[#f0ebe4]",
     shopUrl: "https://www.chromaticcoffee.com",
   },
   {
@@ -35,6 +43,8 @@ const roasters = [
     location: "Nelsonville, WI",
     blend: "Creamery Seasonal",
     image: RUBY_BAG,
+    logo: RUBY_LOGO,
+    logoBg: "bg-[#f5f0ed]",
     shopUrl: "https://rubycoffeeroasters.com",
   },
 ];
@@ -89,6 +99,15 @@ export default function RoasterTeaser() {
           {roasters.map((roaster, i) => (
             <FadeIn key={roaster.name} delay={0.1 + i * 0.12}>
               <div className="group block text-center">
+                {/* Roaster Logo */}
+                <div className={`flex justify-center items-center py-4 mb-6 rounded-sm ${roaster.logoBg}`}>
+                  <img
+                    src={roaster.logo}
+                    alt={`${roaster.name} logo`}
+                    className="h-10 lg:h-12 w-auto object-contain"
+                  />
+                </div>
+
                 {/* Bag image — links to roasters page */}
                 <Link href="/roasters" className="block">
                   <div className="relative mb-8 flex items-center justify-center h-[320px] lg:h-[380px]">

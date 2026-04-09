@@ -24,6 +24,10 @@ const TALA_BAG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qa
 const CHROMATIC_BAG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/chromatic_nobg_13e96922.png";
 const RUBY_BAG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/ruby_creamery_clean_9b02d404.png";
 
+const TALA_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/tala_logo_7f6c1f39.png";
+const CHROMATIC_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/chromatic_logo_7679ace5.png";
+const RUBY_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/ruby_logo_4d0b335f.png";
+
 /* ── Roaster Data ── */
 const roasters = [
   {
@@ -32,6 +36,8 @@ const roasters = [
     location: "Libertyville, IL",
     founded: "2017",
     bagImage: TALA_BAG,
+    logo: TALA_LOGO,
+    logoBg: "bg-[#2d4a5a]",
     stationImage: TALA_STATION,
     website: "https://talacoffeeroasters.com",
     instagram: "@talacoffeeroasters",
@@ -50,6 +56,8 @@ const roasters = [
     location: "San Jose, CA",
     founded: "2012",
     bagImage: CHROMATIC_BAG,
+    logo: CHROMATIC_LOGO,
+    logoBg: "bg-[#f0ebe4]",
     stationImage: CHROMATIC_STATION,
     website: "https://www.chromaticcoffee.com",
     instagram: "@chromaticcoffee",
@@ -68,6 +76,8 @@ const roasters = [
     location: "Nelsonville, WI",
     founded: "2013",
     bagImage: RUBY_BAG,
+    logo: RUBY_LOGO,
+    logoBg: "bg-[#f5f0ed]",
     stationImage: RUBY_STATION,
     website: "https://rubycoffeeroasters.com",
     instagram: "@rubyroasters",
@@ -134,6 +144,15 @@ function RoasterSpread({ roaster, index }: { roaster: typeof roasters[0]; index:
           {/* Product bag + quick facts */}
           <FadeIn delay={0.1} className="w-full lg:w-5/12">
             <div className="bg-warm-white rounded-sm p-8 lg:p-12 shadow-sm">
+              {/* Roaster Logo */}
+              <div className={`flex justify-center items-center py-6 mb-6 rounded-sm ${roaster.logoBg}`}>
+                <img
+                  src={roaster.logo}
+                  alt={`${roaster.fullName} logo`}
+                  className="h-14 lg:h-16 w-auto object-contain"
+                />
+              </div>
+
               {/* Bag image */}
               <div className="flex justify-center mb-8">
                 <img
