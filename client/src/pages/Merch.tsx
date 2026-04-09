@@ -16,7 +16,7 @@ const STICKER_PACK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/C
 const DAD_HAT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/merch_hat_v2-Huc5AWGkotKe6BmVtea9Zq.webp";
 const KINTO_TUMBLER = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/merch_tumbler_v2-BDyDWryf92d44wWnJMhhJZ.webp";
 const TOTE_BAG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/merch_tote_v2-BDyDWryf92d44wWnJMhhJZ.webp";
-const KINTO_MUG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/kinto_mug_branded-AEoFyB8Qe4r3ZS9mbCC3nh.webp";
+const KINTO_MUG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/kinto_mug_v2-EpFowdyUQxLmUbiKJmKeua.webp";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
