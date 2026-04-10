@@ -116,20 +116,20 @@ export default function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.9, ease }}
           >
-            Life is short. The coffee is good.<br />
-            The company is better.
+            Great coffee. Good people.<br />
+            That's the whole idea.
           </motion.p>
 
           {/* Location markers */}
           <motion.div
-            className="mt-6 flex items-center gap-3 text-warm-white/35"
+            className="mt-6 flex items-center gap-3 text-warm-white/50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.1, ease }}
           >
-            <span className="font-body text-[10px] tracking-[0.25em] uppercase font-light">Libertyville</span>
-            <span className="text-[8px]">&middot;</span>
-            <span className="font-body text-[10px] tracking-[0.25em] uppercase font-light">Denver</span>
+            <span className="font-body text-xs sm:text-sm tracking-[0.25em] uppercase font-semibold">Libertyville</span>
+            <span className="text-xs font-semibold">&middot;</span>
+            <span className="font-body text-xs sm:text-sm tracking-[0.25em] uppercase font-semibold">Denver</span>
           </motion.div>
         </motion.div>
       </motion.div>
