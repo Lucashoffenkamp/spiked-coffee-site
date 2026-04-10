@@ -129,8 +129,6 @@ export default function HeroSection() {
           >
             <span className="font-body text-[10px] tracking-[0.25em] uppercase font-light">Libertyville</span>
             <span className="text-[8px]">&middot;</span>
-            <span className="font-body text-[10px] tracking-[0.25em] uppercase font-light">Kenosha</span>
-            <span className="text-[8px]">&middot;</span>
             <span className="font-body text-[10px] tracking-[0.25em] uppercase font-light">Denver</span>
           </motion.div>
         </motion.div>

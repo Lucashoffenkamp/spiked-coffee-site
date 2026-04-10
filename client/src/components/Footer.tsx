@@ -83,7 +83,6 @@ export default function Footer() {
             </h4>
             <div className="flex flex-col gap-2">
               <p className="font-body text-sm text-warm-white/50 font-light">Libertyville, IL</p>
-              <p className="font-body text-sm text-warm-white/50 font-light">Kenosha, WI</p>
               <p className="font-body text-sm text-warm-white/50 font-light">Denver, CO</p>
             </div>
           </div>

@@ -41,7 +41,6 @@ interface LocationPin {
 
 const locations: LocationPin[] = [
   { name: "Libertyville", region: "Illinois", lat: 42.2831, lng: -87.9531, status: "Active" },
-  { name: "Kenosha", region: "Wisconsin", lat: 42.5847, lng: -87.8212, status: "Coming Soon" },
   { name: "Denver", region: "Colorado", lat: 39.7392, lng: -104.9903, status: "Coming Soon" },
 ];
 
@@ -59,13 +58,6 @@ const upcomingEvents: PopupEvent[] = [
     location: "Cook Park, Libertyville, IL",
     date: "Every Saturday",
     time: "8:00 AM — 1:00 PM",
-    type: "Farmers Market",
-  },
-  {
-    title: "Kenosha HarborMarket",
-    location: "2nd Ave, Kenosha, WI",
-    date: "Every Saturday",
-    time: "9:00 AM — 2:00 PM",
     type: "Farmers Market",
   },
   {

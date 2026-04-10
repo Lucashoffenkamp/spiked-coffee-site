@@ -211,7 +211,7 @@ export default function Navigation() {
                   <p className="font-body text-xs text-espresso-light/40 font-light tracking-wide leading-relaxed">
                     Craft coffee &amp; fine beverages.
                     <br />
-                    Libertyville &middot; Kenosha &middot; Denver
+                    Libertyville &middot; Denver
                   </p>
                   <div className="flex items-center gap-4 mt-4">
                     <a
