@@ -4,11 +4,12 @@
  * roadmap: pop-up → mobile truck → brick & mortar. Each phase card has its
  * corresponding image. A vertical progress line fills as you scroll through.
  */
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import { MapPin, Truck, Building2 } from "lucide-react";
 
-const POPUP_MARKET = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/popup_experience_branded-Tcxdhn3tcvnD9AhLCpE5AL.webp";
+const POPUP_MARKET = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/popup_farmers_market-f966f4tUxYbviuE2nxDkJf.webp";
+const POPUP_CARSHOW = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/popup_carshow-XP4gt763JCcYxXJeXHYiNp.webp";
 const TRUCK_MOCKUP = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/truck_mockup_v2-3WsvisTyfm49Fov5WKUt8Z.webp";
 const STOREFRONT_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/storefront_evening_v2-VATNhtDuFtd3uQhnwcSVMT.webp";
 
@@ -45,6 +46,52 @@ function PhaseDot({ index }: { index: number }) {
   );
 }
 
+function PhaseImageCarousel({ images }: { images: { src: string; alt: string; caption: string }[] }) {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % images.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  return (
+    <div className="relative group overflow-hidden">
+      <div className="relative h-[280px] lg:h-[380px]">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={current}
+            src={images[current].src}
+            alt={images[current].alt}
+            className="absolute inset-0 w-full h-full object-cover"
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.98 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          />
+        </AnimatePresence>
+      </div>
+      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/70 to-transparent p-6 flex items-end justify-between">
+        <p className="font-body text-xs tracking-[0.2em] uppercase text-warm-white/70 font-light">
+          {images[current].caption}
+        </p>
+        <div className="flex gap-2">
+          {images.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrent(idx)}
+              className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                idx === current ? "bg-warm-white w-4" : "bg-warm-white/40"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const phases = [
   {
     icon: MapPin,
@@ -53,6 +100,10 @@ const phases = [
     description: "Farmers markets, local events, and community gatherings. Testing the concept, building the following, perfecting the craft.",
     status: "Now",
     image: POPUP_MARKET,
+    images: [
+      { src: POPUP_MARKET, alt: "Spiked Coffee pop-up at a farmers market", caption: "The Farmers Market" },
+      { src: POPUP_CARSHOW, alt: "Spiked Coffee pop-up at the Libertyville classic car show", caption: "The Classic Car Show" },
+    ],
     imageAlt: "Spiked Coffee pop-up at a farmers market",
     imageCaption: "The Pop-Up Experience",
   },
@@ -160,18 +211,22 @@ export default function VisionSection() {
 
                   {/* Image */}
                   <FadeIn className={i % 2 === 0 ? "lg:order-2 lg:pl-12" : "lg:order-1 lg:pr-12"} delay={0.15}>
-                    <div className="relative group overflow-hidden">
-                      <img
-                        src={phase.image}
-                        alt={phase.imageAlt}
-                        className="w-full h-[280px] lg:h-[380px] object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/70 to-transparent p-6">
-                        <p className="font-body text-xs tracking-[0.2em] uppercase text-warm-white/70 font-light">
-                          {phase.imageCaption}
-                        </p>
+                    {phase.images ? (
+                      <PhaseImageCarousel images={phase.images} />
+                    ) : (
+                      <div className="relative group overflow-hidden">
+                        <img
+                          src={phase.image}
+                          alt={phase.imageAlt}
+                          className="w-full h-[280px] lg:h-[380px] object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/70 to-transparent p-6">
+                          <p className="font-body text-xs tracking-[0.2em] uppercase text-warm-white/70 font-light">
+                            {phase.imageCaption}
+                          </p>
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </FadeIn>
                 </div>
 
