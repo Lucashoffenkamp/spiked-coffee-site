@@ -8,8 +8,8 @@ import { motion, useInView, useScroll, useTransform, AnimatePresence } from "fra
 import { useRef, useState, useEffect } from "react";
 import { MapPin, Truck, Building2 } from "lucide-react";
 
-const POPUP_MARKET = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/popup_farmers_market-f966f4tUxYbviuE2nxDkJf.webp";
-const POPUP_CARSHOW = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/popup_carshow-XP4gt763JCcYxXJeXHYiNp.webp";
+const POPUP_MARKET = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/popup_farmers_market_v2-CgoheYfRyrJhoZ58h57R4Z.webp";
+const POPUP_CARSHOW = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/popup_carshow_v2-Wu8F2uT2LKcxRwYHgbyYc5.webp";
 const TRUCK_MOCKUP = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/truck_mockup_v2-3WsvisTyfm49Fov5WKUt8Z.webp";
 const STOREFRONT_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/storefront_evening_v2-VATNhtDuFtd3uQhnwcSVMT.webp";
 
