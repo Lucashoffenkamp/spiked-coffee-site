@@ -14,6 +14,13 @@ const DALMATIAN_ICON = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354
 const MENU_COFFEE_HERO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/menu_hero_coffee-f6vyGFntTM2wPo7YfSeuEc.webp";
 const EVENING_GATHERING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/about_evening_gathering-bTSzAskH4RcEdKjazJJ9yJ.webp";
 
+// Beacon Doughnuts assets
+const BEACON_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/beacon_logo_81d3d982.png";
+const BEACON_GLAZED = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/beacon_glazed_mural_e3629680.jpg";
+const BEACON_CRUMB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/beacon_crumb_donut_4d38ae32.jpg";
+const BEACON_POWDERED = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/beacon_powdered_stack_829b8446.jpg";
+const BEACON_CHOCOLATE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/beacon_chocolate_donut_0bdf709f.jpg";
+
 const ease = [0.22, 1, 0.36, 1] as const;
 
 function FadeIn({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
@@ -77,11 +84,13 @@ const coffeeMenu: { category: string; items: MenuItem[] }[] = [
     ],
   },
   {
-    category: "Pastries & Bites",
+    category: "Pastries & Bites — feat. Beacon Doughnuts",
     items: [
-      { name: "Local Craft Donut", description: "Rotating selection from D&D Donuts, Libertyville. Delivered fresh each morning before sunrise", price: "4", tag: "Local" },
+      { name: "Beacon Glazed", description: "Classic raised glaze from Beacon Doughnuts, Chicago. Pillowy, golden, perfectly simple. The one that started it all", price: "4.50", tag: "Beacon" },
+      { name: "Beacon Crumb Cake", description: "Brown butter crumb with vanilla bean glaze. Dense, cakey, absurdly good with a cortado", price: "5", tag: "Popular" },
+      { name: "Beacon Chocolate Old Fashioned", description: "Rich dark chocolate cake donut, crackled glaze. Pairs with our cold brew like it was meant to", price: "5" },
+      { name: "Beacon Powdered Bomboloni", description: "Italian-style filled doughnuts dusted in powdered sugar. Rotating cream fillings — ask your barista", price: "5.50", tag: "Seasonal" },
       { name: "Almond Croissant", description: "European-style butter croissant with house almond frangipane, toasted almonds, powdered sugar", price: "4.50" },
-      { name: "Banana Bread", description: "House recipe with brown butter, Saigon cinnamon, and walnuts. Toasted with Kilgus butter", price: "3.50" },
       { name: "Granola Bowl", description: "House-made granola with local honey, Kilgus yogurt, and seasonal fruit from Prairie Crossing Farm", price: "7" },
     ],
   },
@@ -283,6 +292,44 @@ export default function Menu() {
               />
             ))}
           </div>
+
+          {/* Beacon Doughnuts Spotlight — daytime only */}
+          {activeTab === "day" && (
+            <FadeIn delay={0.2}>
+              <div className="mt-16 mb-8">
+                <div className="relative bg-cream rounded-xl overflow-hidden border border-espresso/5">
+                  {/* Header with logo */}
+                  <div className="flex items-center gap-4 px-6 pt-6 pb-4">
+                    <div className="w-12 h-12 rounded-lg bg-[#7c3aed] flex items-center justify-center p-1.5 shadow-md">
+                      <img src={BEACON_LOGO} alt="Beacon Doughnuts" className="w-full h-full object-contain" />
+                    </div>
+                    <div>
+                      <h3 className="font-display text-xl text-espresso font-light">Beacon Doughnuts</h3>
+                      <p className="font-body text-[10px] tracking-[0.2em] uppercase text-espresso-light/50 font-light">Chicago, IL &middot; Our Pastry Partner</p>
+                    </div>
+                  </div>
+                  <p className="px-6 pb-4 font-body text-sm text-espresso-light/60 font-light leading-relaxed max-w-2xl">
+                    Hand-crafted small-batch doughnuts from one of Chicago's best. Every donut delivered fresh for each pop-up — glazed, crumbed, filled, and frosted with real ingredients and zero shortcuts.
+                  </p>
+                  {/* Photo grid */}
+                  <div className="grid grid-cols-4 gap-1 px-1 pb-1">
+                    <div className="aspect-square overflow-hidden rounded-bl-lg">
+                      <img src={BEACON_GLAZED} alt="Beacon glazed donut" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                    </div>
+                    <div className="aspect-square overflow-hidden">
+                      <img src={BEACON_CRUMB} alt="Beacon crumb cake donut" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                    </div>
+                    <div className="aspect-square overflow-hidden">
+                      <img src={BEACON_POWDERED} alt="Beacon powdered bomboloni" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                    </div>
+                    <div className="aspect-square overflow-hidden rounded-br-lg">
+                      <img src={BEACON_CHOCOLATE} alt="Beacon chocolate old fashioned" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </FadeIn>
+          )}
 
           {/* Disclaimer */}
           <FadeIn delay={0.3}>

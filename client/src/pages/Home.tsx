@@ -6,6 +6,7 @@ import WhatsBrewingCard from "@/components/WhatsBrewingCard";
 import QuickMenuPreview from "@/components/QuickMenuPreview";
 import ConceptSection from "@/components/ConceptSection";
 import RoasterTeaser from "@/components/RoasterTeaser";
+import BeaconTeaser from "@/components/BeaconTeaser";
 import VisionSection from "@/components/VisionSection";
 import GallerySection from "@/components/GallerySection";
 import SignupSection from "@/components/SignupSection";
@@ -26,6 +27,7 @@ export default function Home() {
       <QuickMenuPreview />
       <ConceptSection />
       <RoasterTeaser />
+      <BeaconTeaser />
       <VisionSection />
       <GallerySection />
       <SignupSection />
