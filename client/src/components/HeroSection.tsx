@@ -116,8 +116,7 @@ export default function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.9, ease }}
           >
-            Great coffee. Good people.<br />
-            That's the whole idea.
+            Coffee by day. Craft by night.
           </motion.p>
 
           {/* Location markers */}
