@@ -1,5 +1,5 @@
 import Navigation from "@/components/Navigation";
-import EventBanner from "@/components/EventBanner";
+// import EventBanner from "@/components/EventBanner";
 import HeroSection from "@/components/HeroSection";
 import StorySection from "@/components/StorySection";
 import WhatsBrewingCard from "@/components/WhatsBrewingCard";
@@ -19,7 +19,7 @@ export default function Home() {
     <div className="min-h-screen overflow-x-hidden">
       <GrainOverlay />
       <ScrollProgress />
-      <EventBanner />
+      {/* <EventBanner /> */}
       <Navigation />
       <HeroSection />
       <StorySection />
