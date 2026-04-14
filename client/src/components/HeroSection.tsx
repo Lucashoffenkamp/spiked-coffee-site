@@ -154,7 +154,7 @@ export default function HeroSection() {
               className="h-24 w-24 sm:h-32 sm:w-32 lg:h-40 lg:w-40 object-contain brightness-0 invert"
               initial={{ opacity: 0, scale: 0.7 }}
               animate={{ opacity: 0.9, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.5, ease }}
+              transition={{ duration: 0.8, delay: 1.5, ease }}
             />
 
             {/* Divider line — grows in */}
@@ -162,7 +162,7 @@ export default function HeroSection() {
               className="w-px bg-warm-white/20 overflow-hidden"
               initial={{ scaleY: 0, opacity: 0 }}
               animate={{ scaleY: 1, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.6, ease }}
+              transition={{ duration: 0.6, delay: 1.6, ease }}
               style={{ transformOrigin: "top center" }}
             >
               <div className="h-16 sm:h-24 lg:h-32" />
@@ -170,9 +170,9 @@ export default function HeroSection() {
 
             {/* Title — letter-by-letter split animation (THE STAR) */}
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light tracking-[0.15em] text-warm-white leading-none">
-              <SplitText text="SPIKED" startDelay={0.8} />
+              <SplitText text="SPIKED" startDelay={1.8} />
               <br />
-              <SplitText text="COFFEE" startDelay={1.2} />
+              <SplitText text="COFFEE" startDelay={2.2} />
             </h1>
           </div>
 
@@ -181,13 +181,13 @@ export default function HeroSection() {
             className="flex items-center gap-6 mt-7 lg:mt-9"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 2.0, ease }}
+            transition={{ duration: 0.8, delay: 3.0, ease }}
           >
             <motion.div
               className="h-px bg-warm-white/20"
               initial={{ width: 0 }}
               animate={{ width: 64 }}
-              transition={{ duration: 0.6, delay: 2.1, ease }}
+              transition={{ duration: 0.6, delay: 3.1, ease }}
             />
             <p className="font-body text-xs lg:text-sm tracking-[0.3em] uppercase text-warm-white/60 font-light">
               Craft Coffee & Fine Beverages
@@ -196,7 +196,7 @@ export default function HeroSection() {
               className="h-px bg-warm-white/20"
               initial={{ width: 0 }}
               animate={{ width: 64 }}
-              transition={{ duration: 0.6, delay: 2.1, ease }}
+              transition={{ duration: 0.6, delay: 3.1, ease }}
             />
           </motion.div>
 
@@ -205,7 +205,7 @@ export default function HeroSection() {
             className="mt-8 lg:mt-10 font-accent text-base sm:text-lg lg:text-xl text-warm-white/80 tracking-wide text-center max-w-lg leading-relaxed"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 2.4, ease }}
+            transition={{ duration: 0.8, delay: 3.4, ease }}
           >
             Coffee by day. Craft by night.
           </motion.p>
@@ -215,7 +215,7 @@ export default function HeroSection() {
             className="mt-6 flex items-center gap-3 text-warm-white/50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 2.7, ease }}
+            transition={{ duration: 0.8, delay: 3.7, ease }}
           >
             <span className="font-body text-xs sm:text-sm tracking-[0.25em] uppercase font-semibold">Libertyville</span>
             <span className="text-xs font-semibold">&middot;</span>
@@ -230,7 +230,7 @@ export default function HeroSection() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-warm-white/30 hover:text-warm-white/60 transition-colors duration-500"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 3.0 }}
+        transition={{ duration: 0.8, delay: 4.0 }}
       >
         <span className="font-body text-xs tracking-[0.3em] uppercase font-light">Scroll</span>
         <motion.div
