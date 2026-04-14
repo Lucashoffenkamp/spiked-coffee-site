@@ -1,0 +1,26 @@
+{
+  "name": "Spiked Coffee",
+  "short_name": "Spiked Coffee",
+  "description": "Coffee by day. Craft by night.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#3C2415",
+  "theme_color": "#3C2415",
+  "icons": [
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
