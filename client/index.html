@@ -55,9 +55,117 @@
   </head>
 
   <body>
-    <script>/* Mark JS-active for animation gating — screenshot captures happen before this fires */
-    setTimeout(function(){document.documentElement.classList.add('js-animate')},1500);</script>
-    <div id="root"></div>
+    <script>
+    /* Hero entrance animation only plays on first visit per browser session.
+       On subsequent visits (including when user hits Share), content stays fully visible
+       so Chrome/Safari share sheet screenshots capture the branded hero. */
+    (function(){
+      if(!sessionStorage.getItem('sc_v')){
+        sessionStorage.setItem('sc_v','1');
+        setTimeout(function(){document.documentElement.classList.add('js-animate')},1500);
+      }
+    })();
+    </script>
+
+    <!--
+      Static fallback content inside #root.
+      React.createRoot(root).render() will replace all children automatically.
+      This content is what Chrome/Safari share sheet screenshots will capture
+      BEFORE JavaScript loads and executes.
+    -->
+    <div id="root">
+      <div style="
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #3C2415;
+        background-image: url('https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/chemex_hero_frame-ZbjjNXQKSxZewDGqe9kEWS.webp');
+        background-size: cover;
+        background-position: center;
+        font-family: 'Cormorant Garamond', Georgia, serif;
+      ">
+        <!-- Dark overlay -->
+        <div style="position:absolute;inset:0;background:rgba(60,36,21,0.45);"></div>
+
+        <!-- Card -->
+        <div style="
+          position: relative;
+          z-index: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 3.5rem 4rem;
+          background: rgba(60,36,21,0.12);
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+          border: 1px solid rgba(250,245,235,0.08);
+          border-radius: 1rem;
+        ">
+          <!-- Logo lockup -->
+          <div style="display:flex;align-items:center;gap:1.25rem;">
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/dalmatian_fix_5_23e75f68.png"
+              alt="Spiked Coffee"
+              width="96"
+              height="96"
+              style="height:7rem;width:7rem;object-fit:contain;filter:brightness(0) invert(1);opacity:0.9;"
+            />
+            <div style="width:1px;height:5rem;background:rgba(250,245,235,0.2);"></div>
+            <div style="
+              font-size: 2.75rem;
+              font-weight: 300;
+              letter-spacing: 0.15em;
+              color: #FAF5EB;
+              line-height: 1.1;
+            ">SPIKED<br>COFFEE</div>
+          </div>
+
+          <!-- Descriptor -->
+          <div style="display:flex;align-items:center;gap:1.5rem;margin-top:1.5rem;">
+            <div style="width:64px;height:1px;background:rgba(250,245,235,0.2);"></div>
+            <span style="
+              font-family: 'Jost', sans-serif;
+              font-size: 0.65rem;
+              letter-spacing: 0.3em;
+              text-transform: uppercase;
+              color: rgba(250,245,235,0.6);
+              font-weight: 300;
+            ">Craft Coffee &amp; Fine Beverages</span>
+            <div style="width:64px;height:1px;background:rgba(250,245,235,0.2);"></div>
+          </div>
+
+          <!-- Tagline -->
+          <p style="
+            margin-top: 1.75rem;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: rgba(250,245,235,0.8);
+            letter-spacing: 0.05em;
+          ">Coffee by day. Craft by night.</p>
+
+          <!-- Locations -->
+          <div style="
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            font-family: 'Jost', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(250,245,235,0.5);
+            font-weight: 600;
+          ">
+            <span>Libertyville</span>
+            <span style="font-size:0.5rem;font-weight:700;">&middot;</span>
+            <span>Denver</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script type="module" src="/src/main.tsx"></script>
     <script
       defer
