@@ -2,6 +2,7 @@
  * HeroSection — Spiked Coffee
  * Design: Cinematic Chemex pour-over video background with parallax depth.
  * Typographic overlay with Dalmatian icon, film grain texture.
+ * Letter-by-letter split animation on "SPIKED COFFEE" title.
  * Cormorant Garamond display, Jost Light body.
  */
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -13,6 +14,68 @@ const CHEMEX_VIDEO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/C
 const CHEMEX_POSTER = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/chemex_hero_frame-ZbjjNXQKSxZewDGqe9kEWS.webp";
 
 const ease = [0.22, 1, 0.36, 1] as const;
+
+/* Letter animation variants */
+const letterContainer = {
+  hidden: {},
+  visible: (startDelay: number) => ({
+    transition: {
+      staggerChildren: 0.045,
+      delayChildren: startDelay,
+    },
+  }),
+};
+
+const letterChild = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+    rotateX: -40,
+    filter: "blur(6px)",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.7,
+      ease,
+    },
+  },
+};
+
+function SplitText({
+  text,
+  startDelay = 0,
+  className = "",
+}: {
+  text: string;
+  startDelay?: number;
+  className?: string;
+}) {
+  return (
+    <motion.span
+      className={`inline-block ${className}`}
+      variants={letterContainer}
+      initial="hidden"
+      animate="visible"
+      custom={startDelay}
+      style={{ perspective: 600 }}
+    >
+      {text.split("").map((char, i) => (
+        <motion.span
+          key={`${char}-${i}`}
+          variants={letterChild}
+          className="inline-block"
+          style={{ transformOrigin: "bottom center" }}
+        >
+          {char === " " ? "\u00A0" : char}
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+}
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -78,43 +141,66 @@ export default function HeroSection() {
           <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-warm-white/[0.05] pointer-events-none" />
 
           {/* Logo lockup */}
-          <motion.div
-            className="flex items-center gap-5 lg:gap-7"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.3, ease }}
-          >
-            <img
+          <div className="flex items-center gap-5 lg:gap-7">
+            {/* Dalmatian icon — fades in */}
+            <motion.img
               src={DALMATIAN_ICON}
               alt=""
               className="h-24 w-24 sm:h-32 sm:w-32 lg:h-40 lg:w-40 object-contain brightness-0 invert opacity-90"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 0.9, scale: 1 }}
+              transition={{ duration: 1, delay: 0.3, ease }}
             />
-            <div className="w-px h-16 sm:h-24 lg:h-32 bg-warm-white/20" />
+
+            {/* Divider line — grows in */}
+            <motion.div
+              className="w-px bg-warm-white/20"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "100%", opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.5, ease }}
+              style={{ minHeight: 0 }}
+            >
+              <div className="h-16 sm:h-24 lg:h-32" />
+            </motion.div>
+
+            {/* Title — letter-by-letter split animation */}
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light tracking-[0.15em] text-warm-white leading-none">
-              SPIKED<br />COFFEE
+              <SplitText text="SPIKED" startDelay={0.5} />
+              <br />
+              <SplitText text="COFFEE" startDelay={0.8} />
             </h1>
-          </motion.div>
+          </div>
 
           {/* Descriptor line */}
           <motion.div
             className="flex items-center gap-6 mt-7 lg:mt-9"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.7, ease }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.4, ease }}
           >
-            <div className="w-10 lg:w-16 h-px bg-warm-white/20" />
+            <motion.div
+              className="h-px bg-warm-white/20"
+              initial={{ width: 0 }}
+              animate={{ width: 64 }}
+              transition={{ duration: 0.8, delay: 1.5, ease }}
+            />
             <p className="font-body text-xs lg:text-sm tracking-[0.3em] uppercase text-warm-white/60 font-light">
               Craft Coffee & Fine Beverages
             </p>
-            <div className="w-10 lg:w-16 h-px bg-warm-white/20" />
+            <motion.div
+              className="h-px bg-warm-white/20"
+              initial={{ width: 0 }}
+              animate={{ width: 64 }}
+              transition={{ duration: 0.8, delay: 1.5, ease }}
+            />
           </motion.div>
 
           {/* Tagline */}
           <motion.p
             className="mt-8 lg:mt-10 font-accent text-base sm:text-lg lg:text-xl text-warm-white/80 tracking-wide text-center max-w-lg leading-relaxed"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.9, ease }}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.7, ease }}
           >
             Coffee by day. Craft by night.
           </motion.p>
@@ -124,7 +210,7 @@ export default function HeroSection() {
             className="mt-6 flex items-center gap-3 text-warm-white/50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.1, ease }}
+            transition={{ duration: 1, delay: 1.9, ease }}
           >
             <span className="font-body text-xs sm:text-sm tracking-[0.25em] uppercase font-semibold">Libertyville</span>
             <span className="text-xs font-semibold">&middot;</span>
@@ -139,7 +225,7 @@ export default function HeroSection() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-warm-white/30 hover:text-warm-white/60 transition-colors duration-500"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.5 }}
+        transition={{ duration: 1, delay: 2.2 }}
       >
         <span className="font-body text-xs tracking-[0.3em] uppercase font-light">Scroll</span>
         <motion.div
