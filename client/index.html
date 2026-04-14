@@ -55,6 +55,8 @@
   </head>
 
   <body>
+    <script>/* Mark JS-active for animation gating — screenshot captures happen before this fires */
+    setTimeout(function(){document.documentElement.classList.add('js-animate')},1500);</script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <script
