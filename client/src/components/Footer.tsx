@@ -94,7 +94,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Spiked Coffee. All rights reserved.
           </p>
           <p className="font-accent text-sm text-warm-white/20">
-            Life is short. The coffee is good.
+            Named after a good dog. Built for good people.
           </p>
         </div>
       </div>

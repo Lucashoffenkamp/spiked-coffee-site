@@ -130,7 +130,7 @@ export default function NotFound() {
             transition={{ delay: 1.2, duration: 0.8 }}
             className="mt-12 font-['Cormorant_Garamond'] italic text-[#C4956A] text-base"
           >
-            "Life is short. The coffee is good. This page, however, does not exist."
+            "Named after a good dog. Built for good people. This page, however, does not exist."
           </motion.p>
         </div>
       </main>
