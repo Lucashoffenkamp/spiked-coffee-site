@@ -1,7 +1,8 @@
 /*
  * ConceptSection — Spiked Coffee
- * Design: The day-to-night transition. Two side-by-side panels showing
+ * Design: The day-to-night transition. Two stacked panels showing
  * the dual concept: craft coffee by day, craft beer & wine by evening.
+ * Features: suave wave SVG divider between panels, frosted glass text tiles.
  * Enhanced with: scroll reveals, image curtain wipes, parallax, stagger.
  */
 import { Sun, Moon, Coffee, Wine } from "lucide-react";
@@ -42,64 +43,102 @@ export default function ConceptSection() {
             </p>
           </ScrollReveal>
 
-          {/* Day/Night Split — with curtain wipe images */}
-          <StaggerContainer className="grid grid-cols-1 lg:grid-cols-2 gap-0" staggerDelay={0.2}>
+          {/* Day/Night Split — stacked with wave divider */}
+          <div className="relative">
             {/* Day Panel */}
-            <StaggerItem>
-              <div className="relative group overflow-hidden">
+            <ScrollReveal>
+              <div className="relative group overflow-hidden rounded-t-lg">
                 <ImageReveal
                   src={INTERIOR_DAY}
                   alt="Spiked Coffee — Daytime"
                   curtainColor="bg-cream"
-                  aspectClass="w-full h-[400px] lg:h-[550px]"
+                  aspectClass="w-full h-[420px] lg:h-[560px]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/50 via-transparent to-transparent pointer-events-none z-10" />
-                <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-10 z-10">
-                  <div className="flex items-center gap-3 mb-3">
-                    <Sun size={18} className="text-warm-white/80" />
-                    <span className="font-body text-xs tracking-[0.25em] uppercase text-warm-white/70 font-light">
-                      Morning — Afternoon
-                    </span>
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-charcoal/10 to-transparent pointer-events-none z-10" />
+                {/* Frosted glass text tile */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-10 z-10">
+                  <div className="bg-espresso/20 backdrop-blur-md border border-warm-white/15 rounded-xl p-6 lg:p-8 max-w-lg shadow-[0_4px_30px_rgba(0,0,0,0.15)]">
+                    <div className="flex items-center gap-3 mb-3">
+                      <Sun size={18} className="text-amber-300/90" />
+                      <span className="font-body text-xs tracking-[0.25em] uppercase text-warm-white/80 font-light">
+                        Morning — Afternoon
+                      </span>
+                    </div>
+                    <h3 className="font-display text-2xl lg:text-3xl font-light text-warm-white mb-3 tracking-wide">
+                      Craft Coffee
+                    </h3>
+                    <p className="font-body text-sm lg:text-base text-warm-white/85 leading-relaxed font-light">
+                      Rotating single-origin beans from the world's finest micro-roasters.
+                      Pour-overs, espresso, cold brew — every cup sourced with intention.
+                    </p>
                   </div>
-                  <h3 className="font-display text-2xl lg:text-3xl font-light text-warm-white mb-2 tracking-wide">
-                    Craft Coffee
-                  </h3>
-                  <p className="font-body text-sm text-warm-white/80 max-w-sm leading-relaxed font-light">
-                    Rotating single-origin beans from the world's finest micro-roasters.
-                    Pour-overs, espresso, cold brew — every cup sourced with intention.
-                  </p>
                 </div>
               </div>
-            </StaggerItem>
+            </ScrollReveal>
+
+            {/* Suave wave divider between the two panels */}
+            <div className="relative z-20 -mt-1">
+              <svg
+                viewBox="0 0 1440 120"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-full h-[60px] lg:h-[80px] block"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M0,0 C240,100 480,100 720,50 C960,0 1200,0 1440,80 L1440,120 L0,120 Z"
+                  className="fill-cream"
+                />
+              </svg>
+              {/* Thin accent line tracing the wave */}
+              <svg
+                viewBox="0 0 1440 120"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-full h-[60px] lg:h-[80px] block absolute top-0 left-0"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M0,0 C240,100 480,100 720,50 C960,0 1200,0 1440,80"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className="text-terracotta/30"
+                  fill="none"
+                />
+              </svg>
+            </div>
 
             {/* Night Panel */}
-            <StaggerItem>
-              <div className="relative group overflow-hidden">
+            <ScrollReveal>
+              <div className="relative group overflow-hidden rounded-b-lg -mt-1">
                 <ImageReveal
                   src={INTERIOR_EVENING}
                   alt="Spiked Coffee — Evening"
                   curtainColor="bg-charcoal"
-                  aspectClass="w-full h-[400px] lg:h-[550px]"
+                  aspectClass="w-full h-[420px] lg:h-[560px]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent pointer-events-none z-10" />
-                <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-10 z-10">
-                  <div className="flex items-center gap-3 mb-3">
-                    <Moon size={18} className="text-warm-white/80" />
-                    <span className="font-body text-xs tracking-[0.25em] uppercase text-warm-white/70 font-light">
-                      Evening
-                    </span>
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/65 via-charcoal/15 to-transparent pointer-events-none z-10" />
+                {/* Frosted glass text tile */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-10 z-10">
+                  <div className="bg-charcoal/30 backdrop-blur-md border border-warm-white/10 rounded-xl p-6 lg:p-8 max-w-lg shadow-[0_4px_30px_rgba(0,0,0,0.2)]">
+                    <div className="flex items-center gap-3 mb-3">
+                      <Moon size={18} className="text-amber-200/80" />
+                      <span className="font-body text-xs tracking-[0.25em] uppercase text-warm-white/80 font-light">
+                        Evening
+                      </span>
+                    </div>
+                    <h3 className="font-display text-2xl lg:text-3xl font-light text-warm-white mb-3 tracking-wide">
+                      Fine Beverages
+                    </h3>
+                    <p className="font-body text-sm lg:text-base text-warm-white/85 leading-relaxed font-light">
+                      Local craft beers on tap and curated wines by the glass. Small-batch,
+                      independent producers only. The same philosophy, after dark.
+                    </p>
                   </div>
-                  <h3 className="font-display text-2xl lg:text-3xl font-light text-warm-white mb-2 tracking-wide">
-                    Fine Beverages
-                  </h3>
-                  <p className="font-body text-sm text-warm-white/80 max-w-sm leading-relaxed font-light">
-                    Local craft beers on tap and curated wines by the glass. Small-batch,
-                    independent producers only. The same philosophy, after dark.
-                  </p>
                 </div>
               </div>
-            </StaggerItem>
-          </StaggerContainer>
+            </ScrollReveal>
+          </div>
         </div>
       </div>
 
