@@ -5,10 +5,11 @@
  * tasting notes, origin details, and brand-matched color panels.
  * Lodge editorial aesthetic.
  */
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect, useCallback } from "react";
 import { ArrowRight, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
+import { ScrollReveal } from "./ScrollAnimations";
 
 const TALA_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/tala_logo_7f6c1f39.png";
 const CHROMATIC_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/chromatic_logo_7679ace5.png";
@@ -86,8 +87,6 @@ const ease = [0.22, 1, 0.36, 1] as const;
 const ROTATION_INTERVAL = 14000; // 14 seconds per roaster
 
 export default function WhatsBrewingCard() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1); // 1 = forward, -1 = backward
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -148,12 +147,7 @@ export default function WhatsBrewingCard() {
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-terracotta/[0.03] to-transparent" />
 
       <div className="max-w-6xl mx-auto px-6 lg:px-10">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease }}
-        >
+        <ScrollReveal direction="left">
           {/* Section Label */}
           <div className="flex items-center gap-4 mb-10">
             <div className="w-12 h-px bg-terracotta" />
@@ -162,14 +156,9 @@ export default function WhatsBrewingCard() {
               Now Pouring
             </span>
           </div>
-        </motion.div>
+        </ScrollReveal>
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.9, delay: 0.15, ease }}
-          className="relative"
-        >
+        <ScrollReveal delay={0.1} className="relative">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 overflow-hidden">
             {/* Left — Logo Feature Panel */}
             <div className="lg:col-span-5 relative overflow-hidden">
@@ -364,7 +353,7 @@ export default function WhatsBrewingCard() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </ScrollReveal>
       </div>
     </section>
   );

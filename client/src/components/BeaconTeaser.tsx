@@ -2,9 +2,11 @@
  * BeaconTeaser — Spiked Coffee
  * Homepage spotlight for Beacon Doughnuts, Chicago IL — our pastry partner.
  * Uses real photos provided by the brand. Purple accent from their logo.
+ * Enhanced with: scroll reveals (left/right), parallax.
  */
-import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { ScrollReveal } from "./ScrollAnimations";
 
 const BEACON_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/beacon_logo_81d3d982.png";
 const BEACON_GLAZED = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/beacon_glazed_mural_e3629680.jpg";
@@ -18,8 +20,6 @@ const captions = ["Classic Glazed", "Crumb Cake", "Powdered Bomboloni", "Chocola
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function BeaconTeaser() {
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-60px" });
   const [activePhoto, setActivePhoto] = useState(0);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function BeaconTeaser() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-20 lg:py-28 bg-cream overflow-hidden">
+    <section className="relative py-20 lg:py-28 bg-cream overflow-hidden">
       {/* Subtle background texture */}
       <div className="absolute inset-0 opacity-[0.015] pointer-events-none"
         style={{
@@ -40,26 +40,18 @@ export default function BeaconTeaser() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-10">
         {/* Section label */}
-        <motion.div
-          className="flex items-center gap-4 mb-12"
-          initial={{ opacity: 0, x: -20 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.8, ease }}
-        >
-          <div className="w-12 h-px bg-[#7c3aed]/40" />
-          <span className="font-body text-[10px] tracking-[0.3em] uppercase text-[#7c3aed]/60 font-light">
-            Our Pastry Partner
-          </span>
-        </motion.div>
+        <ScrollReveal direction="left">
+          <div className="flex items-center gap-4 mb-12">
+            <div className="w-12 h-px bg-[#7c3aed]/40" />
+            <span className="font-body text-[10px] tracking-[0.3em] uppercase text-[#7c3aed]/60 font-light">
+              Our Pastry Partner
+            </span>
+          </div>
+        </ScrollReveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left — Photo showcase */}
-          <motion.div
-            className="relative"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.9, delay: 0.1, ease }}
-          >
+          <ScrollReveal direction="left" delay={0.1}>
             {/* Main rotating photo */}
             <div className="relative aspect-square rounded-xl overflow-hidden shadow-xl">
               {photos.map((photo, i) => (
@@ -99,14 +91,10 @@ export default function BeaconTeaser() {
                 />
               ))}
             </div>
-          </motion.div>
+          </ScrollReveal>
 
           {/* Right — Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.9, delay: 0.25, ease }}
-          >
+          <ScrollReveal direction="right" delay={0.15}>
             {/* Logo + name */}
             <div className="flex items-center gap-4 mb-6">
               <div className="w-14 h-14 rounded-xl bg-[#7c3aed] flex items-center justify-center p-2 shadow-lg border-2 border-[#7c3aed]/20">
@@ -152,7 +140,7 @@ export default function BeaconTeaser() {
               <span>See the full menu</span>
               <span className="group-hover:translate-x-1 transition-transform duration-300">&rarr;</span>
             </a>
-          </motion.div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

@@ -8,6 +8,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
+import { ScrollReveal } from "./ScrollAnimations";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -144,13 +145,7 @@ export default function QuickMenuPreview() {
     <section className="py-20 lg:py-28 bg-warm-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         {/* Header */}
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease }}
-          className="flex items-end justify-between mb-12"
-        >
+        <ScrollReveal direction="left" className="flex items-end justify-between mb-12">
           <div>
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-px bg-terracotta" />
@@ -170,7 +165,7 @@ export default function QuickMenuPreview() {
             Full Menu
             <ArrowRight size={14} strokeWidth={1.5} className="group-hover:translate-x-1 transition-transform duration-300" />
           </Link>
-        </motion.div>
+        </ScrollReveal>
 
         {/* Horizontal scroll container */}
         <div className="flex gap-6 overflow-x-auto pb-4 -mx-6 px-6 scrollbar-hide" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
@@ -180,12 +175,7 @@ export default function QuickMenuPreview() {
         </div>
 
         {/* Mobile CTA */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.6, ease }}
-          className="sm:hidden mt-8 text-center"
-        >
+        <ScrollReveal delay={0.3} className="sm:hidden mt-8 text-center">
           <Link
             href="/menu"
             className="inline-flex items-center gap-2 font-body text-xs tracking-[0.2em] uppercase text-terracotta hover:text-espresso transition-colors duration-300 font-light group"
@@ -193,7 +183,7 @@ export default function QuickMenuPreview() {
             See Full Menu
             <ArrowRight size={14} strokeWidth={1.5} className="group-hover:translate-x-1 transition-transform duration-300" />
           </Link>
-        </motion.div>
+        </ScrollReveal>
       </div>
     </section>
   );

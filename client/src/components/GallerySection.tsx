@@ -2,30 +2,14 @@
  * GallerySection — Spiked Coffee
  * Design: Transitioning back from dark to cream. A masonry-style gallery
  * of brand mockups and lifestyle images. Minimal text, let visuals speak.
+ * Enhanced with: staggered card entrances and image curtain wipe reveals.
  */
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { ScrollReveal, ImageReveal, StaggerContainer, StaggerItem } from "./ScrollAnimations";
 
 const TRUCK_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/truck_evening_v2-Y72vH9WTk7dhtFNUvpg8dF.webp";
 const LIFESTYLE_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/lifestyle_evening_v2-CbyLbAKLvKQkCjGccdLDxC.webp";
 const CORNER_STORE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/corner_store_v2-HE5DMx9biAnQBGWXZyfBxR.webp";
 const MOCKUP_CUPS = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/mockup_cups_v2-539R8ew2fbVvZEYvpifzLm.webp";
-
-function FadeIn({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-40px" });
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial={{ opacity: 0, y: 25 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
-}
 
 export default function GallerySection() {
   return (
@@ -33,59 +17,63 @@ export default function GallerySection() {
       {/* Transition from dark to cream */}
       <div className="h-32 lg:h-48 bg-gradient-to-b from-charcoal to-cream" />
 
-      <div className="bg-cream pb-28 lg:pb-36">
+      <div className="bg-cream pb-28 lg:pb-36 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <FadeIn>
+          <ScrollReveal>
             <div className="text-center mb-16">
               <h2 className="font-display text-3xl lg:text-4xl font-light text-espresso mb-4 tracking-wide">
                 A glimpse of what's coming.
               </h2>
               <div className="w-12 h-px bg-terracotta mx-auto" />
             </div>
-          </FadeIn>
+          </ScrollReveal>
 
-          {/* Masonry-ish Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-            <FadeIn className="col-span-2 lg:col-span-2" delay={0.05}>
+          {/* Masonry-ish Grid — staggered entrance */}
+          <StaggerContainer className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6" staggerDelay={0.12}>
+            <StaggerItem className="col-span-2 lg:col-span-2">
               <div className="relative group overflow-hidden">
-                <img
+                <ImageReveal
                   src={TRUCK_EVENING}
                   alt="Spiked Coffee truck at evening"
-                  className="w-full h-[280px] lg:h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
+                  curtainColor="bg-cream"
+                  aspectClass="w-full h-[280px] lg:h-[400px]"
                 />
               </div>
-            </FadeIn>
+            </StaggerItem>
 
-            <FadeIn className="col-span-2 lg:col-span-1" delay={0.15}>
+            <StaggerItem className="col-span-2 lg:col-span-1">
               <div className="relative group overflow-hidden">
-                <img
+                <ImageReveal
                   src={LIFESTYLE_EVENING}
                   alt="Evening at Spiked Coffee"
-                  className="w-full h-[280px] lg:h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
+                  curtainColor="bg-terracotta"
+                  aspectClass="w-full h-[280px] lg:h-[400px]"
                 />
               </div>
-            </FadeIn>
+            </StaggerItem>
 
-            <FadeIn className="col-span-1" delay={0.1}>
+            <StaggerItem className="col-span-1">
               <div className="relative group overflow-hidden">
-                <img
+                <ImageReveal
                   src={MOCKUP_CUPS}
                   alt="Spiked Coffee cups"
-                  className="w-full h-[200px] lg:h-[300px] object-cover transition-transform duration-700 group-hover:scale-105"
+                  curtainColor="bg-espresso"
+                  aspectClass="w-full h-[200px] lg:h-[300px]"
                 />
               </div>
-            </FadeIn>
+            </StaggerItem>
 
-            <FadeIn className="col-span-1 lg:col-span-2" delay={0.2}>
+            <StaggerItem className="col-span-1 lg:col-span-2">
               <div className="relative group overflow-hidden">
-                <img
+                <ImageReveal
                   src={CORNER_STORE}
                   alt="Spiked Coffee corner storefront concept"
-                  className="w-full h-[200px] lg:h-[300px] object-cover transition-transform duration-700 group-hover:scale-105"
+                  curtainColor="bg-cream"
+                  aspectClass="w-full h-[200px] lg:h-[300px]"
                 />
               </div>
-            </FadeIn>
-          </div>
+            </StaggerItem>
+          </StaggerContainer>
         </div>
       </div>
     </section>

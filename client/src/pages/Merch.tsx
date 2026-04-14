@@ -11,6 +11,7 @@ import { Bell, Package, Heart, X, Ruler, Palette, Shield, Sparkles } from "lucid
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ScrollAnimations";
 
 /* ── CDN Assets ── */
 const STICKER_PACK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/merch_sticker_v2-9qPJ9ELuQTNtuGA8vmMMMj.webp";
@@ -429,19 +430,70 @@ export default function Merch() {
         </section>
       </FadeIn>
 
-      {/* ── Product Grid ── */}
+      {/* ── Product Grid — staggered card entrances ── */}
       <section className="px-6 pb-24 lg:pb-32">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 lg:gap-x-16 lg:gap-y-20">
-            {products.map((product, i) => (
-              <ProductCard
-                key={product.name}
-                product={product}
-                index={i}
-                onSelect={() => setSelectedProduct(product)}
-              />
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 lg:gap-x-16 lg:gap-y-20" staggerDelay={0.12}>
+            {products.map((product) => (
+              <StaggerItem key={product.name}>
+                <div className="group cursor-pointer" onClick={() => setSelectedProduct(product)}>
+                  {/* Image container */}
+                  <div className="relative overflow-hidden bg-warm-white mb-6">
+                    {product.badge && (
+                      <div className="absolute top-4 left-4 z-10">
+                        <span className="inline-block px-3 py-1.5 bg-terracotta/90 font-body text-[10px] tracking-[0.15em] uppercase text-cream font-light">
+                          {product.badge}
+                        </span>
+                      </div>
+                    )}
+                    <div className="absolute top-4 right-4 z-10">
+                      <span className="inline-block px-3 py-1.5 border border-espresso/10 bg-cream/80 backdrop-blur-sm font-body text-[10px] tracking-[0.15em] uppercase text-espresso-light/50 font-light">
+                        Coming Soon
+                      </span>
+                    </div>
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full aspect-[4/3] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    />
+                    {/* Hover overlay hint */}
+                    <div className="absolute inset-0 bg-espresso/0 group-hover:bg-espresso/[0.06] transition-colors duration-500 flex items-center justify-center">
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 inline-flex items-center gap-2 px-4 py-2 bg-cream/90 backdrop-blur-sm font-body text-[10px] tracking-[0.2em] uppercase text-espresso font-light rounded-sm shadow-sm">
+                        <Sparkles size={11} strokeWidth={1.5} />
+                        View Details
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Product info */}
+                  <div className="flex items-start justify-between mb-3">
+                    <h3 className="font-display text-xl lg:text-2xl font-light text-espresso tracking-wide">
+                      {product.name}
+                    </h3>
+                    <span className="font-display text-lg font-light text-espresso-light/50 tracking-wide">
+                      {product.price}
+                    </span>
+                  </div>
+                  <p className="font-body text-sm text-espresso-light/55 font-light leading-relaxed mb-4">
+                    {product.description}
+                  </p>
+
+                  {/* Notify button */}
+                  <button
+                    className="inline-flex items-center gap-2 px-4 py-2.5 border border-espresso/12 hover:border-espresso/30 hover:bg-espresso/[0.03] font-body text-[10px] tracking-[0.2em] uppercase text-espresso-light/50 hover:text-espresso transition-all duration-300 font-light group/btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const el = document.getElementById("merch-notify");
+                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                    }}
+                  >
+                    <Bell size={12} strokeWidth={1.5} className="transition-transform duration-300 group-hover/btn:scale-110" />
+                    Notify Me
+                  </button>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 

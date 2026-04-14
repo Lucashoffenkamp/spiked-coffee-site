@@ -7,6 +7,7 @@ import { useState, useCallback } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import LoadingScreen from "./components/LoadingScreen";
+import SmoothScroll from "./components/SmoothScroll";
 import PageTransition from "./components/PageTransition";
 import Home from "./pages/Home";
 import Roasters from "./pages/Roasters";
@@ -54,7 +55,9 @@ function App() {
         <TooltipProvider>
           <Toaster />
           {loading && <LoadingScreen onComplete={handleLoadingComplete} />}
-          <Router />
+          <SmoothScroll>
+            <Router />
+          </SmoothScroll>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

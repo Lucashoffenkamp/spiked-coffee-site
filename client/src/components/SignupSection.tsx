@@ -2,28 +2,14 @@
  * SignupSection — Spiked Coffee
  * Design: Clean cream section with a centered CTA. Email capture for early supporters.
  * Dalmatian watermark in background. Elegant, editorial feel.
+ * Enhanced with: scroll reveals.
  */
-import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 import { ArrowRight, Check } from "lucide-react";
+import { ScrollReveal } from "./ScrollAnimations";
 
 const DALMATIAN_ICON = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/dalmatian_fix_5_23e75f68.png";
-
-function FadeIn({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
-}
 
 export default function SignupSection() {
   const [email, setEmail] = useState("");
@@ -44,34 +30,34 @@ export default function SignupSection() {
       </div>
 
       <div className="relative z-10 max-w-2xl mx-auto px-6 text-center">
-        <FadeIn>
+        <ScrollReveal>
           <div className="w-12 h-px bg-terracotta mx-auto mb-10" />
-        </FadeIn>
+        </ScrollReveal>
 
-        <FadeIn delay={0.1}>
+        <ScrollReveal delay={0.05}>
           <h2 className="font-display text-4xl lg:text-5xl xl:text-6xl font-light text-espresso leading-[1.1] mb-6 tracking-wide">
             Be part of
             <br />
             <span className="font-accent text-terracotta">the beginning.</span>
           </h2>
-        </FadeIn>
+        </ScrollReveal>
 
-        <FadeIn delay={0.2}>
+        <ScrollReveal delay={0.1}>
           <p className="font-body text-base lg:text-lg text-espresso-light leading-relaxed mb-6 max-w-lg mx-auto font-light">
             We're building something special. Sign up to follow the journey — from
             our first pop-up to the day we open the doors.
           </p>
-        </FadeIn>
+        </ScrollReveal>
 
-        <FadeIn delay={0.25}>
+        <ScrollReveal delay={0.15}>
           <div className="inline-flex items-center gap-3 bg-terracotta/8 border border-terracotta/15 px-5 py-2.5 mb-12">
             <span className="font-body text-xs tracking-[0.1em] uppercase text-terracotta font-light">
               First 100 signups get a free Spiked Coffee sticker pack
             </span>
           </div>
-        </FadeIn>
+        </ScrollReveal>
 
-        <FadeIn delay={0.3}>
+        <ScrollReveal delay={0.2}>
           {!submitted ? (
             <form onSubmit={handleSubmit} className="max-w-md mx-auto">
               <div className="flex flex-col sm:flex-row gap-3">
@@ -114,7 +100,7 @@ export default function SignupSection() {
               </p>
             </motion.div>
           )}
-        </FadeIn>
+        </ScrollReveal>
       </div>
     </section>
   );

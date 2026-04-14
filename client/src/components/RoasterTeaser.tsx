@@ -1,15 +1,12 @@
 /*
  * RoasterTeaser — Spiked Coffee
  * Design: Editorial product showcase row with transparent cutout bags
- * on a clean cream background. Each bag floats with a subtle shadow,
- * roaster logo + name below in tracked uppercase. Links to /roasters page.
- * Shop CTA links to each roaster's online store.
- * Typography: Cormorant Garamond display + Jost body
+ * on a clean cream background. Each bag floats with a subtle shadow.
+ * Enhanced with: staggered card entrances, scroll reveals.
  */
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import { Link } from "wouter";
 import { ArrowRight, ShoppingBag } from "lucide-react";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "./ScrollAnimations";
 
 const TALA_BAG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/tala_nobg_35789949.png";
 const CHROMATIC_BAG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/chromatic_nobg_13e96922.png";
@@ -49,22 +46,6 @@ const roasters = [
   },
 ];
 
-function FadeIn({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
 export default function RoasterTeaser() {
   return (
     <section className="bg-cream py-28 lg:py-36 relative overflow-hidden">
@@ -73,16 +54,16 @@ export default function RoasterTeaser() {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         {/* Section header */}
-        <FadeIn>
+        <ScrollReveal direction="left">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-12 h-px bg-forest" />
             <span className="font-body text-xs tracking-[0.3em] uppercase text-forest font-light">
               On the Shelf
             </span>
           </div>
-        </FadeIn>
+        </ScrollReveal>
 
-        <FadeIn delay={0.1}>
+        <ScrollReveal direction="left" delay={0.05}>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-20">
             <h2 className="font-display text-3xl lg:text-4xl xl:text-5xl font-light text-espresso leading-[1.1] tracking-wide mb-4 lg:mb-0">
               Featured <span className="font-accent">Roasters</span>
@@ -92,12 +73,12 @@ export default function RoasterTeaser() {
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
-        </FadeIn>
+        </ScrollReveal>
 
-        {/* Bag showcase row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-16">
-          {roasters.map((roaster, i) => (
-            <FadeIn key={roaster.name} delay={0.1 + i * 0.12}>
+        {/* Bag showcase row — staggered entrance */}
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-16" staggerDelay={0.15}>
+          {roasters.map((roaster) => (
+            <StaggerItem key={roaster.name}>
               <div className="group block text-center">
                 {/* Roaster Logo */}
                 <div className={`flex justify-center items-center py-5 px-6 mb-6 rounded-lg border-2 border-espresso/20 shadow-sm ${roaster.logoBg}`}>
@@ -146,18 +127,18 @@ export default function RoasterTeaser() {
                   Shop {roaster.name}
                 </a>
               </div>
-            </FadeIn>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
         {/* Bottom accent */}
-        <FadeIn delay={0.5}>
+        <ScrollReveal delay={0.3}>
           <div className="mt-20 text-center">
             <p className="font-body text-sm text-espresso/40 tracking-[0.15em] uppercase font-light">
               The shelf rotates. The standard doesn't.
             </p>
           </div>
-        </FadeIn>
+        </ScrollReveal>
       </div>
     </section>
   );

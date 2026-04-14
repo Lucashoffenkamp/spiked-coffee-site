@@ -12,6 +12,7 @@ import { ArrowLeft, MapPin, ExternalLink, Coffee, Leaf, Award, Heart, ShoppingBa
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
+import { ScrollReveal, ImageReveal, StaggerContainer, StaggerItem } from "@/components/ScrollAnimations";
 
 /* ── CDN Assets ── */
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/all_roasters_station-R5yH5RqxGRscA8pLkBmfSJ.webp";
@@ -369,9 +370,9 @@ export default function Roasters() {
             </div>
           </FadeIn>
 
-          {/* Partnership values */}
-          <FadeIn delay={0.3}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 pt-16 border-t border-espresso/5">
+          {/* Partnership values — staggered entrance */}
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 pt-16 border-t border-espresso/5" staggerDelay={0.15}>
+            <StaggerItem>
               <div className="text-center">
                 <Award size={20} strokeWidth={1.2} className="text-terracotta/60 mx-auto mb-3" />
                 <h4 className="font-display text-lg font-light text-espresso tracking-wide mb-2">Quality First</h4>
@@ -379,6 +380,8 @@ export default function Roasters() {
                   Every roaster on our shelf has been vetted through blind tastings, farm visits, and long conversations about craft.
                 </p>
               </div>
+            </StaggerItem>
+            <StaggerItem>
               <div className="text-center">
                 <Heart size={20} strokeWidth={1.2} className="text-terracotta/60 mx-auto mb-3" />
                 <h4 className="font-display text-lg font-light text-espresso tracking-wide mb-2">Real Relationships</h4>
@@ -386,6 +389,8 @@ export default function Roasters() {
                   We know the founders by name. We visit their roasteries. We understand their sourcing and share their values.
                 </p>
               </div>
+            </StaggerItem>
+            <StaggerItem>
               <div className="text-center">
                 <Leaf size={20} strokeWidth={1.2} className="text-terracotta/60 mx-auto mb-3" />
                 <h4 className="font-display text-lg font-light text-espresso tracking-wide mb-2">Always Rotating</h4>
@@ -393,8 +398,8 @@ export default function Roasters() {
                   Our shelf evolves with the seasons. New roasters, new origins, new reasons to come back and discover something different.
                 </p>
               </div>
-            </div>
-          </FadeIn>
+            </StaggerItem>
+          </StaggerContainer>
         </div>
       </section>
 
