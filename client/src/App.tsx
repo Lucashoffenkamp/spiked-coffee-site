@@ -8,6 +8,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import LoadingScreen from "./components/LoadingScreen";
 import SmoothScroll from "./components/SmoothScroll";
+import CoffeePourIndicator from "./components/CoffeePourIndicator";
 import PageTransition from "./components/PageTransition";
 import Home from "./pages/Home";
 import Roasters from "./pages/Roasters";
@@ -55,6 +56,7 @@ function App() {
         <TooltipProvider>
           <Toaster />
           {loading && <LoadingScreen onComplete={handleLoadingComplete} />}
+          <CoffeePourIndicator />
           <SmoothScroll>
             <Router />
           </SmoothScroll>
