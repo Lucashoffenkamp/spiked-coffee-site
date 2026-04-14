@@ -17,7 +17,7 @@ export default function StorySection() {
         <ScrollReveal direction="left">
           <div className="flex items-center gap-4 mb-16">
             <div className="w-12 h-px bg-terracotta" />
-            <span className="font-body text-xs tracking-[0.3em] uppercase text-terracotta font-light">
+            <span className="font-body text-sm tracking-[0.3em] uppercase text-terracotta font-light">
               Our Story
             </span>
           </div>

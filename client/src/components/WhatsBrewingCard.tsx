@@ -151,7 +151,7 @@ export default function WhatsBrewingCard() {
           {/* Section Label */}
           <div className="flex items-center gap-4 mb-10">
             <div className="w-12 h-px bg-terracotta" />
-            <span className="font-body text-xs tracking-[0.3em] uppercase text-terracotta font-light flex items-center gap-2">
+            <span className="font-body text-sm tracking-[0.3em] uppercase text-terracotta font-light flex items-center gap-2">
               <Sparkles size={12} strokeWidth={1.5} />
               Now Pouring
             </span>

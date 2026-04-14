@@ -103,7 +103,7 @@ export default function HeroSection() {
             transition={{ duration: 1, delay: 0.7, ease }}
           >
             <div className="w-10 lg:w-16 h-px bg-warm-white/20" />
-            <p className="font-body text-[10px] lg:text-xs tracking-[0.3em] uppercase text-warm-white/60 font-light">
+            <p className="font-body text-xs lg:text-sm tracking-[0.3em] uppercase text-warm-white/60 font-light">
               Craft Coffee & Fine Beverages
             </p>
             <div className="w-10 lg:w-16 h-px bg-warm-white/20" />
@@ -141,7 +141,7 @@ export default function HeroSection() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.5 }}
       >
-        <span className="font-body text-[10px] tracking-[0.3em] uppercase font-light">Scroll</span>
+        <span className="font-body text-xs tracking-[0.3em] uppercase font-light">Scroll</span>
         <motion.div
           animate={{ y: [0, 5, 0] }}
           transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}

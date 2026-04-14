@@ -401,7 +401,7 @@ export default function Merch() {
           >
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-px bg-terracotta/60" />
-              <span className="font-body text-xs tracking-[0.3em] uppercase text-terracotta/70 font-light">
+              <span className="font-body text-sm tracking-[0.3em] uppercase text-terracotta/70 font-light">
                 The Goods
               </span>
             </div>

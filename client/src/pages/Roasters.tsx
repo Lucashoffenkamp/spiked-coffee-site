@@ -318,7 +318,7 @@ export default function Roasters() {
             transition={{ duration: 1, delay: 0.3, ease }}
             className="text-center"
           >
-            <p className="font-body text-xs tracking-[0.3em] uppercase text-cream/60 font-light mb-4">
+            <p className="font-body text-sm tracking-[0.3em] uppercase text-cream/60 font-light mb-4">
               Curated with intention
             </p>
             <h1 className="font-display text-5xl sm:text-6xl lg:text-8xl font-light tracking-[0.1em] text-cream leading-none">
@@ -414,7 +414,7 @@ export default function Roasters() {
       <section className="py-24 lg:py-32 bg-espresso">
         <div className="max-w-3xl mx-auto text-center px-6">
           <FadeIn>
-            <p className="font-body text-xs tracking-[0.3em] uppercase text-cream/40 font-light mb-6">
+            <p className="font-body text-sm tracking-[0.3em] uppercase text-cream/40 font-light mb-6">
               Always Rotating
             </p>
             <h2 className="font-display text-3xl lg:text-5xl font-light text-cream tracking-wide leading-[1.2] mb-8">

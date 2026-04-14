@@ -283,7 +283,7 @@ export default function Journal() {
           >
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-px bg-forest/60" />
-              <span className="font-body text-xs tracking-[0.3em] uppercase text-forest/60 font-light">
+              <span className="font-body text-sm tracking-[0.3em] uppercase text-forest/60 font-light">
                 Stories &amp; Dispatches
               </span>
             </div>

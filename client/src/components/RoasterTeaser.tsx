@@ -57,7 +57,7 @@ export default function RoasterTeaser() {
         <ScrollReveal direction="left">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-12 h-px bg-forest" />
-            <span className="font-body text-xs tracking-[0.3em] uppercase text-forest font-light">
+            <span className="font-body text-sm tracking-[0.3em] uppercase text-forest font-light">
               On the Shelf
             </span>
           </div>

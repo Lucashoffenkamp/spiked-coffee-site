@@ -43,7 +43,7 @@ export default function BeaconTeaser() {
         <ScrollReveal direction="left">
           <div className="flex items-center gap-4 mb-12">
             <div className="w-12 h-px bg-[#7c3aed]/40" />
-            <span className="font-body text-[10px] tracking-[0.3em] uppercase text-[#7c3aed]/60 font-light">
+            <span className="font-body text-sm tracking-[0.3em] uppercase text-[#7c3aed]/60 font-light">
               Our Pastry Partner
             </span>
           </div>
