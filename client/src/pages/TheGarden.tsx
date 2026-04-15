@@ -19,8 +19,8 @@ const GARDEN_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354
 const GARDEN_DETAIL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-detail-3F7rKpzfeFuzK9GSkwP3FM.webp";
 
 /* ─── Concept Rendering Assets ─── */
-const CONCEPT_WIDE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-concept-wide-igr8ZVvgt6BmuAueRoPxbx.webp";
-const CONCEPT_BAR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-concept-bar-caqZa9EoLGxWfWcLcjcgam.webp";
+const CONCEPT_WIDE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-concept-wide-v2-YHk5VAZFU8i6Hhunswm6k5.webp";
+const CONCEPT_BAR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-concept-bar-v2-RQmbuK7t4pLaK3oYSGgwmA.webp";
 const CONCEPT_SEATING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-concept-seating-3wuvTYRRcKEsPWvnuVX4Cb.webp";
 const CONCEPT_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-concept-evening-PqEhNvPyWdtcfMLCtC9Djx.webp";
 const CONCEPT_AERIAL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-concept-aerial-eY924XDKYm9NC76FYdfJon.webp";
