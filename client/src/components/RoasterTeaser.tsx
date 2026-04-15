@@ -126,7 +126,7 @@ export default function RoasterTeaser() {
   const dragRotate = useTransform(dragX, [-200, 0, 200], [-5, 0, 5]);
 
   return (
-    <section className="bg-cream py-28 lg:py-36 relative overflow-hidden">
+    <section className="bg-cream py-16 lg:py-36 relative overflow-hidden">
       {/* Subtle top border */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-px bg-espresso/10" />
 
@@ -142,7 +142,7 @@ export default function RoasterTeaser() {
         </ScrollReveal>
 
         <ScrollReveal direction="left" delay={0.05}>
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16">
+            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-8 lg:mb-16">
             <h2 className="font-display text-3xl lg:text-4xl xl:text-5xl font-light text-espresso leading-[1.1] tracking-wide mb-4 lg:mb-0">
               Featured <span className="font-accent">Roasters</span>
             </h2>
@@ -155,10 +155,10 @@ export default function RoasterTeaser() {
 
         {/* ─── Stacked Card Carousel ─── */}
         <div className="relative" ref={containerRef}>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[500px] lg:min-h-[550px]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-center min-h-[340px] lg:min-h-[550px]">
             
             {/* Left: Card with bag image */}
-            <div className="relative h-[420px] lg:h-[500px] flex items-center justify-center" style={{ perspective: "1200px" }}>
+            <div className="relative h-[280px] lg:h-[500px] flex items-center justify-center" style={{ perspective: "1200px" }}>
               {/* Background stack indicators */}
               {roasters.map((_, i) => {
                 const offset = i - activeIndex;
@@ -193,23 +193,10 @@ export default function RoasterTeaser() {
                   onDragEnd={handleDragEnd}
                   whileDrag={{ scale: 0.97, boxShadow: "0 25px 50px -12px rgba(0,0,0,0.15)" }}
                   style={{ x: dragX, rotateY: dragRotate, touchAction: "pan-y" }}
-                  className="absolute inset-0 lg:inset-4 bg-warm-white rounded-2xl border border-espresso/8 shadow-lg cursor-grab active:cursor-grabbing flex flex-col items-center justify-center p-8 lg:p-12 select-none"
+                  className="absolute inset-0 lg:inset-4 bg-warm-white rounded-2xl border border-espresso/8 shadow-lg cursor-grab active:cursor-grabbing flex flex-col items-center justify-center p-4 lg:p-12 select-none"
                 >
-                  {/* Roaster logo pill */}
-                  <div
-                    className="flex items-center justify-center px-5 py-2.5 rounded-full mb-6 shadow-sm"
-                    style={{ backgroundColor: activeRoaster.logoBg }}
-                  >
-                    <img
-                      src={activeRoaster.logo}
-                      alt={`${activeRoaster.name} logo`}
-                      className="h-6 lg:h-7 w-auto object-contain"
-                      draggable={false}
-                    />
-                  </div>
-
                   {/* Bag image */}
-                  <div className="flex-1 flex items-center justify-center w-full max-h-[260px] lg:max-h-[300px]">
+                  <div className="flex-1 flex items-center justify-center w-full max-h-[200px] lg:max-h-[340px]">
                     <img
                       src={activeRoaster.image}
                       alt={`${activeRoaster.name} — ${activeRoaster.blend}`}
@@ -219,7 +206,7 @@ export default function RoasterTeaser() {
                   </div>
 
                   {/* Swipe hint on mobile */}
-                  <div className="lg:hidden mt-4 flex items-center gap-2 text-espresso/25">
+                  <div className="lg:hidden mt-2 flex items-center gap-2 text-espresso/25">
                     <ArrowLeft size={12} />
                     <span className="font-body text-[10px] tracking-[0.2em] uppercase font-light">
                       Swipe
@@ -241,19 +228,19 @@ export default function RoasterTeaser() {
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 >
                   {/* Counter */}
-                  <div className="flex items-center gap-3 mb-6">
+                  <div className="flex items-center gap-3 mb-3 lg:mb-6">
                     <span className="font-body text-xs tracking-[0.2em] uppercase text-espresso/30 font-light">
                       {String(activeIndex + 1).padStart(2, "0")} / {String(roasters.length).padStart(2, "0")}
                     </span>
                   </div>
 
                   {/* Name */}
-                  <h3 className="font-display text-4xl lg:text-5xl xl:text-6xl font-light text-espresso tracking-wide mb-2 leading-[1]">
+                  <h3 className="font-display text-3xl lg:text-5xl xl:text-6xl font-light text-espresso tracking-wide mb-1 lg:mb-2 leading-[1]">
                     {activeRoaster.name}
                   </h3>
 
                   {/* Location + Blend */}
-                  <div className="flex items-center gap-3 mb-6">
+                  <div className="flex items-center gap-3 mb-3 lg:mb-6">
                     <span className="font-body text-xs tracking-[0.2em] uppercase text-espresso/40 font-light">
                       {activeRoaster.location}
                     </span>
@@ -264,10 +251,10 @@ export default function RoasterTeaser() {
                   </div>
 
                   {/* Divider */}
-                  <div className="w-12 h-px mb-6" style={{ backgroundColor: activeRoaster.accent + "40" }} />
+                  <div className="w-12 h-px mb-3 lg:mb-6" style={{ backgroundColor: activeRoaster.accent + "40" }} />
 
                   {/* Description */}
-                  <p className="font-body text-base lg:text-lg text-espresso-light/70 font-light leading-relaxed mb-8 max-w-md">
+                  <p className="font-body text-sm lg:text-lg text-espresso-light/70 font-light leading-relaxed mb-5 lg:mb-8 max-w-md">
                     {activeRoaster.desc}
                   </p>
 
@@ -294,7 +281,7 @@ export default function RoasterTeaser() {
               </AnimatePresence>
 
               {/* Navigation controls */}
-              <div className="flex items-center gap-6 mt-12">
+              <div className="flex items-center gap-6 mt-6 lg:mt-12">
                 {/* Prev/Next arrows */}
                 <button
                   onClick={() => paginate(-1)}
