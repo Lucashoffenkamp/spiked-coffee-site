@@ -14,8 +14,8 @@ import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 
 /* ─── Image Assets ─── */
-const GARDEN_DAY = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-hero-day-v2-MqqoeEVuHUkV4ofw8yJuku.webp";
-const GARDEN_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-hero-evening-v2-figypewjaThS23CnFnrQDN.webp";
+const GARDEN_DAY = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-hero-day-v4-6oPukSZ9wcaWHEJTMv3toy.webp";
+const GARDEN_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-hero-night-v4-kEYP5EWustx52tbavataa2.webp";
 const GARDEN_DETAIL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-detail-3F7rKpzfeFuzK9GSkwP3FM.webp";
 
 /* ─── Concept Rendering Assets ─── */
@@ -107,9 +107,10 @@ export default function TheGarden() {
           />
         </motion.div>
 
-        {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/30 via-transparent to-cream" />
-        <div className="absolute inset-0 bg-gradient-to-r from-charcoal/25 to-transparent" />
+        {/* Gradient overlays — strong enough for white text on bright foliage */}
+        <div className="absolute inset-0 bg-charcoal/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/30 via-charcoal/20 to-charcoal/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-charcoal/40 via-charcoal/15 to-transparent" />
 
         {/* Hero content */}
         <motion.div
@@ -126,14 +127,14 @@ export default function TheGarden() {
               </div>
             </FadeIn>
             <FadeIn delay={0.1}>
-              <h1 className="font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-warm-white leading-[0.95] tracking-wide max-w-3xl">
+              <h1 className="font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-warm-white leading-[0.95] tracking-wide max-w-3xl" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.5)' }}>
                 The
                 <br />
                 <span className="font-accent text-warm-white/90">Garden.</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.2}>
-              <p className="font-body text-base lg:text-lg text-warm-white/75 font-light mt-6 max-w-lg leading-relaxed">
+              <p className="font-body text-base lg:text-lg text-warm-white font-light mt-6 max-w-lg leading-relaxed" style={{ textShadow: '0 1px 8px rgba(0,0,0,0.5)' }}>
                 A cafe garden by morning. A beer garden by evening.
                 The next chapter of Spiked Coffee, outdoors.
               </p>
