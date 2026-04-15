@@ -9,7 +9,6 @@ import RoasterTeaser from "@/components/RoasterTeaser";
 import BeaconTeaser from "@/components/BeaconTeaser";
 import VisionSection from "@/components/VisionSection";
 import GardenTeaser from "@/components/GardenTeaser";
-import GallerySection from "@/components/GallerySection";
 import SignupSection from "@/components/SignupSection";
 import Footer from "@/components/Footer";
 import GrainOverlay from "@/components/GrainOverlay";
@@ -31,7 +30,6 @@ export default function Home() {
       <BeaconTeaser />
       <VisionSection />
       <GardenTeaser />
-      <GallerySection />
       <SignupSection />
       <Footer />
     </div>

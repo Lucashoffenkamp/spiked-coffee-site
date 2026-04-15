@@ -7,7 +7,7 @@
  */
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
-import { Sun, Moon, TreePine, Leaf, Wine, Coffee, ArrowRight } from "lucide-react";
+import { Sun, Moon, TreePine, Leaf, Wine, Coffee, ArrowRight, Check } from "lucide-react";
 import { Link } from "wouter";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -19,11 +19,11 @@ const GARDEN_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354
 const GARDEN_DETAIL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-detail-3F7rKpzfeFuzK9GSkwP3FM.webp";
 
 /* ─── Concept Rendering Assets ─── */
-const CONCEPT_WIDE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-concept-wide-v2-YHk5VAZFU8i6Hhunswm6k5.webp";
-const CONCEPT_BAR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-concept-bar-v2-RQmbuK7t4pLaK3oYSGgwmA.webp";
-const CONCEPT_SEATING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-concept-seating-3wuvTYRRcKEsPWvnuVX4Cb.webp";
-const CONCEPT_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-concept-evening-PqEhNvPyWdtcfMLCtC9Djx.webp";
-const CONCEPT_AERIAL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-concept-aerial-eY924XDKYm9NC76FYdfJon.webp";
+const CONCEPT_WIDE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-modern-wide-fq2z7uV8cQzakxLiwNcTWz.webp";
+const CONCEPT_BAR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-modern-bar-YcKRrWRHvWUxf3nBvQBN35.webp";
+const CONCEPT_SEATING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-modern-seating-bU24xnYpuRL2DiKhKZvJgz.webp";
+const CONCEPT_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-modern-evening-anqtszJHX3qemywx4dn8tK.webp";
+const CONCEPT_AERIAL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-modern-aerial-2jTHoL5GMeUTpM7fFV3Bkj.webp";
 
 /* ─── Animation Helpers ─── */
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -77,6 +77,85 @@ const gardenFeatures = {
     { icon: TreePine, title: "Live & Local", desc: "Acoustic sets on weekends. Local artists, low volume, good conversation still possible." },
   ],
 };
+
+/* ─── Garden CTA with inline email signup ─── */
+function GardenCTA() {
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email.trim()) {
+      setSubmitted(true);
+    }
+  };
+
+  return (
+    <section className="bg-charcoal py-24 lg:py-32">
+      <div className="max-w-3xl mx-auto px-6 lg:px-10 text-center">
+        <FadeIn>
+          <TreePine size={32} strokeWidth={1} className="text-warm-white/30 mx-auto mb-8" />
+        </FadeIn>
+        <FadeIn delay={0.05}>
+          <h2 className="font-display text-3xl lg:text-4xl font-light text-warm-white leading-[1.1] tracking-wide mb-6">
+            Be there when
+            <br />
+            <span className="font-accent text-amber-200/80">it opens.</span>
+          </h2>
+        </FadeIn>
+        <FadeIn delay={0.1}>
+          <p className="font-body text-base text-warm-white/60 font-light leading-relaxed mb-10 max-w-lg mx-auto">
+            The Garden is still growing. Sign up to follow the journey and be the first
+            to know when we break ground.
+          </p>
+        </FadeIn>
+        <FadeIn delay={0.15}>
+          {!submitted ? (
+            <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="your@email.com"
+                  required
+                  className="flex-1 px-5 py-3.5 bg-warm-white/10 border border-warm-white/20 font-body text-sm font-light text-warm-white placeholder:text-warm-white/30 focus:outline-none focus:border-warm-white/50 transition-colors rounded-none"
+                />
+                <button
+                  type="submit"
+                  className="px-6 py-3.5 bg-warm-white text-charcoal font-body text-sm tracking-[0.15em] uppercase font-light hover:bg-warm-white/90 transition-colors duration-300 flex items-center justify-center gap-2 group"
+                >
+                  <span>Join</span>
+                  <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+                </button>
+              </div>
+              <p className="font-body text-[11px] text-warm-white/30 mt-4 tracking-wide font-light">
+                No spam. Just updates on The Garden, pop-ups, and featured roasters.
+              </p>
+            </form>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="flex flex-col items-center gap-4"
+            >
+              <div className="w-12 h-12 rounded-full bg-warm-white/10 flex items-center justify-center">
+                <Check size={20} className="text-amber-200" />
+              </div>
+              <p className="font-accent text-2xl text-warm-white">
+                Welcome to the pack.
+              </p>
+              <p className="font-body text-sm text-warm-white/60 font-light">
+                We'll keep you posted on everything Spiked.
+              </p>
+            </motion.div>
+          )}
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
 
 export default function TheGarden() {
   const [activeMode, setActiveMode] = useState<"day" | "evening">("day");
@@ -419,8 +498,8 @@ export default function TheGarden() {
 
           <FadeIn delay={0.1}>
             <p className="font-body text-base lg:text-lg text-espresso-light/65 font-light leading-relaxed max-w-2xl mb-16">
-              A grassy field. A rustic wooden bar. Communal tables under the trees.
-              Fire pits, string lights, and the kind of place you never want to leave.
+Polished concrete meets manicured lawn. A steel-framed bar pavilion, communal tables, fire pits,
+               and string lights overhead. The kind of place you never want to leave.
               Here's what we see when we close our eyes.
             </p>
           </FadeIn>
@@ -442,8 +521,8 @@ export default function TheGarden() {
                   The Full Picture
                 </h3>
                 <p className="font-body text-sm text-warm-white/70 font-light mt-2 max-w-md">
-                  A grassy field anchored by a reclaimed-wood bar hut. Picnic tables, Adirondack chairs,
-                  herb planters, and room to breathe.
+A matte black steel pergola over a concrete-and-walnut bar. Charcoal Adirondack chairs,
+                   concrete fire tables, and ornamental grasses framing the lawn.
                 </p>
               </div>
             </div>
@@ -490,8 +569,8 @@ export default function TheGarden() {
                     The Seating
                   </h3>
                   <p className="font-body text-xs text-warm-white/65 font-light mt-1.5 max-w-sm">
-                    Communal farm tables, Adirondack clusters around fire pits,
-                    wildflower borders, and string lights overhead.
+Reclaimed oak communal tables, black metal bistro chairs, linen-cushioned benches,
+                     and concrete planters with ornamental grasses.
                   </p>
                 </div>
               </div>
@@ -516,8 +595,8 @@ export default function TheGarden() {
                     After Dark
                   </h3>
                   <p className="font-body text-xs text-warm-white/65 font-light mt-1.5 max-w-sm">
-                    The same space, transformed. Edison bulbs, mason jar candles,
-                    fire pits glowing, and the bar lit from within.
+The same space, transformed. String lights overhead, a concrete fire pit
+                     at the center, craft beers and wine catching the candlelight.
                   </p>
                 </div>
               </div>
@@ -653,35 +732,7 @@ export default function TheGarden() {
       {/* ═══════════════════════════════════════════════
           CTA — Sign up / follow the journey
           ═══════════════════════════════════════════════ */}
-      <section className="bg-charcoal py-24 lg:py-32">
-        <div className="max-w-3xl mx-auto px-6 lg:px-10 text-center">
-          <FadeIn>
-            <TreePine size={32} strokeWidth={1} className="text-warm-white/30 mx-auto mb-8" />
-          </FadeIn>
-          <FadeIn delay={0.05}>
-            <h2 className="font-display text-3xl lg:text-4xl font-light text-warm-white leading-[1.1] tracking-wide mb-6">
-              Be there when
-              <br />
-              <span className="font-accent text-amber-200/80">it opens.</span>
-            </h2>
-          </FadeIn>
-          <FadeIn delay={0.1}>
-            <p className="font-body text-base text-warm-white/60 font-light leading-relaxed mb-10 max-w-lg mx-auto">
-              The Garden is still growing. Sign up to follow the journey and be the first
-              to know when we break ground.
-            </p>
-          </FadeIn>
-          <FadeIn delay={0.15}>
-            <Link
-              href="/"
-              className="inline-flex items-center gap-3 font-body text-xs tracking-[0.2em] uppercase text-warm-white border border-warm-white/20 hover:border-warm-white/40 px-8 py-4 rounded-full transition-all duration-300 hover:bg-warm-white/5 group"
-            >
-              Join the Journey
-              <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-          </FadeIn>
-        </div>
-      </section>
+      <GardenCTA />
 
       <Footer />
     </div>

@@ -1,12 +1,17 @@
 /*
  * RoasterTeaser — Spiked Coffee
- * Design: Editorial product showcase row with transparent cutout bags
- * on a clean cream background. Each bag floats with a subtle shadow.
- * Enhanced with: staggered card entrances, scroll reveals.
+ * Design: Premium stacked card carousel. Cards are layered on top of each other
+ * and the user swipes/clicks through them. Each card shows the roaster's bag,
+ * logo, info, and shop CTA. Smooth spring animations for card transitions.
+ * 
+ * Interaction: Swipe left/right on mobile, click arrows or dots on desktop.
+ * Cards stack with a subtle offset and scale effect for depth.
  */
+import { useState, useRef, useCallback } from "react";
+import { motion, AnimatePresence, useMotionValue, useTransform, PanInfo } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowRight, ShoppingBag } from "lucide-react";
-import { ScrollReveal, StaggerContainer, StaggerItem } from "./ScrollAnimations";
+import { ArrowRight, ArrowLeft, ShoppingBag } from "lucide-react";
+import { ScrollReveal } from "./ScrollAnimations";
 
 const TALA_BAG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/tala_nobg_35789949.png";
 const CHROMATIC_BAG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/chromatic_nobg_13e96922.png";
@@ -21,32 +26,100 @@ const roasters = [
     name: "Tala",
     location: "Libertyville, IL",
     blend: "Amoret Espresso",
+    desc: "Small-batch roasters from our hometown. The Amoret blend is dark chocolate, fig, and toasted almond — sweet, balanced, and built for conversation.",
     image: TALA_BAG,
     logo: TALA_LOGO,
-    logoBg: "bg-[#2d4a5a]",
+    logoBg: "#2d4a5a",
+    accent: "#2d4a5a",
     shopUrl: "https://talacoffeeroasters.com",
   },
   {
     name: "Chromatic",
     location: "San Jose, CA",
     blend: "Gamut Blend",
+    desc: "Silicon Valley's specialty scene at its finest. Stone fruit sweetness, dark chocolate depth, and a caramel finish. Bold, complex, always evolving.",
     image: CHROMATIC_BAG,
     logo: CHROMATIC_LOGO,
-    logoBg: "bg-[#f0ebe4]",
+    logoBg: "#f0ebe4",
+    accent: "#8b6f4e",
     shopUrl: "https://www.chromaticcoffee.com",
   },
   {
     name: "Ruby",
     location: "Nelsonville, WI",
     blend: "Creamery Seasonal",
+    desc: "Wisconsin's finest. The Creamery Seasonal rotates with the harvest — right now it's bright citrus, honeycomb, and a clean buttery finish.",
     image: RUBY_BAG,
     logo: RUBY_LOGO,
-    logoBg: "bg-[#7a1f2e]",
+    logoBg: "#7a1f2e",
+    accent: "#7a1f2e",
     shopUrl: "https://rubycoffeeroasters.com",
   },
 ];
 
+const SWIPE_THRESHOLD = 50;
+
 export default function RoasterTeaser() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
+  const dragX = useMotionValue(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const paginate = useCallback((newDirection: number) => {
+    setDirection(newDirection);
+    setActiveIndex((prev) => {
+      const next = prev + newDirection;
+      if (next < 0) return roasters.length - 1;
+      if (next >= roasters.length) return 0;
+      return next;
+    });
+  }, []);
+
+  const handleDragEnd = useCallback((_: unknown, info: PanInfo) => {
+    if (info.offset.x < -SWIPE_THRESHOLD) {
+      paginate(1);
+    } else if (info.offset.x > SWIPE_THRESHOLD) {
+      paginate(-1);
+    }
+  }, [paginate]);
+
+  const activeRoaster = roasters[activeIndex];
+
+  // Card variants for stacked effect
+  const cardVariants = {
+    enter: (dir: number) => ({
+      x: dir > 0 ? 300 : -300,
+      opacity: 0,
+      scale: 0.9,
+      rotateY: dir > 0 ? 8 : -8,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      rotateY: 0,
+      transition: {
+        x: { type: "spring" as const, stiffness: 300, damping: 30 },
+        opacity: { duration: 0.3 },
+        scale: { type: "spring" as const, stiffness: 300, damping: 30 },
+        rotateY: { type: "spring" as const, stiffness: 300, damping: 30 },
+      },
+    },
+    exit: (dir: number) => ({
+      x: dir < 0 ? 300 : -300,
+      opacity: 0,
+      scale: 0.9,
+      rotateY: dir < 0 ? 8 : -8,
+      transition: {
+        x: { type: "spring" as const, stiffness: 300, damping: 30 },
+        opacity: { duration: 0.2 },
+      },
+    }),
+  };
+
+  // Drag-based tilt
+  const dragRotate = useTransform(dragX, [-200, 0, 200], [-5, 0, 5]);
+
   return (
     <section className="bg-cream py-28 lg:py-36 relative overflow-hidden">
       {/* Subtle top border */}
@@ -64,7 +137,7 @@ export default function RoasterTeaser() {
         </ScrollReveal>
 
         <ScrollReveal direction="left" delay={0.05}>
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-20">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16">
             <h2 className="font-display text-3xl lg:text-4xl xl:text-5xl font-light text-espresso leading-[1.1] tracking-wide mb-4 lg:mb-0">
               Featured <span className="font-accent">Roasters</span>
             </h2>
@@ -75,61 +148,192 @@ export default function RoasterTeaser() {
           </div>
         </ScrollReveal>
 
-        {/* Bag showcase row — staggered entrance */}
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-16" staggerDelay={0.15}>
-          {roasters.map((roaster) => (
-            <StaggerItem key={roaster.name}>
-              <div className="group block text-center">
-                {/* Roaster Logo */}
-                <div className={`flex justify-center items-center py-5 px-6 mb-6 rounded-lg border-2 border-espresso/20 shadow-sm ${roaster.logoBg}`}>
-                  <img
-                    src={roaster.logo}
-                    alt={`${roaster.name} logo`}
-                    className="h-10 lg:h-12 w-auto object-contain"
+        {/* ─── Stacked Card Carousel ─── */}
+        <div className="relative" ref={containerRef}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[500px] lg:min-h-[550px]">
+            
+            {/* Left: Card with bag image */}
+            <div className="relative h-[420px] lg:h-[500px] flex items-center justify-center" style={{ perspective: "1200px" }}>
+              {/* Background stack indicators */}
+              {roasters.map((_, i) => {
+                const offset = i - activeIndex;
+                if (offset === 0 || Math.abs(offset) > 2) return null;
+                const behind = offset > 0 ? offset : roasters.length + offset;
+                if (behind > 2) return null;
+                return (
+                  <div
+                    key={i}
+                    className="absolute inset-4 lg:inset-8 rounded-2xl border border-espresso/8 bg-warm-white/60"
+                    style={{
+                      transform: `translateY(${behind * 12}px) scale(${1 - behind * 0.04})`,
+                      opacity: 1 - behind * 0.3,
+                      zIndex: -behind,
+                    }}
                   />
-                </div>
+                );
+              })}
 
-                {/* Bag image — links to roasters page */}
-                <Link href="/roasters" className="block">
-                  <div className="relative mb-8 flex items-center justify-center h-[320px] lg:h-[380px]">
+              <AnimatePresence initial={false} custom={direction} mode="popLayout">
+                <motion.div
+                  key={activeIndex}
+                  custom={direction}
+                  variants={cardVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.7}
+                  onDragEnd={handleDragEnd}
+                  style={{ x: dragX, rotateY: dragRotate }}
+                  className="absolute inset-0 lg:inset-4 bg-warm-white rounded-2xl border border-espresso/8 shadow-lg cursor-grab active:cursor-grabbing flex flex-col items-center justify-center p-8 lg:p-12 select-none"
+                >
+                  {/* Roaster logo pill */}
+                  <div
+                    className="flex items-center justify-center px-5 py-2.5 rounded-full mb-6 shadow-sm"
+                    style={{ backgroundColor: activeRoaster.logoBg }}
+                  >
                     <img
-                      src={roaster.image}
-                      alt={`${roaster.name} — ${roaster.blend}`}
-                      className="h-full w-auto max-w-full object-contain drop-shadow-lg transition-transform duration-700 ease-out group-hover:-translate-y-3 group-hover:drop-shadow-xl"
+                      src={activeRoaster.logo}
+                      alt={`${activeRoaster.name} logo`}
+                      className="h-6 lg:h-7 w-auto object-contain"
+                      draggable={false}
                     />
                   </div>
-                </Link>
 
-                {/* Thin rule */}
-                <div className="w-10 h-px bg-espresso/15 mx-auto mb-5" />
+                  {/* Bag image */}
+                  <div className="flex-1 flex items-center justify-center w-full max-h-[260px] lg:max-h-[300px]">
+                    <img
+                      src={activeRoaster.image}
+                      alt={`${activeRoaster.name} — ${activeRoaster.blend}`}
+                      className="h-full w-auto max-w-full object-contain drop-shadow-lg"
+                      draggable={false}
+                    />
+                  </div>
 
-                {/* Roaster info */}
-                <Link href="/roasters" className="block">
-                  <h3 className="font-display text-2xl lg:text-3xl font-light text-espresso tracking-wide mb-2">
-                    {roaster.name}
-                  </h3>
-                  <p className="font-body text-xs tracking-[0.2em] uppercase text-espresso/40 mb-1.5 font-light">
-                    {roaster.location}
-                  </p>
-                  <p className="font-accent text-sm text-espresso/50 italic">
-                    {roaster.blend}
-                  </p>
-                </Link>
+                  {/* Swipe hint on mobile */}
+                  <div className="lg:hidden mt-4 flex items-center gap-2 text-espresso/25">
+                    <ArrowLeft size={12} />
+                    <span className="font-body text-[10px] tracking-[0.2em] uppercase font-light">
+                      Swipe
+                    </span>
+                    <ArrowRight size={12} />
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
-                {/* Shop CTA */}
-                <a
-                  href={roaster.shopUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 mt-5 px-5 py-2.5 border border-espresso/15 hover:border-espresso/40 hover:bg-espresso/[0.03] font-body text-[10px] tracking-[0.2em] uppercase text-espresso-light/60 hover:text-espresso transition-all duration-300 font-light group/shop"
+            {/* Right: Roaster info + controls */}
+            <div className="flex flex-col justify-center">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeIndex}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <ShoppingBag size={12} strokeWidth={1.5} className="transition-transform duration-300 group-hover/shop:scale-110" />
-                  Shop {roaster.name}
-                </a>
+                  {/* Counter */}
+                  <div className="flex items-center gap-3 mb-6">
+                    <span className="font-body text-xs tracking-[0.2em] uppercase text-espresso/30 font-light">
+                      {String(activeIndex + 1).padStart(2, "0")} / {String(roasters.length).padStart(2, "0")}
+                    </span>
+                  </div>
+
+                  {/* Name */}
+                  <h3 className="font-display text-4xl lg:text-5xl xl:text-6xl font-light text-espresso tracking-wide mb-2 leading-[1]">
+                    {activeRoaster.name}
+                  </h3>
+
+                  {/* Location + Blend */}
+                  <div className="flex items-center gap-3 mb-6">
+                    <span className="font-body text-xs tracking-[0.2em] uppercase text-espresso/40 font-light">
+                      {activeRoaster.location}
+                    </span>
+                    <span className="w-1 h-1 rounded-full bg-espresso/20" />
+                    <span className="font-accent text-sm text-espresso/50 italic">
+                      {activeRoaster.blend}
+                    </span>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="w-12 h-px mb-6" style={{ backgroundColor: activeRoaster.accent + "40" }} />
+
+                  {/* Description */}
+                  <p className="font-body text-base lg:text-lg text-espresso-light/70 font-light leading-relaxed mb-8 max-w-md">
+                    {activeRoaster.desc}
+                  </p>
+
+                  {/* CTAs */}
+                  <div className="flex flex-wrap items-center gap-4">
+                    <a
+                      href={activeRoaster.shopUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-espresso text-cream font-body text-xs tracking-[0.2em] uppercase font-light hover:bg-espresso-light transition-colors duration-300 group"
+                    >
+                      <ShoppingBag size={13} strokeWidth={1.5} />
+                      Shop {activeRoaster.name}
+                      <ArrowRight size={12} className="transition-transform duration-300 group-hover:translate-x-1" />
+                    </a>
+                    <Link
+                      href="/roasters"
+                      className="inline-flex items-center gap-2 px-6 py-3 border border-espresso/15 hover:border-espresso/40 font-body text-xs tracking-[0.2em] uppercase text-espresso/60 hover:text-espresso font-light transition-all duration-300"
+                    >
+                      Learn More
+                    </Link>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Navigation controls */}
+              <div className="flex items-center gap-6 mt-12">
+                {/* Prev/Next arrows */}
+                <button
+                  onClick={() => paginate(-1)}
+                  className="w-11 h-11 rounded-full border border-espresso/15 hover:border-espresso/40 flex items-center justify-center text-espresso/50 hover:text-espresso transition-all duration-300 hover:bg-espresso/[0.03]"
+                  aria-label="Previous roaster"
+                >
+                  <ArrowLeft size={16} strokeWidth={1.5} />
+                </button>
+
+                {/* Dot indicators */}
+                <div className="flex items-center gap-3">
+                  {roasters.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => {
+                        setDirection(i > activeIndex ? 1 : -1);
+                        setActiveIndex(i);
+                      }}
+                      className="relative w-8 h-1 rounded-full overflow-hidden bg-espresso/10 transition-all duration-300"
+                      aria-label={`View ${roasters[i].name}`}
+                    >
+                      <motion.div
+                        className="absolute inset-0 rounded-full"
+                        style={{ backgroundColor: activeRoaster.accent }}
+                        initial={false}
+                        animate={{
+                          scaleX: i === activeIndex ? 1 : 0,
+                          originX: 0,
+                        }}
+                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                      />
+                    </button>
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => paginate(1)}
+                  className="w-11 h-11 rounded-full border border-espresso/15 hover:border-espresso/40 flex items-center justify-center text-espresso/50 hover:text-espresso transition-all duration-300 hover:bg-espresso/[0.03]"
+                  aria-label="Next roaster"
+                >
+                  <ArrowRight size={16} strokeWidth={1.5} />
+                </button>
               </div>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+            </div>
+          </div>
+        </div>
 
         {/* Bottom accent */}
         <ScrollReveal delay={0.3}>
