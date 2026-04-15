@@ -14,8 +14,8 @@ import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 
 /* ─── Image Assets ─── */
-const GARDEN_DAY = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-day-VwCoBT7bFB5F395HfkqhPq.webp";
-const GARDEN_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-evening-NnvkQrFUXkmKafbB4ZsTtM.webp";
+const GARDEN_DAY = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-hero-day-v2-MqqoeEVuHUkV4ofw8yJuku.webp";
+const GARDEN_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-hero-evening-v2-figypewjaThS23CnFnrQDN.webp";
 const GARDEN_DETAIL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-detail-3F7rKpzfeFuzK9GSkwP3FM.webp";
 
 /* ─── Concept Rendering Assets ─── */
