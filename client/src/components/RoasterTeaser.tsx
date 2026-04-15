@@ -158,7 +158,7 @@ export default function RoasterTeaser() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-center min-h-[340px] lg:min-h-[550px]">
             
             {/* Left: Card with bag image */}
-            <div className="relative h-[280px] lg:h-[500px] flex items-center justify-center" style={{ perspective: "1200px" }}>
+            <div className="relative h-[280px] lg:h-[500px] flex items-center justify-center overflow-hidden" style={{ perspective: "1200px" }}>
               {/* Background stack indicators */}
               {roasters.map((_, i) => {
                 const offset = i - activeIndex;
@@ -178,7 +178,7 @@ export default function RoasterTeaser() {
                 );
               })}
 
-              <AnimatePresence initial={false} custom={direction} mode="popLayout">
+              <AnimatePresence initial={false} custom={direction} mode="wait">
                 <motion.div
                   key={activeIndex}
                   custom={direction}
@@ -198,10 +198,12 @@ export default function RoasterTeaser() {
                   {/* Bag image */}
                   <div className="flex-1 flex items-center justify-center w-full max-h-[200px] lg:max-h-[340px]">
                     <img
-                      src={activeRoaster.image}
-                      alt={`${activeRoaster.name} — ${activeRoaster.blend}`}
+                      key={roasters[activeIndex].image}
+                      src={roasters[activeIndex].image}
+                      alt={`${roasters[activeIndex].name} — ${roasters[activeIndex].blend}`}
                       className="h-full w-auto max-w-full object-contain drop-shadow-lg"
                       draggable={false}
+                      loading="eager"
                     />
                   </div>
 
