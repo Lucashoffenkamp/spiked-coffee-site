@@ -42,6 +42,7 @@ export default function Footer() {
                 { label: "Merch", href: "/merch" },
                 { label: "Journal", href: "/journal" },
                 { label: "Find Us", href: "/find-us" },
+                { label: "The Garden", href: "/the-garden" },
                 { label: "About", href: "/about" },
               ].map((link) => (
                 <Link

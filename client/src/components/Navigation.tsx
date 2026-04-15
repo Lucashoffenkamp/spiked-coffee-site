@@ -25,6 +25,7 @@ const navLinks = [
   { label: "Merch", href: "/merch", isRoute: true },
   { label: "Journal", href: "/journal", isRoute: true },
   { label: "Find Us", href: "/find-us", isRoute: true },
+  { label: "The Garden", href: "/the-garden", isRoute: true },
   { label: "About", href: "/about", isRoute: true },
 ];
 
