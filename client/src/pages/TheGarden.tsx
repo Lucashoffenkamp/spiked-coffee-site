@@ -44,15 +44,36 @@ function ConceptLightbox({ images, activeIndex, onClose, onNext, onPrev }: {
   onPrev: () => void;
 }) {
   const img = images[activeIndex];
+
+  // ── Swipe state ──
   const touchRef = useRef<{ startX: number; startY: number; startTime: number } | null>(null);
   const [dragX, setDragX] = useState(0);
   const isDragging = useRef(false);
 
+  // ── Zoom state ──
+  const [zoom, setZoom] = useState(1);
+  const [panOffset, setPanOffset] = useState({ x: 0, y: 0 });
+  const pinchRef = useRef<{ initialDist: number; initialZoom: number } | null>(null);
+  const panRef = useRef<{ lastX: number; lastY: number } | null>(null);
+  const lastTapRef = useRef<number>(0);
+  const imgContainerRef = useRef<HTMLDivElement>(null);
+  const isZoomed = zoom > 1.05;
+
+  // Reset zoom when switching images
+  useEffect(() => {
+    setZoom(1);
+    setPanOffset({ x: 0, y: 0 });
+  }, [activeIndex]);
+
+  // Keyboard nav
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-      if (e.key === "ArrowRight") onNext();
-      if (e.key === "ArrowLeft") onPrev();
+      if (e.key === "Escape") {
+        if (isZoomed) { setZoom(1); setPanOffset({ x: 0, y: 0 }); }
+        else onClose();
+      }
+      if (!isZoomed && e.key === "ArrowRight") onNext();
+      if (!isZoomed && e.key === "ArrowLeft") onPrev();
     };
     window.addEventListener("keydown", handleKey);
     document.body.style.overflow = "hidden";
@@ -60,34 +81,124 @@ function ConceptLightbox({ images, activeIndex, onClose, onNext, onPrev }: {
       window.removeEventListener("keydown", handleKey);
       document.body.style.overflow = "";
     };
-  }, [onClose, onNext, onPrev]);
+  }, [onClose, onNext, onPrev, isZoomed]);
 
-  // Touch swipe handlers
+  // ── Pinch distance helper ──
+  const getTouchDist = (touches: React.TouchList) => {
+    const dx = touches[0].clientX - touches[1].clientX;
+    const dy = touches[0].clientY - touches[1].clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+  };
+
+  // ── Touch handlers: swipe (1 finger) + pinch-zoom (2 fingers) + pan (1 finger when zoomed) ──
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
-    const touch = e.touches[0];
-    touchRef.current = { startX: touch.clientX, startY: touch.clientY, startTime: Date.now() };
-    isDragging.current = false;
-    setDragX(0);
-  }, []);
+    if (e.touches.length === 2) {
+      // Pinch start
+      pinchRef.current = { initialDist: getTouchDist(e.touches), initialZoom: zoom };
+      touchRef.current = null; // cancel any swipe
+      isDragging.current = false;
+    } else if (e.touches.length === 1) {
+      const now = Date.now();
+      const touch = e.touches[0];
+
+      // Double-tap detection
+      if (now - lastTapRef.current < 300) {
+        // Toggle zoom
+        if (isZoomed) {
+          setZoom(1);
+          setPanOffset({ x: 0, y: 0 });
+        } else {
+          setZoom(2.5);
+          // Zoom toward tap point
+          if (imgContainerRef.current) {
+            const rect = imgContainerRef.current.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+            setPanOffset({
+              x: (cx - touch.clientX) * 1.5,
+              y: (cy - touch.clientY) * 1.5,
+            });
+          }
+        }
+        lastTapRef.current = 0;
+        return;
+      }
+      lastTapRef.current = now;
+
+      if (isZoomed) {
+        // Start panning
+        panRef.current = { lastX: touch.clientX, lastY: touch.clientY };
+      } else {
+        // Start swipe
+        touchRef.current = { startX: touch.clientX, startY: touch.clientY, startTime: Date.now() };
+        isDragging.current = false;
+        setDragX(0);
+      }
+    }
+  }, [zoom, isZoomed]);
 
   const handleTouchMove = useCallback((e: React.TouchEvent) => {
-    if (!touchRef.current) return;
+    // Pinch zoom
+    if (e.touches.length === 2 && pinchRef.current) {
+      const dist = getTouchDist(e.touches);
+      const scale = dist / pinchRef.current.initialDist;
+      const newZoom = Math.min(Math.max(pinchRef.current.initialZoom * scale, 1), 4);
+      setZoom(newZoom);
+      if (newZoom <= 1.05) setPanOffset({ x: 0, y: 0 });
+      e.preventDefault();
+      return;
+    }
+
+    if (e.touches.length !== 1) return;
     const touch = e.touches[0];
+
+    // Pan when zoomed
+    if (isZoomed && panRef.current) {
+      const dx = touch.clientX - panRef.current.lastX;
+      const dy = touch.clientY - panRef.current.lastY;
+      panRef.current = { lastX: touch.clientX, lastY: touch.clientY };
+      setPanOffset(prev => {
+        // Clamp pan to reasonable bounds based on zoom level
+        const maxPan = (zoom - 1) * 200;
+        return {
+          x: Math.min(Math.max(prev.x + dx, -maxPan), maxPan),
+          y: Math.min(Math.max(prev.y + dy, -maxPan), maxPan),
+        };
+      });
+      e.preventDefault();
+      return;
+    }
+
+    // Swipe when not zoomed
+    if (!touchRef.current) return;
     const dx = touch.clientX - touchRef.current.startX;
     const dy = touch.clientY - touchRef.current.startY;
-    // Only track horizontal swipes
     if (Math.abs(dx) > Math.abs(dy) * 1.2) {
       isDragging.current = true;
       setDragX(dx);
       e.preventDefault();
     }
-  }, []);
+  }, [isZoomed, zoom]);
 
   const handleTouchEnd = useCallback(() => {
+    // End pinch
+    if (pinchRef.current) {
+      pinchRef.current = null;
+      if (zoom < 1.1) { setZoom(1); setPanOffset({ x: 0, y: 0 }); }
+      return;
+    }
+
+    // End pan
+    if (panRef.current) {
+      panRef.current = null;
+      return;
+    }
+
+    // End swipe
     if (!touchRef.current) return;
     const elapsed = Date.now() - touchRef.current.startTime;
     const velocity = Math.abs(dragX) / Math.max(elapsed, 1);
-    const threshold = velocity > 0.4 ? 30 : 60; // Lower threshold for fast swipes
+    const threshold = velocity > 0.4 ? 30 : 60;
 
     if (Math.abs(dragX) > threshold && isDragging.current) {
       if (dragX < 0) onNext();
@@ -96,7 +207,18 @@ function ConceptLightbox({ images, activeIndex, onClose, onNext, onPrev }: {
     touchRef.current = null;
     isDragging.current = false;
     setDragX(0);
-  }, [dragX, onNext, onPrev]);
+  }, [dragX, onNext, onPrev, zoom]);
+
+  // ── Desktop scroll-wheel zoom ──
+  const handleWheel = useCallback((e: React.WheelEvent) => {
+    e.preventDefault();
+    const delta = e.deltaY > 0 ? -0.15 : 0.15;
+    setZoom(prev => {
+      const next = Math.min(Math.max(prev + delta, 1), 4);
+      if (next <= 1.05) setPanOffset({ x: 0, y: 0 });
+      return next;
+    });
+  }, []);
 
   return (
     <motion.div
@@ -109,7 +231,7 @@ function ConceptLightbox({ images, activeIndex, onClose, onNext, onPrev }: {
       {/* Backdrop */}
       <motion.div
         className="absolute inset-0 bg-charcoal/95 backdrop-blur-md"
-        onClick={onClose}
+        onClick={() => { if (isZoomed) { setZoom(1); setPanOffset({ x: 0, y: 0 }); } else onClose(); }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -124,38 +246,52 @@ function ConceptLightbox({ images, activeIndex, onClose, onNext, onPrev }: {
         <X size={20} strokeWidth={1.5} />
       </button>
 
-      {/* Counter */}
-      <div className="absolute top-7 left-6 z-10">
+      {/* Counter + zoom indicator */}
+      <div className="absolute top-7 left-6 z-10 flex items-center gap-3">
         <span className="font-body text-xs tracking-[0.3em] uppercase text-warm-white/50 font-light">
           {String(activeIndex + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}
         </span>
+        {isZoomed && (
+          <motion.span
+            initial={{ opacity: 0, x: -8 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="font-body text-[10px] tracking-[0.2em] uppercase text-warm-white/40 font-light bg-warm-white/5 px-2 py-0.5 rounded"
+          >
+            {Math.round(zoom * 100)}%
+          </motion.span>
+        )}
       </div>
 
-      {/* Prev arrow — hidden on small mobile to give more swipe room */}
-      <button
-        onClick={onPrev}
-        className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-warm-white/10 hover:bg-warm-white/20 items-center justify-center text-warm-white/70 hover:text-warm-white transition-all duration-300 hidden sm:flex"
-        aria-label="Previous image"
-      >
-        <ArrowLeft size={18} strokeWidth={1.5} />
-      </button>
+      {/* Prev arrow — hidden when zoomed or on small mobile */}
+      {!isZoomed && (
+        <button
+          onClick={onPrev}
+          className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-warm-white/10 hover:bg-warm-white/20 items-center justify-center text-warm-white/70 hover:text-warm-white transition-all duration-300 hidden sm:flex"
+          aria-label="Previous image"
+        >
+          <ArrowLeft size={18} strokeWidth={1.5} />
+        </button>
+      )}
 
-      {/* Next arrow — hidden on small mobile to give more swipe room */}
-      <button
-        onClick={onNext}
-        className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-warm-white/10 hover:bg-warm-white/20 items-center justify-center text-warm-white/70 hover:text-warm-white transition-all duration-300 hidden sm:flex"
-        aria-label="Next image"
-      >
-        <ArrowRight size={18} strokeWidth={1.5} />
-      </button>
+      {/* Next arrow — hidden when zoomed or on small mobile */}
+      {!isZoomed && (
+        <button
+          onClick={onNext}
+          className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-warm-white/10 hover:bg-warm-white/20 items-center justify-center text-warm-white/70 hover:text-warm-white transition-all duration-300 hidden sm:flex"
+          aria-label="Next image"
+        >
+          <ArrowRight size={18} strokeWidth={1.5} />
+        </button>
+      )}
 
-      {/* Image + caption — swipeable container */}
+      {/* Image + caption — swipeable & zoomable container */}
       <div
         className="relative z-10 max-w-6xl w-full mx-4 lg:mx-8 select-none"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        style={{ touchAction: "pan-y" }}
+        onWheel={handleWheel}
+        style={{ touchAction: "none" }}
       >
         <AnimatePresence mode="wait">
           <motion.div
@@ -166,13 +302,31 @@ function ConceptLightbox({ images, activeIndex, onClose, onNext, onPrev }: {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col"
           >
-            <img
-              src={img.src}
-              alt={img.title}
-              className="w-full max-h-[75vh] object-contain rounded-lg pointer-events-none"
-              draggable={false}
-            />
-            <div className="mt-6 text-center">
+            {/* Zoomable image wrapper */}
+            <div
+              ref={imgContainerRef}
+              className="overflow-hidden rounded-lg"
+              style={{ cursor: isZoomed ? "grab" : "zoom-in" }}
+            >
+              <img
+                src={img.src}
+                alt={img.title}
+                className="w-full max-h-[75vh] object-contain pointer-events-none"
+                draggable={false}
+                style={{
+                  transform: `scale(${zoom}) translate(${panOffset.x / zoom}px, ${panOffset.y / zoom}px)`,
+                  transition: pinchRef.current || panRef.current ? "none" : "transform 0.3s cubic-bezier(0.22, 1, 0.36, 1)",
+                  transformOrigin: "center center",
+                }}
+              />
+            </div>
+
+            {/* Caption — fades out when zoomed */}
+            <motion.div
+              className="mt-6 text-center"
+              animate={{ opacity: isZoomed ? 0 : 1, y: isZoomed ? 10 : 0 }}
+              transition={{ duration: 0.2 }}
+            >
               <span className="font-body text-[10px] tracking-[0.3em] uppercase text-warm-white/40 font-light">
                 {img.label}
               </span>
@@ -182,34 +336,58 @@ function ConceptLightbox({ images, activeIndex, onClose, onNext, onPrev }: {
               <p className="font-body text-sm text-warm-white/60 font-light mt-2 max-w-lg mx-auto">
                 {img.desc}
               </p>
-            </div>
+            </motion.div>
           </motion.div>
         </AnimatePresence>
 
-        {/* Dot indicators — tappable on mobile */}
-        <div className="flex items-center justify-center gap-3 mt-6">
-          {images.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => {
-                if (i < activeIndex) onPrev();
-                else if (i > activeIndex) onNext();
-              }}
-              className={`transition-all duration-300 ${
-                i === activeIndex ? "bg-warm-white w-6 h-2" : "bg-warm-white/30 w-2 h-2 hover:bg-warm-white/50"
-              }`}
-              style={{ borderRadius: i === activeIndex ? "4px" : "50%" }}
-              aria-label={`Go to image ${i + 1}`}
-            />
-          ))}
-        </div>
+        {/* Dot indicators — hidden when zoomed */}
+        {!isZoomed && (
+          <div className="flex items-center justify-center gap-3 mt-6">
+            {images.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => {
+                  if (i < activeIndex) onPrev();
+                  else if (i > activeIndex) onNext();
+                }}
+                className={`transition-all duration-300 ${
+                  i === activeIndex ? "bg-warm-white w-6 h-2" : "bg-warm-white/30 w-2 h-2 hover:bg-warm-white/50"
+                }`}
+                style={{ borderRadius: i === activeIndex ? "4px" : "50%" }}
+                aria-label={`Go to image ${i + 1}`}
+              />
+            ))}
+          </div>
+        )}
 
-        {/* Swipe hint on mobile — only shown briefly */}
-        <div className="sm:hidden flex items-center justify-center mt-4 gap-1.5 text-warm-white/25">
-          <ArrowLeft size={12} strokeWidth={1.5} />
-          <span className="font-body text-[10px] tracking-[0.2em] uppercase font-light">swipe</span>
-          <ArrowRight size={12} strokeWidth={1.5} />
-        </div>
+        {/* Swipe/zoom hint on mobile — only shown when not zoomed */}
+        {!isZoomed && (
+          <div className="sm:hidden flex items-center justify-center mt-4 gap-3 text-warm-white/25">
+            <div className="flex items-center gap-1.5">
+              <ArrowLeft size={12} strokeWidth={1.5} />
+              <span className="font-body text-[10px] tracking-[0.2em] uppercase font-light">swipe</span>
+              <ArrowRight size={12} strokeWidth={1.5} />
+            </div>
+            <span className="text-warm-white/15">|</span>
+            <span className="font-body text-[10px] tracking-[0.2em] uppercase font-light">double-tap to zoom</span>
+          </div>
+        )}
+
+        {/* Zoom reset hint — shown when zoomed */}
+        {isZoomed && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex items-center justify-center mt-4"
+          >
+            <button
+              onClick={() => { setZoom(1); setPanOffset({ x: 0, y: 0 }); }}
+              className="font-body text-[10px] tracking-[0.2em] uppercase font-light text-warm-white/40 hover:text-warm-white/60 transition-colors bg-warm-white/5 px-3 py-1.5 rounded-full"
+            >
+              Double-tap or click to reset
+            </button>
+          </motion.div>
+        )}
       </div>
     </motion.div>
   );
