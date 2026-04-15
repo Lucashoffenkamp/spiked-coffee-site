@@ -18,6 +18,13 @@ const GARDEN_DAY = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8
 const GARDEN_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-evening-NnvkQrFUXkmKafbB4ZsTtM.webp";
 const GARDEN_DETAIL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-detail-3F7rKpzfeFuzK9GSkwP3FM.webp";
 
+/* ─── Concept Rendering Assets ─── */
+const CONCEPT_WIDE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-concept-wide-igr8ZVvgt6BmuAueRoPxbx.webp";
+const CONCEPT_BAR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-concept-bar-caqZa9EoLGxWfWcLcjcgam.webp";
+const CONCEPT_SEATING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-concept-seating-3wuvTYRRcKEsPWvnuVX4Cb.webp";
+const CONCEPT_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-concept-evening-PqEhNvPyWdtcfMLCtC9Djx.webp";
+const CONCEPT_AERIAL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-concept-aerial-eY924XDKYm9NC76FYdfJon.webp";
+
 /* ─── Animation Helpers ─── */
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -383,6 +390,167 @@ export default function TheGarden() {
                 — Lucas &amp; Dylan
               </footer>
             </blockquote>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════
+          CONCEPT RENDERINGS — Visual concepts for The Garden
+          ═══════════════════════════════════════════════ */}
+      <section className="bg-cream py-24 lg:py-36 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <FadeIn>
+            <div className="flex items-center gap-4 mb-12">
+              <div className="w-12 h-px bg-terracotta" />
+              <span className="font-body text-sm tracking-[0.3em] uppercase text-terracotta font-light">
+                The Vision
+              </span>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.05}>
+            <h2 className="font-display text-3xl lg:text-4xl xl:text-5xl font-light text-espresso leading-[1.1] tracking-wide mb-6">
+              What we're
+              <br />
+              <span className="font-accent text-terracotta">dreaming up.</span>
+            </h2>
+          </FadeIn>
+
+          <FadeIn delay={0.1}>
+            <p className="font-body text-base lg:text-lg text-espresso-light/65 font-light leading-relaxed max-w-2xl mb-16">
+              A grassy field. A rustic wooden bar. Communal tables under the trees.
+              Fire pits, string lights, and the kind of place you never want to leave.
+              Here's what we see when we close our eyes.
+            </p>
+          </FadeIn>
+
+          {/* Hero rendering — wide shot */}
+          <FadeIn delay={0.12}>
+            <div className="relative rounded-xl overflow-hidden mb-6 group cursor-pointer">
+              <img
+                src={CONCEPT_WIDE}
+                alt="Concept rendering — The Garden overview with wooden bar hut, grassy field, and outdoor seating"
+                className="w-full h-[300px] lg:h-[500px] xl:h-[560px] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal/50 via-transparent to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-10">
+                <span className="font-body text-[10px] tracking-[0.3em] uppercase text-warm-white/60 font-light">
+                  Concept 01
+                </span>
+                <h3 className="font-display text-xl lg:text-2xl font-light text-warm-white tracking-wide mt-1">
+                  The Full Picture
+                </h3>
+                <p className="font-body text-sm text-warm-white/70 font-light mt-2 max-w-md">
+                  A grassy field anchored by a reclaimed-wood bar hut. Picnic tables, Adirondack chairs,
+                  herb planters, and room to breathe.
+                </p>
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* Two-column: Bar close-up + Seating area */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <FadeIn delay={0.14}>
+              <div className="relative rounded-xl overflow-hidden group cursor-pointer h-[280px] lg:h-[380px]">
+                <img
+                  src={CONCEPT_BAR}
+                  alt="Concept rendering — The wooden bar hut with espresso machine and craft beer taps"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <span className="font-body text-[10px] tracking-[0.3em] uppercase text-warm-white/60 font-light">
+                    Concept 02
+                  </span>
+                  <h3 className="font-display text-lg lg:text-xl font-light text-warm-white tracking-wide mt-1">
+                    The Bar
+                  </h3>
+                  <p className="font-body text-xs text-warm-white/65 font-light mt-1.5 max-w-sm">
+                    Espresso on the left, craft taps on the right. Live-edge counter,
+                    chalkboard menu, hanging herbs.
+                  </p>
+                </div>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.16}>
+              <div className="relative rounded-xl overflow-hidden group cursor-pointer h-[280px] lg:h-[380px]">
+                <img
+                  src={CONCEPT_SEATING}
+                  alt="Concept rendering — Communal seating area with farm tables, fire pits, and string lights"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <span className="font-body text-[10px] tracking-[0.3em] uppercase text-warm-white/60 font-light">
+                    Concept 03
+                  </span>
+                  <h3 className="font-display text-lg lg:text-xl font-light text-warm-white tracking-wide mt-1">
+                    The Seating
+                  </h3>
+                  <p className="font-body text-xs text-warm-white/65 font-light mt-1.5 max-w-sm">
+                    Communal farm tables, Adirondack clusters around fire pits,
+                    wildflower borders, and string lights overhead.
+                  </p>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+
+          {/* Two-column: Evening + Aerial */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+            <FadeIn delay={0.18} className="lg:col-span-3">
+              <div className="relative rounded-xl overflow-hidden group cursor-pointer h-[280px] lg:h-[380px]">
+                <img
+                  src={CONCEPT_EVENING}
+                  alt="Concept rendering — The Garden at dusk with glowing bar hut, candles, and fire pits"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <span className="font-body text-[10px] tracking-[0.3em] uppercase text-warm-white/60 font-light">
+                    Concept 04
+                  </span>
+                  <h3 className="font-display text-lg lg:text-xl font-light text-warm-white tracking-wide mt-1">
+                    After Dark
+                  </h3>
+                  <p className="font-body text-xs text-warm-white/65 font-light mt-1.5 max-w-sm">
+                    The same space, transformed. Edison bulbs, mason jar candles,
+                    fire pits glowing, and the bar lit from within.
+                  </p>
+                </div>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.2} className="lg:col-span-2">
+              <div className="relative rounded-xl overflow-hidden group cursor-pointer h-[280px] lg:h-[380px]">
+                <img
+                  src={CONCEPT_AERIAL}
+                  alt="Concept rendering — Aerial view of The Garden layout with bar hut, seating zones, and pathways"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <span className="font-body text-[10px] tracking-[0.3em] uppercase text-warm-white/60 font-light">
+                    Concept 05
+                  </span>
+                  <h3 className="font-display text-lg lg:text-xl font-light text-warm-white tracking-wide mt-1">
+                    The Layout
+                  </h3>
+                  <p className="font-body text-xs text-warm-white/65 font-light mt-1.5 max-w-sm">
+                    Bird's eye view. Radiating paths, fire pit clusters,
+                    hammocks, and a small stage for live music.
+                  </p>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+
+          {/* Disclaimer */}
+          <FadeIn delay={0.22}>
+            <p className="font-body text-xs text-espresso-light/40 font-light mt-10 text-center tracking-wide">
+              Concept renderings for visualization purposes. Final design may evolve as we grow.
+            </p>
           </FadeIn>
         </div>
       </section>
