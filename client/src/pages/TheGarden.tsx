@@ -5,9 +5,10 @@
  * of the Spiked Coffee experience. Lush, atmospheric, forward-looking.
  * Warm earth tones with green botanical accents.
  */
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
-import { Sun, Moon, TreePine, Leaf, Wine, Coffee, ArrowRight, Check } from "lucide-react";
+import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useRef, useState, useCallback, useEffect } from "react";
+import { createPortal } from "react-dom";
+import { Sun, Moon, TreePine, Leaf, Wine, Coffee, ArrowRight, ArrowLeft, Check, X, ZoomIn } from "lucide-react";
 import { Link } from "wouter";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -24,6 +25,137 @@ const CONCEPT_BAR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx
 const CONCEPT_SEATING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-modern-seating-bU24xnYpuRL2DiKhKZvJgz.webp";
 const CONCEPT_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-modern-evening-anqtszJHX3qemywx4dn8tK.webp";
 const CONCEPT_AERIAL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-modern-aerial-2jTHoL5GMeUTpM7fFV3Bkj.webp";
+
+/* ─── Concept Rendering Data ─── */
+const conceptImages = [
+  { src: CONCEPT_WIDE, label: "Concept 01", title: "The Full Picture", desc: "A matte black steel pergola over a concrete-and-walnut bar. Charcoal Adirondack chairs, concrete fire tables, and ornamental grasses framing the lawn." },
+  { src: CONCEPT_BAR, label: "Concept 02", title: "The Bar", desc: "Espresso on the left, craft taps on the right. Live-edge counter, chalkboard menu, hanging herbs." },
+  { src: CONCEPT_SEATING, label: "Concept 03", title: "The Seating", desc: "Reclaimed oak communal tables, black metal bistro chairs, linen-cushioned benches, and concrete planters with ornamental grasses." },
+  { src: CONCEPT_EVENING, label: "Concept 04", title: "After Dark", desc: "The same space, transformed. String lights overhead, a concrete fire pit at the center, craft beers and wine catching the candlelight." },
+  { src: CONCEPT_AERIAL, label: "Concept 05", title: "The Layout", desc: "Bird's eye view. Radiating paths, fire pit clusters, hammocks, and a small stage for live music." },
+];
+
+/* ─── Lightbox Component ─── */
+function ConceptLightbox({ images, activeIndex, onClose, onNext, onPrev }: {
+  images: typeof conceptImages;
+  activeIndex: number;
+  onClose: () => void;
+  onNext: () => void;
+  onPrev: () => void;
+}) {
+  const img = images[activeIndex];
+
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight") onNext();
+      if (e.key === "ArrowLeft") onPrev();
+    };
+    window.addEventListener("keydown", handleKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", handleKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose, onNext, onPrev]);
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-[9999] flex items-center justify-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      {/* Backdrop */}
+      <motion.div
+        className="absolute inset-0 bg-charcoal/95 backdrop-blur-md"
+        onClick={onClose}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      />
+
+      {/* Close button */}
+      <button
+        onClick={onClose}
+        className="absolute top-6 right-6 z-10 w-12 h-12 rounded-full bg-warm-white/10 hover:bg-warm-white/20 flex items-center justify-center text-warm-white/80 hover:text-warm-white transition-all duration-300"
+        aria-label="Close lightbox"
+      >
+        <X size={20} strokeWidth={1.5} />
+      </button>
+
+      {/* Counter */}
+      <div className="absolute top-7 left-6 z-10">
+        <span className="font-body text-xs tracking-[0.3em] uppercase text-warm-white/50 font-light">
+          {String(activeIndex + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}
+        </span>
+      </div>
+
+      {/* Prev arrow */}
+      <button
+        onClick={onPrev}
+        className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-warm-white/10 hover:bg-warm-white/20 flex items-center justify-center text-warm-white/70 hover:text-warm-white transition-all duration-300"
+        aria-label="Previous image"
+      >
+        <ArrowLeft size={18} strokeWidth={1.5} />
+      </button>
+
+      {/* Next arrow */}
+      <button
+        onClick={onNext}
+        className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-warm-white/10 hover:bg-warm-white/20 flex items-center justify-center text-warm-white/70 hover:text-warm-white transition-all duration-300"
+        aria-label="Next image"
+      >
+        <ArrowRight size={18} strokeWidth={1.5} />
+      </button>
+
+      {/* Image + caption */}
+      <div className="relative z-10 max-w-6xl w-full mx-4 lg:mx-8">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeIndex}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col"
+          >
+            <img
+              src={img.src}
+              alt={img.title}
+              className="w-full max-h-[75vh] object-contain rounded-lg"
+            />
+            <div className="mt-6 text-center">
+              <span className="font-body text-[10px] tracking-[0.3em] uppercase text-warm-white/40 font-light">
+                {img.label}
+              </span>
+              <h3 className="font-display text-xl lg:text-2xl font-light text-warm-white tracking-wide mt-1">
+                {img.title}
+              </h3>
+              <p className="font-body text-sm text-warm-white/60 font-light mt-2 max-w-lg mx-auto">
+                {img.desc}
+              </p>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Dot indicators */}
+        <div className="flex items-center justify-center gap-2 mt-6">
+          {images.map((_, i) => (
+            <div
+              key={i}
+              className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                i === activeIndex ? "bg-warm-white w-6" : "bg-warm-white/30"
+              }`}
+              style={{ borderRadius: i === activeIndex ? "4px" : "50%" }}
+            />
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 /* ─── Animation Helpers ─── */
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -159,6 +291,12 @@ function GardenCTA() {
 
 export default function TheGarden() {
   const [activeMode, setActiveMode] = useState<"day" | "evening">("day");
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const openLightbox = useCallback((index: number) => setLightboxIndex(index), []);
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+  const nextLightbox = useCallback(() => setLightboxIndex(prev => prev !== null ? (prev + 1) % conceptImages.length : null), []);
+  const prevLightbox = useCallback(() => setLightboxIndex(prev => prev !== null ? (prev - 1 + conceptImages.length) % conceptImages.length : null), []);
 
   // Hero parallax
   const heroRef = useRef(null);
@@ -173,6 +311,22 @@ export default function TheGarden() {
     <div className="min-h-screen overflow-x-hidden">
       <ScrollProgress />
       <Navigation />
+
+      {/* Lightbox — rendered via portal to escape transform context */}
+      {createPortal(
+        <AnimatePresence>
+          {lightboxIndex !== null && (
+            <ConceptLightbox
+              images={conceptImages}
+              activeIndex={lightboxIndex}
+              onClose={closeLightbox}
+              onNext={nextLightbox}
+              onPrev={prevLightbox}
+            />
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
 
       {/* ═══════════════════════════════════════════════
           HERO — Full-bleed day image with overlay text
@@ -506,13 +660,16 @@ Polished concrete meets manicured lawn. A steel-framed bar pavilion, communal ta
 
           {/* Hero rendering — wide shot */}
           <FadeIn delay={0.12}>
-            <div className="relative rounded-xl overflow-hidden mb-6 group cursor-pointer">
+            <div className="relative rounded-xl overflow-hidden mb-6 group cursor-pointer" onClick={() => openLightbox(0)}>
               <img
                 src={CONCEPT_WIDE}
-                alt="Concept rendering — The Garden overview with wooden bar hut, grassy field, and outdoor seating"
+                alt="Concept rendering — The Garden overview"
                 className="w-full h-[300px] lg:h-[500px] xl:h-[560px] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal/50 via-transparent to-transparent" />
+              <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-charcoal/40 backdrop-blur-sm flex items-center justify-center text-warm-white/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <ZoomIn size={16} strokeWidth={1.5} />
+              </div>
               <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-10">
                 <span className="font-body text-[10px] tracking-[0.3em] uppercase text-warm-white/60 font-light">
                   Concept 01
@@ -521,8 +678,8 @@ Polished concrete meets manicured lawn. A steel-framed bar pavilion, communal ta
                   The Full Picture
                 </h3>
                 <p className="font-body text-sm text-warm-white/70 font-light mt-2 max-w-md">
-A matte black steel pergola over a concrete-and-walnut bar. Charcoal Adirondack chairs,
-                   concrete fire tables, and ornamental grasses framing the lawn.
+                  A matte black steel pergola over a concrete-and-walnut bar. Charcoal Adirondack chairs,
+                  concrete fire tables, and ornamental grasses framing the lawn.
                 </p>
               </div>
             </div>
@@ -531,13 +688,16 @@ A matte black steel pergola over a concrete-and-walnut bar. Charcoal Adirondack 
           {/* Two-column: Bar close-up + Seating area */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
             <FadeIn delay={0.14}>
-              <div className="relative rounded-xl overflow-hidden group cursor-pointer h-[280px] lg:h-[380px]">
+              <div className="relative rounded-xl overflow-hidden group cursor-pointer h-[280px] lg:h-[380px]" onClick={() => openLightbox(1)}>
                 <img
                   src={CONCEPT_BAR}
-                  alt="Concept rendering — The wooden bar hut with espresso machine and craft beer taps"
+                  alt="Concept rendering — The bar"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent" />
+                <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-charcoal/40 backdrop-blur-sm flex items-center justify-center text-warm-white/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <ZoomIn size={14} strokeWidth={1.5} />
+                </div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <span className="font-body text-[10px] tracking-[0.3em] uppercase text-warm-white/60 font-light">
                     Concept 02
@@ -554,13 +714,16 @@ A matte black steel pergola over a concrete-and-walnut bar. Charcoal Adirondack 
             </FadeIn>
 
             <FadeIn delay={0.16}>
-              <div className="relative rounded-xl overflow-hidden group cursor-pointer h-[280px] lg:h-[380px]">
+              <div className="relative rounded-xl overflow-hidden group cursor-pointer h-[280px] lg:h-[380px]" onClick={() => openLightbox(2)}>
                 <img
                   src={CONCEPT_SEATING}
-                  alt="Concept rendering — Communal seating area with farm tables, fire pits, and string lights"
+                  alt="Concept rendering — The seating"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent" />
+                <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-charcoal/40 backdrop-blur-sm flex items-center justify-center text-warm-white/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <ZoomIn size={14} strokeWidth={1.5} />
+                </div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <span className="font-body text-[10px] tracking-[0.3em] uppercase text-warm-white/60 font-light">
                     Concept 03
@@ -580,13 +743,16 @@ Reclaimed oak communal tables, black metal bistro chairs, linen-cushioned benche
           {/* Two-column: Evening + Aerial */}
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
             <FadeIn delay={0.18} className="lg:col-span-3">
-              <div className="relative rounded-xl overflow-hidden group cursor-pointer h-[280px] lg:h-[380px]">
+              <div className="relative rounded-xl overflow-hidden group cursor-pointer h-[280px] lg:h-[380px]" onClick={() => openLightbox(3)}>
                 <img
                   src={CONCEPT_EVENING}
-                  alt="Concept rendering — The Garden at dusk with glowing bar hut, candles, and fire pits"
+                  alt="Concept rendering — After dark"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent" />
+                <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-charcoal/40 backdrop-blur-sm flex items-center justify-center text-warm-white/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <ZoomIn size={14} strokeWidth={1.5} />
+                </div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <span className="font-body text-[10px] tracking-[0.3em] uppercase text-warm-white/60 font-light">
                     Concept 04
@@ -603,13 +769,16 @@ The same space, transformed. String lights overhead, a concrete fire pit
             </FadeIn>
 
             <FadeIn delay={0.2} className="lg:col-span-2">
-              <div className="relative rounded-xl overflow-hidden group cursor-pointer h-[280px] lg:h-[380px]">
+              <div className="relative rounded-xl overflow-hidden group cursor-pointer h-[280px] lg:h-[380px]" onClick={() => openLightbox(4)}>
                 <img
                   src={CONCEPT_AERIAL}
-                  alt="Concept rendering — Aerial view of The Garden layout with bar hut, seating zones, and pathways"
+                  alt="Concept rendering — The layout"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent" />
+                <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-charcoal/40 backdrop-blur-sm flex items-center justify-center text-warm-white/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <ZoomIn size={14} strokeWidth={1.5} />
+                </div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <span className="font-body text-[10px] tracking-[0.3em] uppercase text-warm-white/60 font-light">
                     Concept 05

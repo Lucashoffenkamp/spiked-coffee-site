@@ -57,7 +57,8 @@ const roasters = [
   },
 ];
 
-const SWIPE_THRESHOLD = 50;
+const SWIPE_THRESHOLD = 40;
+const SWIPE_VELOCITY = 300;
 
 export default function RoasterTeaser() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -76,10 +77,14 @@ export default function RoasterTeaser() {
   }, []);
 
   const handleDragEnd = useCallback((_: unknown, info: PanInfo) => {
-    if (info.offset.x < -SWIPE_THRESHOLD) {
-      paginate(1);
-    } else if (info.offset.x > SWIPE_THRESHOLD) {
-      paginate(-1);
+    const swipeByDistance = Math.abs(info.offset.x) > SWIPE_THRESHOLD;
+    const swipeByVelocity = Math.abs(info.velocity.x) > SWIPE_VELOCITY;
+    if (swipeByDistance || swipeByVelocity) {
+      if (info.offset.x < 0 || info.velocity.x < -SWIPE_VELOCITY) {
+        paginate(1);
+      } else {
+        paginate(-1);
+      }
     }
   }, [paginate]);
 
@@ -183,9 +188,11 @@ export default function RoasterTeaser() {
                   exit="exit"
                   drag="x"
                   dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={0.7}
+                  dragElastic={0.6}
+                  dragTransition={{ bounceStiffness: 300, bounceDamping: 30 }}
                   onDragEnd={handleDragEnd}
-                  style={{ x: dragX, rotateY: dragRotate }}
+                  whileDrag={{ scale: 0.97, boxShadow: "0 25px 50px -12px rgba(0,0,0,0.15)" }}
+                  style={{ x: dragX, rotateY: dragRotate, touchAction: "pan-y" }}
                   className="absolute inset-0 lg:inset-4 bg-warm-white rounded-2xl border border-espresso/8 shadow-lg cursor-grab active:cursor-grabbing flex flex-col items-center justify-center p-8 lg:p-12 select-none"
                 >
                   {/* Roaster logo pill */}
