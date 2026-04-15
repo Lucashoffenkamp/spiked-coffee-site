@@ -20,19 +20,19 @@ const GARDEN_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354
 const GARDEN_DETAIL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-detail-3F7rKpzfeFuzK9GSkwP3FM.webp";
 
 /* ─── Concept Rendering Assets ─── */
-const CONCEPT_WIDE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-modern-wide-fq2z7uV8cQzakxLiwNcTWz.webp";
-const CONCEPT_BAR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-modern-bar-YcKRrWRHvWUxf3nBvQBN35.webp";
-const CONCEPT_SEATING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-modern-seating-bU24xnYpuRL2DiKhKZvJgz.webp";
-const CONCEPT_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-modern-evening-anqtszJHX3qemywx4dn8tK.webp";
-const CONCEPT_AERIAL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-modern-aerial-2jTHoL5GMeUTpM7fFV3Bkj.webp";
+const CONCEPT_WIDE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-render-1-wide-Zpoy9BtQBNjRH5pbqGHHGX.webp";
+const CONCEPT_BAR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-render-2-bar-AjeXCpSFRy2jXRhgVR9m7f.webp";
+const CONCEPT_SEATING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-render-3-seating-2T5HxpEDkueLSetEyNpxgN.webp";
+const CONCEPT_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-render-4-evening-9gtDkrSJZCGG25NspDhwr9.webp";
+const CONCEPT_AERIAL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-render-5-aerial-haoTmLcVr6WnWzjS5PaFzg.webp";
 
 /* ─── Concept Rendering Data ─── */
 const conceptImages = [
-  { src: CONCEPT_WIDE, label: "Concept 01", title: "The Full Picture", desc: "A matte black steel pergola over a concrete-and-walnut bar. Charcoal Adirondack chairs, concrete fire tables, and ornamental grasses framing the lawn." },
-  { src: CONCEPT_BAR, label: "Concept 02", title: "The Bar", desc: "Espresso on the left, craft taps on the right. Live-edge counter, chalkboard menu, hanging herbs." },
-  { src: CONCEPT_SEATING, label: "Concept 03", title: "The Seating", desc: "Reclaimed oak communal tables, black metal bistro chairs, linen-cushioned benches, and concrete planters with ornamental grasses." },
-  { src: CONCEPT_EVENING, label: "Concept 04", title: "After Dark", desc: "The same space, transformed. String lights overhead, a concrete fire pit at the center, craft beers and wine catching the candlelight." },
-  { src: CONCEPT_AERIAL, label: "Concept 05", title: "The Layout", desc: "Bird's eye view. Radiating paths, fire pit clusters, hammocks, and a small stage for live music." },
+  { src: CONCEPT_WIDE, label: "Concept 01", title: "The Full Picture", desc: "Matte black steel pergola over a polished concrete bar with Slayer espresso machine and brass taps. The dalmatian logo on the facade, ornamental grasses, and a concrete fire pit on the lawn." },
+  { src: CONCEPT_BAR, label: "Concept 02", title: "The Bar", desc: "Slayer espresso on the left, brass craft taps on the right, pour-over station in the center. Live-edge walnut counter, floating shelves, Edison pendants, and the Spiked Coffee dalmatian front and center." },
+  { src: CONCEPT_SEATING, label: "Concept 03", title: "The Seating", desc: "Oak communal tables with black steel hairpin legs, wire-frame chairs, concrete planters with lavender and grasses. Clean concrete paths through manicured lawn." },
+  { src: CONCEPT_EVENING, label: "Concept 04", title: "After Dark", desc: "The same space, transformed. Edison string lights overhead, the concrete fire pit ablaze, craft beers and cocktails catching candlelight. The dalmatian logo spotlit on the brick wall behind the bar." },
+  { src: CONCEPT_AERIAL, label: "Concept 05", title: "The Layout", desc: "Bird's eye view. The pergola bar at center, communal tables on concrete pads, fire pit lounge on the grass, and the dalmatian logo painted on the slatted roof." },
 ];
 
 /* ─── Lightbox Component ─── */
@@ -44,6 +44,9 @@ function ConceptLightbox({ images, activeIndex, onClose, onNext, onPrev }: {
   onPrev: () => void;
 }) {
   const img = images[activeIndex];
+  const touchRef = useRef<{ startX: number; startY: number; startTime: number } | null>(null);
+  const [dragX, setDragX] = useState(0);
+  const isDragging = useRef(false);
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -58,6 +61,42 @@ function ConceptLightbox({ images, activeIndex, onClose, onNext, onPrev }: {
       document.body.style.overflow = "";
     };
   }, [onClose, onNext, onPrev]);
+
+  // Touch swipe handlers
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    touchRef.current = { startX: touch.clientX, startY: touch.clientY, startTime: Date.now() };
+    isDragging.current = false;
+    setDragX(0);
+  }, []);
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    if (!touchRef.current) return;
+    const touch = e.touches[0];
+    const dx = touch.clientX - touchRef.current.startX;
+    const dy = touch.clientY - touchRef.current.startY;
+    // Only track horizontal swipes
+    if (Math.abs(dx) > Math.abs(dy) * 1.2) {
+      isDragging.current = true;
+      setDragX(dx);
+      e.preventDefault();
+    }
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    if (!touchRef.current) return;
+    const elapsed = Date.now() - touchRef.current.startTime;
+    const velocity = Math.abs(dragX) / Math.max(elapsed, 1);
+    const threshold = velocity > 0.4 ? 30 : 60; // Lower threshold for fast swipes
+
+    if (Math.abs(dragX) > threshold && isDragging.current) {
+      if (dragX < 0) onNext();
+      else onPrev();
+    }
+    touchRef.current = null;
+    isDragging.current = false;
+    setDragX(0);
+  }, [dragX, onNext, onPrev]);
 
   return (
     <motion.div
@@ -92,39 +131,46 @@ function ConceptLightbox({ images, activeIndex, onClose, onNext, onPrev }: {
         </span>
       </div>
 
-      {/* Prev arrow */}
+      {/* Prev arrow — hidden on small mobile to give more swipe room */}
       <button
         onClick={onPrev}
-        className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-warm-white/10 hover:bg-warm-white/20 flex items-center justify-center text-warm-white/70 hover:text-warm-white transition-all duration-300"
+        className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-warm-white/10 hover:bg-warm-white/20 items-center justify-center text-warm-white/70 hover:text-warm-white transition-all duration-300 hidden sm:flex"
         aria-label="Previous image"
       >
         <ArrowLeft size={18} strokeWidth={1.5} />
       </button>
 
-      {/* Next arrow */}
+      {/* Next arrow — hidden on small mobile to give more swipe room */}
       <button
         onClick={onNext}
-        className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-warm-white/10 hover:bg-warm-white/20 flex items-center justify-center text-warm-white/70 hover:text-warm-white transition-all duration-300"
+        className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-warm-white/10 hover:bg-warm-white/20 items-center justify-center text-warm-white/70 hover:text-warm-white transition-all duration-300 hidden sm:flex"
         aria-label="Next image"
       >
         <ArrowRight size={18} strokeWidth={1.5} />
       </button>
 
-      {/* Image + caption */}
-      <div className="relative z-10 max-w-6xl w-full mx-4 lg:mx-8">
+      {/* Image + caption — swipeable container */}
+      <div
+        className="relative z-10 max-w-6xl w-full mx-4 lg:mx-8 select-none"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        style={{ touchAction: "pan-y" }}
+      >
         <AnimatePresence mode="wait">
           <motion.div
             key={activeIndex}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, x: dragX > 0 ? -40 : 40 }}
+            animate={{ opacity: 1, x: isDragging.current ? dragX * 0.3 : 0 }}
+            exit={{ opacity: 0, x: dragX > 0 ? 40 : -40 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col"
           >
             <img
               src={img.src}
               alt={img.title}
-              className="w-full max-h-[75vh] object-contain rounded-lg"
+              className="w-full max-h-[75vh] object-contain rounded-lg pointer-events-none"
+              draggable={false}
             />
             <div className="mt-6 text-center">
               <span className="font-body text-[10px] tracking-[0.3em] uppercase text-warm-white/40 font-light">
@@ -140,17 +186,29 @@ function ConceptLightbox({ images, activeIndex, onClose, onNext, onPrev }: {
           </motion.div>
         </AnimatePresence>
 
-        {/* Dot indicators */}
-        <div className="flex items-center justify-center gap-2 mt-6">
+        {/* Dot indicators — tappable on mobile */}
+        <div className="flex items-center justify-center gap-3 mt-6">
           {images.map((_, i) => (
-            <div
+            <button
               key={i}
-              className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                i === activeIndex ? "bg-warm-white w-6" : "bg-warm-white/30"
+              onClick={() => {
+                if (i < activeIndex) onPrev();
+                else if (i > activeIndex) onNext();
+              }}
+              className={`transition-all duration-300 ${
+                i === activeIndex ? "bg-warm-white w-6 h-2" : "bg-warm-white/30 w-2 h-2 hover:bg-warm-white/50"
               }`}
               style={{ borderRadius: i === activeIndex ? "4px" : "50%" }}
+              aria-label={`Go to image ${i + 1}`}
             />
           ))}
+        </div>
+
+        {/* Swipe hint on mobile — only shown briefly */}
+        <div className="sm:hidden flex items-center justify-center mt-4 gap-1.5 text-warm-white/25">
+          <ArrowLeft size={12} strokeWidth={1.5} />
+          <span className="font-body text-[10px] tracking-[0.2em] uppercase font-light">swipe</span>
+          <ArrowRight size={12} strokeWidth={1.5} />
         </div>
       </div>
     </motion.div>
@@ -678,8 +736,8 @@ Polished concrete meets manicured lawn. A steel-framed bar pavilion, communal ta
                   The Full Picture
                 </h3>
                 <p className="font-body text-sm text-warm-white/70 font-light mt-2 max-w-md">
-                  A matte black steel pergola over a concrete-and-walnut bar. Charcoal Adirondack chairs,
-                  concrete fire tables, and ornamental grasses framing the lawn.
+                  Matte black steel pergola over a polished concrete bar with Slayer espresso and brass taps.
+                  The dalmatian logo on the facade, ornamental grasses, and a concrete fire pit on the lawn.
                 </p>
               </div>
             </div>
@@ -706,8 +764,8 @@ Polished concrete meets manicured lawn. A steel-framed bar pavilion, communal ta
                     The Bar
                   </h3>
                   <p className="font-body text-xs text-warm-white/65 font-light mt-1.5 max-w-sm">
-                    Espresso on the left, craft taps on the right. Live-edge counter,
-                    chalkboard menu, hanging herbs.
+                    Slayer espresso on the left, brass craft taps on the right. Live-edge walnut counter,
+                    Edison pendants, and the dalmatian logo front and center.
                   </p>
                 </div>
               </div>
@@ -732,8 +790,8 @@ Polished concrete meets manicured lawn. A steel-framed bar pavilion, communal ta
                     The Seating
                   </h3>
                   <p className="font-body text-xs text-warm-white/65 font-light mt-1.5 max-w-sm">
-Reclaimed oak communal tables, black metal bistro chairs, linen-cushioned benches,
-                     and concrete planters with ornamental grasses.
+                    Oak communal tables with black steel hairpin legs, wire-frame chairs,
+                    concrete planters with lavender and grasses. Clean paths through manicured lawn.
                   </p>
                 </div>
               </div>
@@ -761,8 +819,8 @@ Reclaimed oak communal tables, black metal bistro chairs, linen-cushioned benche
                     After Dark
                   </h3>
                   <p className="font-body text-xs text-warm-white/65 font-light mt-1.5 max-w-sm">
-The same space, transformed. String lights overhead, a concrete fire pit
-                     at the center, craft beers and wine catching the candlelight.
+                    The same space, transformed. Edison string lights overhead, the fire pit ablaze,
+                    craft beers and cocktails catching candlelight. The dalmatian logo spotlit on the wall.
                   </p>
                 </div>
               </div>
@@ -787,8 +845,8 @@ The same space, transformed. String lights overhead, a concrete fire pit
                     The Layout
                   </h3>
                   <p className="font-body text-xs text-warm-white/65 font-light mt-1.5 max-w-sm">
-                    Bird's eye view. Radiating paths, fire pit clusters,
-                    hammocks, and a small stage for live music.
+                    Bird's eye view. The pergola bar at center, communal tables on concrete pads,
+                    fire pit lounge on the grass, and the dalmatian logo painted on the slatted roof.
                   </p>
                 </div>
               </div>

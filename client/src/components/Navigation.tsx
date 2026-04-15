@@ -25,9 +25,32 @@ const navLinks = [
   { label: "Merch", href: "/merch", isRoute: true },
   { label: "Journal", href: "/journal", isRoute: true },
   { label: "Find Us", href: "/find-us", isRoute: true },
-  { label: "The Garden", href: "/the-garden", isRoute: true },
+  { label: "The Garden", href: "/the-garden", isRoute: true, isNew: true },
   { label: "About", href: "/about", isRoute: true },
 ];
+
+/* ─── NEW badge: small animated dot + label ─── */
+function NewBadge({ variant = "desktop" }: { variant?: "desktop" | "mobile" }) {
+  if (variant === "mobile") {
+    return (
+      <span className="ml-auto inline-flex items-center gap-1.5">
+        <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-terracotta/60" />
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-terracotta" />
+        </span>
+        <span className="font-body text-[9px] tracking-[0.2em] uppercase text-terracotta font-medium">New</span>
+      </span>
+    );
+  }
+  return (
+    <span className="inline-flex items-center gap-1 ml-1.5 -translate-y-0.5">
+      <span className="relative flex h-1.5 w-1.5">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-terracotta/60" />
+        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-terracotta" />
+      </span>
+    </span>
+  );
+}
 
 function NavLink({ link, className, onClick }: { link: typeof navLinks[0]; className: string; onClick?: () => void }) {
   const [location] = useLocation();
@@ -37,6 +60,7 @@ function NavLink({ link, className, onClick }: { link: typeof navLinks[0]; class
     return (
       <Link href={link.href} className={`${className} ${isActive ? "!text-espresso" : ""}`} onClick={onClick}>
         {link.label}
+        {(link as any).isNew && <NewBadge />}
         <span className={`absolute -bottom-1 left-0 h-px bg-terracotta/60 transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"}`} />
       </Link>
     );
@@ -174,6 +198,7 @@ export default function Navigation() {
                               <span className="font-display text-2xl font-light tracking-[0.05em]">
                                 {link.label}
                               </span>
+                              {(link as any).isNew && !isActive && <NewBadge variant="mobile" />}
                               {isActive && (
                                 <span className="ml-auto w-1.5 h-1.5 rounded-full bg-terracotta" />
                               )}
