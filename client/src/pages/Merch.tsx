@@ -17,7 +17,8 @@ import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/Scroll
 const STICKER_PACK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/merch_sticker_v2-9qPJ9ELuQTNtuGA8vmMMMj.webp";
 const DAD_HAT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/merch_hat_v2-Huc5AWGkotKe6BmVtea9Zq.webp";
 const KINTO_TUMBLER = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/merch_tumbler_v2-BDyDWryf92d44wWnJMhhJZ.webp";
-const TOTE_BAG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/merch_tote_v2-BDyDWryf92d44wWnJMhhJZ.webp";
+const TOTE_BAG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/merch_canvas_tote-WTumcar2SEk5i6t68VHVUb.webp";
+const POCKET_TEE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/merch_pocket_tee-a8tPoctrDdnaRbJzLA7yoT.webp";
 const KINTO_MUG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/kinto_mug_v2-EpFowdyUQxLmUbiKJmKeua.webp";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -78,6 +79,21 @@ const products: Product[] = [
     care: "Hand wash only. Do not microwave or freeze.",
   },
   {
+    name: "The Pocket Tee",
+    description: "Relaxed-fit heavyweight cotton pocket tee in vintage cream. Embroidered Dalmatian logo on the chest pocket. The kind of shirt you reach for every morning.",
+    price: "$38",
+    image: POCKET_TEE,
+    badge: "New",
+    specs: [
+      { label: "Fit", value: "Relaxed, slightly oversized" },
+      { label: "Weight", value: "6.5 oz heavyweight cotton" },
+      { label: "Sizes", value: "S – XXL" },
+      { label: "Detail", value: "Embroidered chest pocket logo" },
+    ],
+    material: "100% combed ring-spun cotton, garment-dyed for a vintage wash feel",
+    care: "Machine wash cold, tumble dry low. Will soften beautifully with each wash.",
+  },
+  {
     name: "Canvas Tote",
     description: "Heavy-weight natural cotton canvas tote with screen-printed Dalmatian logo. Perfect for the farmers market run.",
     price: "$28",
@@ -96,7 +112,7 @@ const products: Product[] = [
     description: "300ml Kinto CLK-151 stoneware mug with speckled beige glaze and raw clay base. Embossed Dalmatian logo in terracotta. Microwave and dishwasher safe.",
     price: "$30",
     image: KINTO_MUG,
-    badge: "New",
+    badge: null,
     specs: [
       { label: "Capacity", value: "300ml (10 oz)" },
       { label: "Height", value: "3.5 inches" },
