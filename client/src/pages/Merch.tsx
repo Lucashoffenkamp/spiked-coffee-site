@@ -7,6 +7,7 @@
  */
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Bell, Package, Heart, X, Ruler, Palette, Shield, Sparkles } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -397,15 +398,18 @@ export default function Merch() {
       <ScrollProgress />
       <Navigation />
 
-      {/* ── Product Detail Modal ── */}
-      <AnimatePresence>
-        {selectedProduct && (
-          <ProductModal
-            product={selectedProduct}
-            onClose={() => setSelectedProduct(null)}
-          />
-        )}
-      </AnimatePresence>
+      {/* ── Product Detail Modal (portaled to body to escape transform context) ── */}
+      {createPortal(
+        <AnimatePresence>
+          {selectedProduct && (
+            <ProductModal
+              product={selectedProduct}
+              onClose={() => setSelectedProduct(null)}
+            />
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
 
       {/* ── Hero Section ── */}
       <section className="pt-32 lg:pt-40 pb-20 lg:pb-28 px-6">
