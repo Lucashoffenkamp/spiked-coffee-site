@@ -5,7 +5,6 @@ import StorySection from "@/components/StorySection";
 import WhatsBrewingCard from "@/components/WhatsBrewingCard";
 import QuickMenuPreview from "@/components/QuickMenuPreview";
 import ConceptSection from "@/components/ConceptSection";
-import RoasterTeaser from "@/components/RoasterTeaser";
 import BeaconTeaser from "@/components/BeaconTeaser";
 import VisionSection from "@/components/VisionSection";
 import GardenTeaser from "@/components/GardenTeaser";
@@ -26,7 +25,6 @@ export default function Home() {
       <WhatsBrewingCard />
       <QuickMenuPreview />
       <ConceptSection />
-      <RoasterTeaser />
       <BeaconTeaser />
       <VisionSection />
       <GardenTeaser />
