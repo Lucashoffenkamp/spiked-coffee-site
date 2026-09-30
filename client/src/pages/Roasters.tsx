@@ -15,19 +15,19 @@ import ScrollProgress from "@/components/ScrollProgress";
 import { ScrollReveal, ImageReveal, StaggerContainer, StaggerItem } from "@/components/ScrollAnimations";
 
 /* ── CDN Assets ── */
-const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/all_roasters_station-R5yH5RqxGRscA8pLkBmfSJ.webp";
+const HERO_IMG = "/assets/roaster_station_all.jpg";
 
-const TALA_STATION = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/tala_station-SeEpqmuTDy5zieuhsxceXW.webp";
-const CHROMATIC_STATION = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/chromatic_station-XBQx3AjeA9n83PuXFjyVfd.webp";
-const RUBY_STATION = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/ruby_station-DxjfjX9yCWJhcGHDPigNBA.webp";
+const TALA_STATION = "/assets/roaster_station_tala.jpg";
+const CHROMATIC_STATION = "/assets/roaster_station_chromatic.jpg";
+const RUBY_STATION = "/assets/roaster_station_ruby.jpg";
 
-const TALA_BAG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/tala_nobg_35789949.png";
-const CHROMATIC_BAG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/chromatic_nobg_13e96922.png";
-const RUBY_BAG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/ruby_creamery_clean_9b02d404.png";
+const TALA_BAG = "/assets/coffee_bag_tala.jpg";
+const CHROMATIC_BAG = "/assets/coffee_bag_chromatic.jpg";
+const RUBY_BAG = "/assets/coffee_bag_ruby.jpg";
 
-const TALA_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/tala_logo_7f6c1f39.png";
-const CHROMATIC_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/chromatic_logo_7679ace5.png";
-const RUBY_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/ruby_logo_4d0b335f.png";
+const TALA_LOGO = "/assets/tala_logo.png";
+const CHROMATIC_LOGO = "/assets/chromatic_logo.png";
+const RUBY_LOGO = "/assets/ruby_logo.png";
 
 /* ── Roaster Data ── */
 const roasters = [

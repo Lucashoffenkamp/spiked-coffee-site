@@ -8,11 +8,11 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { ScrollReveal } from "./ScrollAnimations";
 
-const BEACON_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/beacon_logo_81d3d982.png";
-const BEACON_GLAZED = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/beacon_glazed_mural_e3629680.jpg";
-const BEACON_CRUMB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/beacon_crumb_donut_4d38ae32.jpg";
-const BEACON_POWDERED = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/beacon_powdered_stack_829b8446.jpg";
-const BEACON_CHOCOLATE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/beacon_chocolate_donut_0bdf709f.jpg";
+const BEACON_LOGO = "/assets/beacon_logo.png";
+const BEACON_GLAZED = "/assets/beacon_glazed.jpg";
+const BEACON_CRUMB = "/assets/beacon_crumb.jpg";
+const BEACON_POWDERED = "/assets/beacon_powdered.jpg";
+const BEACON_CHOCOLATE = "/assets/beacon_chocolate.jpg";
 
 const photos = [BEACON_GLAZED, BEACON_CRUMB, BEACON_POWDERED, BEACON_CHOCOLATE];
 const captions = ["Classic Glazed", "Crumb Cake", "Powdered Bomboloni", "Chocolate Old Fashioned"];

@@ -15,16 +15,16 @@ import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 
 /* ─── Image Assets ─── */
-const GARDEN_DAY = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-enhanced-day_233286d2.png";
-const GARDEN_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-enhanced-night_8a3e7996.png";
-const GARDEN_DETAIL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-detail-3F7rKpzfeFuzK9GSkwP3FM.webp";
+const GARDEN_DAY = "/assets/garden_day.jpg";
+const GARDEN_EVENING = "/assets/garden_night.jpg";
+const GARDEN_DETAIL = "/assets/garden_detail.jpg";
 
 /* ─── Concept Rendering Assets ─── */
-const CONCEPT_WIDE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-render-1-wide-Zpoy9BtQBNjRH5pbqGHHGX.webp";
-const CONCEPT_BAR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-render-2-bar-AjeXCpSFRy2jXRhgVR9m7f.webp";
-const CONCEPT_SEATING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-render-3-seating-2T5HxpEDkueLSetEyNpxgN.webp";
-const CONCEPT_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-render-4-evening-9gtDkrSJZCGG25NspDhwr9.webp";
-const CONCEPT_AERIAL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-render-5-aerial-haoTmLcVr6WnWzjS5PaFzg.webp";
+const CONCEPT_WIDE = "/assets/garden_wide.jpg";
+const CONCEPT_BAR = "/assets/garden_bar.jpg";
+const CONCEPT_SEATING = "/assets/garden_seating.jpg";
+const CONCEPT_EVENING = "/assets/garden_evening.jpg";
+const CONCEPT_AERIAL = "/assets/garden_aerial.jpg";
 
 /* ─── Concept Rendering Data ─── */
 const conceptImages = [

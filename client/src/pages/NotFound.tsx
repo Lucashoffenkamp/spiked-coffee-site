@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
-const SPIKE_REAL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/spike_real_bbac0cff.jpg";
+const SPIKE_REAL = "/assets/spike_portrait.jpg";
 
 export default function NotFound() {
   const [, setLocation] = useLocation();

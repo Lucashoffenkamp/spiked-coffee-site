@@ -13,7 +13,7 @@ import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 
-const GARDEN_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/garden-enhanced-night_8a3e7996.png";
+const GARDEN_EVENING = "/assets/garden_night.jpg";
 
 export default function GardenTeaser() {
   const sectionRef = useRef<HTMLDivElement>(null);

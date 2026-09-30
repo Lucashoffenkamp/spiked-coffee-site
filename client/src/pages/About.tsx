@@ -10,10 +10,10 @@ import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 
 const DALMATIAN_ICON = "/assets/dalmatian-dark.png";
-const SPIKE_REAL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/spike_real_bbac0cff.jpg";
-const MORNING_RITUAL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/about_morning_ritual-9C6iDbb8kCcJ9vk3crD9GW.webp";
-const EVENING_GATHERING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/about_evening_gathering-bTSzAskH4RcEdKjazJJ9yJ.webp";
-const BROTHERS = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/brothers_real_93cd2b18.jpeg";
+const SPIKE_REAL = "/assets/spike_portrait.jpg";
+const MORNING_RITUAL = "/assets/about_morning_ritual.jpg";
+const EVENING_GATHERING = "/assets/about_evening_gathering.jpg";
+const BROTHERS = "/assets/about_brothers.jpg";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 

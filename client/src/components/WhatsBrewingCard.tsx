@@ -11,9 +11,9 @@ import { ArrowRight, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
 import { ScrollReveal } from "./ScrollAnimations";
 
-const TALA_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/tala_logo_7f6c1f39.png";
-const CHROMATIC_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/chromatic_logo_7679ace5.png";
-const RUBY_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/ruby_logo_4d0b335f.png";
+const TALA_LOGO = "/assets/tala_logo.png";
+const CHROMATIC_LOGO = "/assets/chromatic_logo.png";
+const RUBY_LOGO = "/assets/ruby_logo.png";
 
 interface RoasterFeature {
   name: string;

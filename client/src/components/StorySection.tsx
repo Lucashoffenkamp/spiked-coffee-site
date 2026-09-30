@@ -6,8 +6,8 @@
  */
 import { ParallaxLayer, ScrollReveal, ImageReveal } from "./ScrollAnimations";
 
-const LIFESTYLE_MORNING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/lifestyle_morning_v2-ALiGG6DxzyeYpc6hvXv4A4.webp";
-const MOCKUP_CUPS = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/mockup_cups_v2-539R8ew2fbVvZEYvpifzLm.webp";
+const LIFESTYLE_MORNING = "/assets/lifestyle_morning.jpg";
+const MOCKUP_CUPS = "/assets/mockup_cups.jpg";
 
 export default function StorySection() {
   return (

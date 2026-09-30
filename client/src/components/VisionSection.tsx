@@ -11,10 +11,10 @@ import { useRef, useState, useEffect } from "react";
 import { MapPin, Truck, Building2 } from "lucide-react";
 import { ScrollReveal, ImageReveal } from "./ScrollAnimations";
 
-const POPUP_MARKET = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/popup_farmers_market_v2-CgoheYfRyrJhoZ58h57R4Z.webp";
-const POPUP_CARSHOW = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/popup_carshow_v2-Wu8F2uT2LKcxRwYHgbyYc5.webp";
-const TRUCK_MOCKUP = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/airstream_final-4PHSK9RVtcGWDfkqSS9rvV.webp";
-const STOREFRONT_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/storefront_phase03-Z3iRz5m3cxmHPWojrTAWKi.webp";
+const POPUP_MARKET = "/assets/popup_farmers_market.jpg";
+const POPUP_CARSHOW = "/assets/popup_carshow.jpg";
+const TRUCK_MOCKUP = "/assets/airstream.jpg";
+const STOREFRONT_EVENING = "/assets/storefront_evening.jpg";
 
 function PhaseDot({ index }: { index: number }) {
   const ref = useRef(null);

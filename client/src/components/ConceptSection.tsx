@@ -8,8 +8,8 @@
 import { Sun, Moon, Coffee, Wine } from "lucide-react";
 import { ScrollReveal, ImageReveal, ParallaxLayer, StaggerContainer, StaggerItem } from "./ScrollAnimations";
 
-const INTERIOR_DAY = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/interior_day_v2-CaJjhxHj7Extup3Wvvm3xV.webp";
-const INTERIOR_EVENING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/interior_evening_v2-gkEfLdpWRvchgDTR8QQq9e.webp";
+const INTERIOR_DAY = "/assets/interior_day.jpg";
+const INTERIOR_EVENING = "/assets/interior_evening.jpg";
 
 export default function ConceptSection() {
   return (
@@ -186,7 +186,7 @@ export default function ConceptSection() {
             <div className="lg:col-span-7">
               <ParallaxLayer speed={-0.06}>
                 <ImageReveal
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/coffee_bag_v2-jjbFxkXQWDkAbynFEWpceR.webp"
+                  src="/assets/coffee_bag.jpg"
                   alt="Spiked Coffee featured roaster bag"
                   curtainColor="bg-charcoal"
                   aspectClass="w-full h-[400px] lg:h-[500px]"

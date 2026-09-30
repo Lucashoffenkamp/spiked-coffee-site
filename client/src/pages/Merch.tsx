@@ -15,12 +15,12 @@ import ScrollProgress from "@/components/ScrollProgress";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ScrollAnimations";
 
 /* ── CDN Assets ── */
-const STICKER_PACK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/merch_sticker_v2-9qPJ9ELuQTNtuGA8vmMMMj.webp";
-const DAD_HAT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/merch_hat_v2-Huc5AWGkotKe6BmVtea9Zq.webp";
-const KINTO_TUMBLER = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/merch_tumbler_v2-BDyDWryf92d44wWnJMhhJZ.webp";
-const TOTE_BAG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/merch_canvas_tote_v2-nC55zf5E6FdW5Wd3ahZZau.webp";
-const POCKET_TEE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/merch_pocket_tee_v2-6y5dCCZs3Pu2Ao7bQQuz7T.webp";
-const KINTO_MUG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/kinto_mug_v2-EpFowdyUQxLmUbiKJmKeua.webp";
+const STICKER_PACK = "/assets/merch_sticker.jpg";
+const DAD_HAT = "/assets/merch_hat.jpg";
+const KINTO_TUMBLER = "/assets/merch_tumbler.jpg";
+const TOTE_BAG = "/assets/merch_tote.jpg";
+const POCKET_TEE = "/assets/merch_tee.jpg";
+const KINTO_MUG = "/assets/merch_mug.jpg";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 

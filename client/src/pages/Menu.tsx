@@ -11,15 +11,15 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
 const DALMATIAN_ICON = "/assets/dalmatian-dark.png";
-const MENU_COFFEE_HERO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/menu_hero_coffee-f6vyGFntTM2wPo7YfSeuEc.webp";
-const EVENING_GATHERING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/about_evening_gathering-bTSzAskH4RcEdKjazJJ9yJ.webp";
+const MENU_COFFEE_HERO = "/assets/menu_hero_coffee.jpg";
+const EVENING_GATHERING = "/assets/about_evening_gathering.jpg";
 
 // Beacon Doughnuts assets
-const BEACON_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/beacon_logo_81d3d982.png";
-const BEACON_GLAZED = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/beacon_glazed_mural_e3629680.jpg";
-const BEACON_CRUMB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/beacon_crumb_donut_4d38ae32.jpg";
-const BEACON_POWDERED = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/beacon_powdered_stack_829b8446.jpg";
-const BEACON_CHOCOLATE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/beacon_chocolate_donut_0bdf709f.jpg";
+const BEACON_LOGO = "/assets/beacon_logo.png";
+const BEACON_GLAZED = "/assets/beacon_glazed.jpg";
+const BEACON_CRUMB = "/assets/beacon_crumb.jpg";
+const BEACON_POWDERED = "/assets/beacon_powdered.jpg";
+const BEACON_CHOCOLATE = "/assets/beacon_chocolate.jpg";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 

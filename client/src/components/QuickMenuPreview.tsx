@@ -17,7 +17,7 @@ const drinks = [
     name: "The Spike",
     subtitle: "Cookies & Cream Latte",
     description: "Our signature. Espresso, Kilgus cream, crushed Oreos, and a Kakao Chocolate Works dark drizzle. Named after the very good boy.",
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/drink_the_spot_hero-7Q6t2HPSXHUoHPCFkUZne8.webp",
+    image: "/assets/drink_the_spike.jpg",
     tag: "SIGNATURE",
     slug: "the-spike",
   },
@@ -25,7 +25,7 @@ const drinks = [
     name: "Latte",
     subtitle: null,
     description: "Kilgus Farmstead milk steamed over a double shot. Simple done right. Fairbury, IL in every sip.",
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/drink_latte-UFNRAJ9MbJ452dXQtnN7tz.webp",
+    image: "/assets/drink_latte.jpg",
     tag: null,
     slug: "latte",
   },
@@ -33,7 +33,7 @@ const drinks = [
     name: "Cappuccino",
     subtitle: null,
     description: "Espresso, steamed Kilgus milk, dense microfoam. Dusted with Saigon cinnamon. A morning ritual.",
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/drink_cappuccino-H3zhusfs67NMF5DvLuo5tB.webp",
+    image: "/assets/drink_cappuccino.jpg",
     tag: null,
     slug: "cappuccino",
   },
@@ -41,7 +41,7 @@ const drinks = [
     name: "Flat White",
     subtitle: null,
     description: "Double ristretto, velvety Kilgus microfoam. The way they drink it in Melbourne — no fuss.",
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/drink_flat_white-Uez4yPBMo5tEWALSX7PkU5.webp",
+    image: "/assets/drink_flat_white.jpg",
     tag: null,
     slug: "flat-white",
   },
@@ -49,7 +49,7 @@ const drinks = [
     name: "Miel",
     subtitle: null,
     description: "Espresso sweetened with Lake County wildflower honey and steamed Kilgus milk. Warm, golden, local.",
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/drink_miel-PCQeqoqhDzKqgweku4twDf.webp",
+    image: "/assets/drink_miel.jpg",
     tag: null,
     slug: "miel",
   },
@@ -57,7 +57,7 @@ const drinks = [
     name: "Mocha",
     subtitle: null,
     description: "Kakao Chocolate Works dark cocoa meets espresso and Kilgus milk. Indulgent, never too sweet.",
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/drink_mocha-Lwt2YfZE3kNvPYyN3JNhXp.webp",
+    image: "/assets/drink_mocha.jpg",
     tag: null,
     slug: "mocha",
   },
@@ -65,7 +65,7 @@ const drinks = [
     name: "Lavender Honey",
     subtitle: "Spring Seasonal",
     description: "House-dried culinary lavender, Lake County wildflower honey, Oatly oat milk. Floral, sweet, fleeting.",
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/drink_seasonal_lavender-8tseL9msh5bbrLA7LWCU72.webp",
+    image: "/assets/drink_lavender_honey.jpg",
     tag: "LIMITED TIME",
     slug: "lavender-honey",
   },
@@ -100,7 +100,7 @@ function DrinkCard({ drink, index }: { drink: typeof drinks[0]; index: number })
           {drink.tag === "SIGNATURE" && (
             <div className="absolute bottom-3 right-3 z-10 w-10 h-10 rounded-full overflow-hidden border-2 border-warm-white/80 shadow-md">
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/spike_real_bbac0cff.jpg"
+                src="/assets/spike_portrait.jpg"
                 alt="Spike"
                 className="w-full h-full object-cover object-top"
               />
