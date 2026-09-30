@@ -15,9 +15,9 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ChevronDown } from "lucide-react";
 
-const DALMATIAN_ICON = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/dalmatian_fix_5_23e75f68.png";
-const CHEMEX_VIDEO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/chemex_hero_video_05fb0d7a.mp4";
-const CHEMEX_POSTER = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/chemex_hero_frame-ZbjjNXQKSxZewDGqe9kEWS.webp";
+const DALMATIAN_ICON = "/assets/dalmatian-light.png";
+const CHEMEX_VIDEO = "/assets/chemex-hero.mp4";
+const CHEMEX_POSTER = "/assets/chemex-hero-poster.jpg";
 
 /*
  * All animations are defined in a <style> block scoped under html.js-animate.
@@ -210,7 +210,7 @@ export default function HeroSection() {
               <img
                 src={DALMATIAN_ICON}
                 alt=""
-                className="hero-icon h-24 w-24 sm:h-32 sm:w-32 lg:h-40 lg:w-40 object-contain brightness-0 invert"
+                className="hero-icon h-24 w-24 sm:h-32 sm:w-32 lg:h-40 lg:w-40 object-contain"
                 style={{ opacity: 0.9 }}
               />
 

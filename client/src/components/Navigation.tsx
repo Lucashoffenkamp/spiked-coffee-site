@@ -17,7 +17,8 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 
-const LOGO_ICON = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/dalmatian_fix_5_23e75f68.png";
+const LOGO_ICON_LIGHT = "/assets/dalmatian-light.png";
+const LOGO_ICON_DARK = "/assets/dalmatian-dark.png";
 
 const navLinks = [
   { label: "Menu", href: "/menu", isRoute: true },
@@ -121,7 +122,7 @@ export default function Navigation() {
           {/* Logo Mark */}
           <Link href="/" className="flex items-center gap-3 group">
             <img
-              src={LOGO_ICON}
+              src={scrolled ? LOGO_ICON_DARK : LOGO_ICON_LIGHT}
               alt="Spiked Coffee"
               className="h-9 w-9 lg:h-11 lg:w-11 object-contain transition-transform duration-300 group-hover:scale-105"
             />
@@ -164,7 +165,7 @@ export default function Navigation() {
                   <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                   <div className="flex items-center gap-3">
                     <img
-                      src={LOGO_ICON}
+                      src={scrolled ? LOGO_ICON_DARK : LOGO_ICON_LIGHT}
                       alt="Spiked Coffee"
                       className="h-10 w-10 object-contain"
                     />

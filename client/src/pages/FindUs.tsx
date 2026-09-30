@@ -10,7 +10,7 @@ import { MapView } from "@/components/Map";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
-const DALMATIAN_ICON = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/dalmatian_fix_5_23e75f68.png";
+const DALMATIAN_ICON = "/assets/dalmatian-dark.png";
 const TRUCK_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/find_us_truck-CZigNixBdZXapAh8QxceaW.webp";
 
 const ease = [0.22, 1, 0.36, 1] as const;

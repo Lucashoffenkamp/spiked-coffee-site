@@ -9,7 +9,7 @@ import { useState } from "react";
 import { ArrowRight, Check } from "lucide-react";
 import { ScrollReveal } from "./ScrollAnimations";
 
-const DALMATIAN_ICON = "https://d2xsxph8kpxj0f.cloudfront.net/310519663508607354/Cx8qam2TtnBMUm8oHF4fuf/dalmatian_fix_5_23e75f68.png";
+const DALMATIAN_ICON = "/assets/dalmatian-dark.png";
 
 export default function SignupSection() {
   const [email, setEmail] = useState("");
